@@ -10,12 +10,6 @@ import neu.edu.csye6200.ui.MainJFrame;
 public class Demo{
 	public static void demo()
 	{
-<<<<<<< HEAD
-		DayCare dc = new DayCare();
-		dc.getInstance();
-		System.out.print("s");
-	}	
-=======
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
             	JFrame mainframe = new MainJFrame();
@@ -26,7 +20,6 @@ public class Demo{
 		System.out.println("afaf");
 	}
 	
->>>>>>> 64c4698896f2d124fa5890fd18cdf7c92c1bf0be
 	
 
 }
