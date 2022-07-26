@@ -29,14 +29,15 @@ public class DayCare {
 		int i=0,j=0,k=0;
 		List<String> enrollmentContent = new ArrayList<String>();
 		try {
-			enrollmentContent= FileUtil.readItems("src/edu/neu/csye6200/csv/EnrollmentRoster.txt");
+			enrollmentContent= FileUtil.readItems("src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
 		}
 		catch(Exception ex) {
 			errorCheck = ex.toString()+" "+"unable to find contents";
 		}
-		while(j!=enrollmentContent.size())
+		while(j!=enrollmentContent.size()-1)
 		{
 			Person obj= sFactory.createObject(enrollmentContent.get(j));
+			System.out.print(obj);
 			personDir.addStudent(obj);
 			j++;
 		}
@@ -53,12 +54,12 @@ public class DayCare {
 		int i=0,j=0,k=0;
 		List<String> employeeContent = new ArrayList<String>();
 		try {
-			employeeContent= FileUtil.readItems("src/edu/neu/csye6200/csv/EmployeeRoster.txt");
+			employeeContent= FileUtil.readItems("src/neu/edu/csye6200/csv/EmployeeRoll.txt");
 		}
 		catch(Exception ex) {
 			errorCheck = ex.toString()+" "+"unable to find contents";
 		}
-		while(j!=employeeContent.size())
+		while(j!=employeeContent.size()-1)
 		{
 			Person obj= sFactory.createObject(employeeContent.get(j));
 			personDir.addTeacher(obj);
@@ -71,7 +72,7 @@ public class DayCare {
 			return 0;
 		}
 	}
-	public void getInstance() {
+	public DayCare getInstance() {
 //		In getInstance() check if we have our CSV files.
 //		If not, return an empty instance. 
 //		If we have these files, extract the data, and create students teachers etc with the methods sneha provides. 
@@ -80,6 +81,7 @@ public class DayCare {
 		int teach;
 		st=initializeStudents();
 		teach=initializeTeachers();
+		return this;
 	}
 	
 }

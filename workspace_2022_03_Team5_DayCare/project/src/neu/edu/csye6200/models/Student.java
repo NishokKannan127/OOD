@@ -5,23 +5,25 @@ public class Student extends Person{
 	//mm/dd/yy
 	int age;
 	String parentName;
+	
 public Student(String line) {
 		
 		String delimiter[]=line.split(",");
-		Integer id = 0;
+		id=counter++;
+		//Integer id = 0;
 		String fName = "";
 		String lName = "";
 		String dob= "";
 		String parentName= "";
 		String address="";
 
-		try {
-			id = Integer.parseInt(delimiter[0]);
+		//try {
+		//	id = Integer.parseInt(delimiter[0]);
 
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		}
-
+//		} catch (NumberFormatException e) {
+	//		e.printStackTrace();
+		//}
+		
 		fName = delimiter[1];
 		lName = delimiter[2];
 		dob= delimiter[3];
