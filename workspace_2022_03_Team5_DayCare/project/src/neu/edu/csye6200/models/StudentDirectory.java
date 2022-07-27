@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDirectory {
-	List<Student> studentList;
+	List<StudentDetails> studentList;
 	public StudentDirectory() {
-		studentList = new ArrayList<Student>();
+		studentList = new ArrayList<StudentDetails>();
 	}
-	public void addStudent(Person pers) {
-		Student stu = (Student)pers;
-		studentList.add(stu);
+//	public void addStudent(Person pers) {
+//		Student stu = (Student)pers;
+//		studentList.add(stu);
+//	}
+	public void addStudentDetails(StudentDetails st) {
+		studentList.add(st);
 	}
 }

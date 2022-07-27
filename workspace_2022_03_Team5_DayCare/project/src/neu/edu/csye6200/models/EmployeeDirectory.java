@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDirectory {
-	List<Teacher> teacherList;
+	List<Employee> employeeList;
 	public EmployeeDirectory() {
-		teacherList = new ArrayList<Teacher>();
+		employeeList = new ArrayList<Employee>();
 	}
-	public void addTeacher(Person pers) {
+	public void addEmployee(Employee pers) {
 		// TODO Auto-generated method stub
-		Teacher stu = (Teacher)pers;
-		teacherList.add(stu);
+		Employee stu = pers;
+		employeeList.add(stu);
 	}
 }
