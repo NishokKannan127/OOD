@@ -1,8 +1,8 @@
 package neu.edu.csye6200.models;
-
+//This is the teacher class
 public class Teacher extends Person{
 	String doj;
-public String getDoj() {
+	public String getDoj() {
 		return doj;
 	}
 	public void setDoj(String doj) {
@@ -11,7 +11,8 @@ public String getDoj() {
 public Teacher(String line) {
 		
 		String delimiter[]=line.split(",");
-		Integer id = 0;
+		id=counter++;
+		//Integer id = 0;
 		String fName = "";
 		String lName = "";
 		String doj= "";
@@ -30,7 +31,7 @@ public Teacher(String line) {
 		address= delimiter[4];
 
 		
-		this.setId(id);
+		//this.setId(id);
 		this.setFirstName(fName);
 		this.setFirstName(lName);
 		this.setDoj(doj);
