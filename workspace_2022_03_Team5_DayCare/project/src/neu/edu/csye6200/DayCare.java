@@ -12,6 +12,7 @@ import neu.edu.csye6200.models.PersonDirectory;
 import neu.edu.csye6200.models.Student;
 import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.models.StudentFactory;
+import neu.edu.csye6200.models.Teacher;
 import neu.edu.csye6200.models.TeacherFactory;
 
 public class DayCare {
@@ -67,8 +68,8 @@ public class DayCare {
 		while(j!=employeeContent.size()-1)
 		{
 			Person obj= sFactory.createObject(employeeContent.get(j));
-			Employee emp = (Employee)obj;
-			personDir.addEmployee(emp);
+			//Employee emp = (Employee)obj;
+			personDir.addEmployee(new Employee((Teacher)obj, null));
 			j++;
 		}
 		if(errorCheck=="") {

@@ -1,8 +1,10 @@
 package neu.edu.csye6200.models;
 
-public class Employee extends Person{
+public class Employee {
 	Review rev;
-	public Employee() {
-		
+	Teacher teacher;
+	public Employee(Teacher teacher, Review rev) {
+		this.rev=rev;
+		this.teacher=teacher;
 	}
 }
