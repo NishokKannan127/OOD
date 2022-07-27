@@ -6,22 +6,22 @@ import java.util.List;
 public class PersonDirectory {
 	//List<Person> personList;
 	StudentDirectory stuDir;
-	TeacherDirectory teachDir;
+	EmployeeDirectory empDir;
 	
 	public PersonDirectory() {
 		stuDir = new StudentDirectory();
-		teachDir = new TeacherDirectory();
+		empDir = new EmployeeDirectory();
 	}
 	
 
-	public void addStudent(Person pers) {
-		stuDir.addStudent(pers);
+	public void addStudentDet(StudentDetails pers) {
+		stuDir.addStudentDetails(pers);
 	}
 	public void removeStudent() {
 		
 	}
-	public void addTeacher(Person pers) {
-		teachDir.addTeacher(pers);
+	public void addEmployee(Employee pers) {
+		empDir.addEmployee(pers);
 	}
 	public void removeTeacher() {
 		
@@ -35,12 +35,12 @@ public class PersonDirectory {
 		this.stuDir = stuDir;
 	}
 
-	public TeacherDirectory getTeachDir() {
-		return teachDir;
+	public EmployeeDirectory getEmpDir() {
+		return empDir;
 	}
 
-	public void setTeachDir(TeacherDirectory teachDir) {
-		this.teachDir = teachDir;
+	public void setEmpDir(EmployeeDirectory empDir) {
+		this.empDir = empDir;
 	}
 
 	

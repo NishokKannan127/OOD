@@ -1,6 +1,6 @@
 package neu.edu.csye6200.models;
 //This is the teacher class
-public class Teacher extends Person{
+public class Teacher extends Employee{
 	String doj;
 	public String getDoj() {
 		return doj;

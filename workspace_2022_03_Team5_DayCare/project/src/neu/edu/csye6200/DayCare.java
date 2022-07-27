@@ -5,9 +5,12 @@ import java.util.List;
 
 import neu.edu.csye6200.models.AbstractPersonFactory;
 import neu.edu.csye6200.models.ClassroomDirectory;
+import neu.edu.csye6200.models.Employee;
 import neu.edu.csye6200.models.FileUtil;
 import neu.edu.csye6200.models.Person;
 import neu.edu.csye6200.models.PersonDirectory;
+import neu.edu.csye6200.models.Student;
+import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.models.StudentFactory;
 import neu.edu.csye6200.models.TeacherFactory;
 
@@ -38,7 +41,9 @@ public class DayCare {
 		{
 			Person obj= sFactory.createObject(enrollmentContent.get(j));
 			System.out.print(obj);
-			personDir.addStudent(obj);
+			Student s = (Student)obj;
+			StudentDetails st = new StudentDetails(s);
+			personDir.addStudentDet(st);
 			j++;
 		}
 		if(errorCheck=="") {
@@ -48,7 +53,7 @@ public class DayCare {
 			return 0;
 		}
 	}
-	public int initializeTeachers() {
+	public int initializeEmployees() {
 		String line;
 		String errorCheck="";
 		int i=0,j=0,k=0;
@@ -62,7 +67,8 @@ public class DayCare {
 		while(j!=employeeContent.size()-1)
 		{
 			Person obj= sFactory.createObject(employeeContent.get(j));
-			personDir.addTeacher(obj);
+			Employee emp = (Employee)obj;
+			personDir.addEmployee(emp);
 			j++;
 		}
 		if(errorCheck=="") {
@@ -80,7 +86,7 @@ public class DayCare {
 		int st;
 		int teach;
 		st=initializeStudents();
-		teach=initializeTeachers();
+		teach=initializeEmployees();
 		return this;
 	}
 	
