@@ -60,7 +60,7 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
 		
-		JLabel lblEnroll = new JLabel("Enroll Teacher");
+		JLabel lblEnroll = new JLabel("Teacher enrolled Successfully");
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblEnroll.setBounds(6, 6, 978, 78);
