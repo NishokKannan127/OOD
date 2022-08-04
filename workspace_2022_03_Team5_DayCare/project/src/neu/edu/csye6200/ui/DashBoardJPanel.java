@@ -33,7 +33,7 @@ public class DashBoardJPanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+				EnrollJPanel enrollJPanel = new EnrollJPanel(container, daycare);
 				container.add("EnrollJPanel", enrollJPanel);
 				layout.next(container);
 			}

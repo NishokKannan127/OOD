@@ -1,0 +1,48 @@
+package neu.edu.csye6200.ui;
+
+import java.util.Stack;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import java.awt.CardLayout;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class MainJFrame extends javax.swing.JFrame{
+	
+	public MainJFrame() {
+		getContentPane().setLayout(new CardLayout(0, 0));
+		
+		JSplitPane splitPane = new JSplitPane();
+		getContentPane().add(splitPane, "name_574509463118900");
+		
+		JPanel panel = new JPanel();
+		splitPane.setLeftComponent(panel);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton = new JButton("New button");
+		panel.add(btnNewButton);
+		
+		JPanel panel_1 = new JPanel();
+		splitPane.setRightComponent(panel_1);
+//		daycare = DayCareBuilder.getInstance();
+		initialSetup();
+		
+	}
+	
+	public void initialSetup() {
+//        container.setVisible(true);
+	}
+	
+	
+	
+	
+}

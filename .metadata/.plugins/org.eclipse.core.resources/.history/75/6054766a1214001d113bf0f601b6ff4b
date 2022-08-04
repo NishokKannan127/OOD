@@ -1,0 +1,159 @@
+package neu.edu.csye6200.ui;
+
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+import neu.edu.csye6200.DayCare;
+import neu.edu.csye6200.models.Employee;
+import neu.edu.csye6200.models.FileUtil;
+import neu.edu.csye6200.models.Person;
+import neu.edu.csye6200.models.StudentDetails;
+import neu.edu.csye6200.models.StudentFactory;
+import neu.edu.csye6200.models.Teacher;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+
+public class EnrollTeacherJPanel extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	private JPanel container;
+	private DayCare dayCare;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private StudentFactory sFactory;
+	
+	public EnrollTeacherJPanel(JPanel container, DayCare dayCare) {
+		setBackground(new Color(204, 255, 255));
+		this.container = container;
+		this.dayCare=dayCare;
+		this.setBounds(0, 0, 990, 990);
+		setLayout(null);
+		
+		JButton backButton = new JButton("<< back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backJButtonActionPerformed(e);
+			}
+		});
+		backButton.setBounds(58, 98, 117, 29);
+		add(backButton);
+		
+		JLabel lblEnroll = new JLabel("Enroll Teacher");
+		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblEnroll.setBounds(6, 6, 978, 78);
+		add(lblEnroll);
+		
+		JLabel firstNameLabel = new JLabel("First Name");
+		firstNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		firstNameLabel.setBounds(305, 160, 72, 16);
+		add(firstNameLabel);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(437, 159, 130, 26);
+		add(textField);
+		
+		JLabel lastNameLabel = new JLabel("Last Name");
+		lastNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		lastNameLabel.setBounds(305, 215, 72, 16);
+		add(lastNameLabel);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(437, 214, 130, 26);
+		add(textField_1);
+		
+		JLabel addressLabel = new JLabel("Address");
+		addressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		addressLabel.setBounds(305, 270, 72, 16);
+		add(addressLabel);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(437, 269, 130, 26);
+		add(textField_2);
+		
+		JLabel dojLabel = new JLabel("Date of Joining");
+		dojLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		dojLabel.setBounds(305, 327, 72, 16);
+		add(dojLabel);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(437, 326, 130, 26);
+		add(textField_3);
+		
+		JButton enrollBtn = new JButton("Enroll");
+		enrollBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fName=textField.getText();
+				lName=textField_1.getText();
+				address=textField_2.getText();
+				parentName=textField_3.getText();
+				dob=textField_4.getText();
+				age=textField_5.getText();
+				
+				StringBuilder st = new StringBuilder("");
+				st.append(",");
+				st.append(fName);
+				st.append(",");
+				st.append(lName);
+				st.append(",");
+				st.append(dob);
+				st.append(",");
+				st.append(parentName);
+				st.append(",");
+				st.append(address);
+				
+				Person pObj = sFactory.createObject(st.toString());
+				dayCare.getPersonDir().addEmployee(new Employee(new Teacher(pObj), null));// addStudentDet(new StudentDetails(pObj));
+				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
+//				CardLayout layout=(CardLayout)container.getLayout();
+//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//				container.add("EnrollJPanel", enrollJPanel);
+//				layout.next(container);
+			}
+		});
+		enrollBtn.setBackground(new Color(102, 0, 51));
+		enrollBtn.setBounds(450, 519, 117, 29);
+		add(enrollBtn);
+
+		
+		
+//		JButton btnNewButton = new JButton("Enroll");
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				CardLayout layout=(CardLayout)container.getLayout();
+//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//				container.add("EnrollJPanel", enrollJPanel);
+//				layout.next(container);
+//			}
+//		});
+//		btnNewButton.setBounds(243, 243, 169, 70);
+//		add(btnNewButton);
+	}
+	
+	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		container.remove(this);
+      Component[] componentArray = container.getComponents();
+      Component component = componentArray[componentArray.length - 1];
+      DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+
+      CardLayout layout = (CardLayout) container.getLayout();
+      layout.previous(container);
+	}
+}

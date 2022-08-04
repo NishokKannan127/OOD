@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import neu.edu.csye6200.DayCare;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,10 +21,12 @@ public class EnrollJPanel extends JPanel {
 	 * Create the panel.
 	 */
 	private JPanel container;
+	private DayCare dayCare;
 	
-	public EnrollJPanel(JPanel container) {
+	public EnrollJPanel(JPanel container, DayCare dayCare) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
+		this.dayCare=dayCare;
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 		
@@ -40,7 +45,46 @@ public class EnrollJPanel extends JPanel {
 		lblEnroll.setBounds(6, 6, 978, 78);
 		add(lblEnroll);
 		
+		JButton enrollStudents = new JButton("Enroll Students");
 		
+		
+		
+		enrollStudents.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout layout=(CardLayout)container.getLayout();
+				EnrollStudentJPanel enrollStudentJPanel = new EnrollStudentJPanel(container, dayCare);
+				container.add("EnrollStudentJPanel", enrollStudentJPanel);
+				layout.next(container);
+			}
+		});
+		enrollStudents.setBounds(247, 194, 117, 29);
+		add(enrollStudents);
+		
+		JButton enrollTeachers = new JButton("Enroll Teachers");
+		enrollTeachers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout layout=(CardLayout)container.getLayout();
+				EnrollTeacherJPanel enrollStudentJPanel = new EnrollTeacherJPanel(container, dayCare);
+				container.add("EnrollStudentJPanel", enrollStudentJPanel);
+				layout.next(container);
+			}
+		});
+		enrollTeachers.setBounds(247, 295, 117, 29);
+		add(enrollTeachers);
+
+		
+		
+//		JButton btnNewButton = new JButton("Enroll");
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				CardLayout layout=(CardLayout)container.getLayout();
+//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//				container.add("EnrollJPanel", enrollJPanel);
+//				layout.next(container);
+//			}
+//		});
+//		btnNewButton.setBounds(243, 243, 169, 70);
+//		add(btnNewButton);
 	}
 	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,5 +96,4 @@ public class EnrollJPanel extends JPanel {
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);
 	}
-
 }

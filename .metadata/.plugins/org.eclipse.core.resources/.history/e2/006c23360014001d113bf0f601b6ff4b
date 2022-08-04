@@ -1,0 +1,14 @@
+package neu.edu.csye6200.ui;
+
+import javax.swing.JPanel;
+
+public class qwe extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public qwe() {
+
+	}
+
+}
