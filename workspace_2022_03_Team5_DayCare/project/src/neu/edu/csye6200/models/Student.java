@@ -16,13 +16,6 @@ public Student(String line) {
 		String dob= "";
 		String parentName= "";
 		String address="";
-
-		//try {
-		//	id = Integer.parseInt(delimiter[0]);
-
-//		} catch (NumberFormatException e) {
-	//		e.printStackTrace();
-		//}
 		
 		fName = delimiter[1];
 		lName = delimiter[2];

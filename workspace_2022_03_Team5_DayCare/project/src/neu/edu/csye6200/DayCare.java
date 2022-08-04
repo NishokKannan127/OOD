@@ -16,16 +16,18 @@ import neu.edu.csye6200.models.Teacher;
 import neu.edu.csye6200.models.TeacherFactory;
 
 public class DayCare {
-	PersonDirectory personDir;
-	ClassroomDirectory classroomDir;
-	AbstractPersonFactory tFactory;//=new TeacherFactory();
-	AbstractPersonFactory sFactory;//=new StudentFactory();
+	private PersonDirectory personDir;
+	private ClassroomDirectory classroomDir;
+	private AbstractPersonFactory tFactory;//=new TeacherFactory();
+	private AbstractPersonFactory sFactory;//=new StudentFactory();
 	
 	public DayCare() {
 		personDir = new PersonDirectory();				;
 		classroomDir = new ClassroomDirectory();
 		tFactory=new TeacherFactory();
 		sFactory=new StudentFactory();
+		initializeStudents();
+		initializeEmployees();
 	}
 	public int initializeStudents() {
 		String line;
@@ -38,12 +40,27 @@ public class DayCare {
 		catch(Exception ex) {
 			errorCheck = ex.toString()+" "+"unable to find contents";
 		}
-		while(j!=enrollmentContent.size()-1)
+		while(j!=enrollmentContent.size())
 		{
 			Person obj= sFactory.createObject(enrollmentContent.get(j));
-			System.out.print(obj);
-			Student s = (Student)obj;
-			StudentDetails st = new StudentDetails(s);
+//			System.out.print(obj);
+//			Student s = (Student)obj;
+			StudentDetails st = new StudentDetails(obj);
+			if(j%3==0) {
+				st.setGroupid("Group 1");
+			}
+			else if(j%3==1) {
+				st.setGroupid("Group 2");
+			}
+			else {
+				st.setGroupid("Group 3");
+			}
+			if((j%10)<5) {
+				st.setClassid("Class 1");
+			}
+			else {
+				st.setClassid("Class 2");
+			}
 			personDir.addStudentDet(st);
 			j++;
 		}
@@ -67,7 +84,7 @@ public class DayCare {
 		}
 		while(j!=employeeContent.size()-1)
 		{
-			Person obj= sFactory.createObject(employeeContent.get(j));
+			Person obj= tFactory.createObject(employeeContent.get(j));
 			//Employee emp = (Employee)obj;
 			personDir.addEmployee(new Employee((Teacher)obj, null));
 			j++;
@@ -79,15 +96,33 @@ public class DayCare {
 			return 0;
 		}
 	}
+	
+	
+	public PersonDirectory getPersonDir() {
+		return personDir;
+	}
+	public void setPersonDir(PersonDirectory personDir) {
+		this.personDir = personDir;
+	}
+	public ClassroomDirectory getClassroomDir() {
+		return classroomDir;
+	}
+	public void setClassroomDir(ClassroomDirectory classroomDir) {
+		this.classroomDir = classroomDir;
+	}
+	public AbstractPersonFactory gettFactory() {
+		return tFactory;
+	}
+	public void settFactory(AbstractPersonFactory tFactory) {
+		this.tFactory = tFactory;
+	}
+	public AbstractPersonFactory getsFactory() {
+		return sFactory;
+	}
+	public void setsFactory(AbstractPersonFactory sFactory) {
+		this.sFactory = sFactory;
+	}
 	public DayCare getInstance() {
-//		In getInstance() check if we have our CSV files.
-//		If not, return an empty instance. 
-//		If we have these files, extract the data, and create students teachers etc with the methods sneha provides. 
-//		Add all these objects in the directory objects we have in system
-		int st;
-		int teach;
-		st=initializeStudents();
-		teach=initializeEmployees();
 		return this;
 	}
 	

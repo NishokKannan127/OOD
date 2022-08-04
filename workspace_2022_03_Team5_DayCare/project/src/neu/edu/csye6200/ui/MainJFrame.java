@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import neu.edu.csye6200.DayCare;
+import neu.edu.csye6200.DayCareSingleton;
+import neu.edu.csye6200.models.StudentDetails;
 
 import java.awt.CardLayout;
 import javax.swing.JLabel;
@@ -25,7 +27,7 @@ public class MainJFrame extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	
-//	private DayCare daycare;
+	private DayCare daycare;
 
 	/**
 	 * Launch the application.
@@ -35,7 +37,7 @@ public class MainJFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainJFrame() {
-//		daycare = daycare.getInstance();
+		daycare = new DayCare();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 1000);
 		container = new JPanel();
@@ -74,12 +76,16 @@ public class MainJFrame extends JFrame {
 		textField_1.setBounds(503, 290, 130, 26);
 		homePanel.add(textField_1);
 		
+//		for(StudentDetails sd: daycare.getPersonDir().getStuDir().getStudentList()) {
+//			System.out.println(sd.getStudent().getFirstName());
+//		}
+		
 		JButton loginBtn = new JButton("Login");
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout layout=(CardLayout)container.getLayout();
-				DashBoardJPanel test1 = new DashBoardJPanel(container);
-				container.add("test1", test1);
+				DashBoardJPanel dashBoardJPanel = new DashBoardJPanel(container, daycare);
+				container.add("dashBoardJPanel", dashBoardJPanel);
 				layout.next(container);
 			}
 		});
