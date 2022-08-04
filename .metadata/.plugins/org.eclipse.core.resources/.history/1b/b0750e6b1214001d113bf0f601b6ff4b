@@ -11,43 +11,34 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import neu.edu.csye6200.DayCare;
+import neu.edu.csye6200.models.Employee;
 import neu.edu.csye6200.models.FileUtil;
 import neu.edu.csye6200.models.Person;
-import neu.edu.csye6200.models.Student;
 import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.models.StudentFactory;
-import neu.edu.csye6200.ui.student.StudentJPanel;
+import neu.edu.csye6200.models.Teacher;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class EnrollStudentJPanel extends JPanel {
+public class EnrollTeacherJPanel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
 	private JPanel container;
-	private DayCare daycare;
+	private DayCare dayCare;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private StudentFactory sFactory;
 	
-	String fName;
-	String lName;
-	String address;
-	String parentName;
-	String dob;
-	String age;
-	StudentFactory sFactory;
-	
-	public EnrollStudentJPanel(JPanel container, DayCare daycare) {
+	public EnrollTeacherJPanel(JPanel container, DayCare dayCare) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
-		this.daycare=daycare;
+		this.dayCare=dayCare;
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 		
@@ -60,7 +51,7 @@ public class EnrollStudentJPanel extends JPanel {
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
 		
-		JLabel lblEnroll = new JLabel("Enroll Student");
+		JLabel lblEnroll = new JLabel("Enroll Teacher");
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblEnroll.setBounds(6, 6, 978, 78);
@@ -96,35 +87,15 @@ public class EnrollStudentJPanel extends JPanel {
 		textField_2.setBounds(437, 269, 130, 26);
 		add(textField_2);
 		
-		JLabel parentNameLabel = new JLabel("Parent Name");
-		parentNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		parentNameLabel.setBounds(305, 327, 72, 16);
-		add(parentNameLabel);
+		JLabel dojLabel = new JLabel("Date of Joining");
+		dojLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		dojLabel.setBounds(305, 327, 72, 16);
+		add(dojLabel);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(437, 326, 130, 26);
 		add(textField_3);
-		
-		JLabel dobLabel = new JLabel("Date of Birth");
-		dobLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		dobLabel.setBounds(305, 381, 72, 16);
-		add(dobLabel);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(437, 380, 130, 26);
-		add(textField_4);
-		
-		JLabel ageLabel = new JLabel("Age");
-		ageLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		ageLabel.setBounds(305, 444, 72, 16);
-		add(ageLabel);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(437, 443, 130, 26);
-		add(textField_5);
 		
 		JButton enrollBtn = new JButton("Enroll");
 		enrollBtn.addActionListener(new ActionListener() {
@@ -148,12 +119,12 @@ public class EnrollStudentJPanel extends JPanel {
 				st.append(",");
 				st.append(address);
 				
-				Person pObj = sFactory.createObject(st.toString());
-				daycare.getPersonDir().addStudentDet(new StudentDetails(pObj));
-				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+				Person pObj = new Teacher(sFactory.createObject(st.toString()))
+				dayCare.getPersonDir().addEmployee(new Employee(new Teacher(pObj), null));// addStudentDet(new StudentDetails(pObj));
+				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
 //				CardLayout layout=(CardLayout)container.getLayout();
-//				StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
-//				container.add("StudentJPanel", studentJPanel);
+//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//				container.add("EnrollJPanel", enrollJPanel);
 //				layout.next(container);
 			}
 		});
@@ -180,7 +151,7 @@ public class EnrollStudentJPanel extends JPanel {
 		container.remove(this);
       Component[] componentArray = container.getComponents();
       Component component = componentArray[componentArray.length - 1];
-      //DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+      DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
 
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);

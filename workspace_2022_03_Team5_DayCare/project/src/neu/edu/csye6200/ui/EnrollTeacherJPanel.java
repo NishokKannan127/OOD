@@ -11,6 +11,13 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import neu.edu.csye6200.DayCare;
+import neu.edu.csye6200.models.Employee;
+import neu.edu.csye6200.models.FileUtil;
+import neu.edu.csye6200.models.Person;
+import neu.edu.csye6200.models.StudentDetails;
+import neu.edu.csye6200.models.StudentFactory;
+import neu.edu.csye6200.models.Teacher;
+import neu.edu.csye6200.models.TeacherFactory;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,6 +34,12 @@ public class EnrollTeacherJPanel extends JPanel {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private TeacherFactory tFactory;
+	
+	String fName;
+	String lName;
+	String address;
+	String doj;
 	
 	public EnrollTeacherJPanel(JPanel container, DayCare dayCare) {
 		setBackground(new Color(204, 255, 255));
@@ -93,6 +106,24 @@ public class EnrollTeacherJPanel extends JPanel {
 		JButton enrollBtn = new JButton("Enroll");
 		enrollBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				fName=textField.getText();
+				lName=textField_1.getText();
+				address=textField_2.getText();
+				doj=textField_3.getText();
+				
+				StringBuilder st = new StringBuilder("");
+				st.append(",");
+				st.append(fName);
+				st.append(",");
+				st.append(lName);
+				st.append(",");
+				st.append(address);
+				st.append(",");
+				st.append(doj);
+				
+				Teacher pObj = (Teacher)tFactory.createObject(st.toString());
+				dayCare.getPersonDir().addEmployee(new Employee(pObj, null));// addStudentDet(new StudentDetails(pObj));
+				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
 //				CardLayout layout=(CardLayout)container.getLayout();
 //				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
 //				container.add("EnrollJPanel", enrollJPanel);

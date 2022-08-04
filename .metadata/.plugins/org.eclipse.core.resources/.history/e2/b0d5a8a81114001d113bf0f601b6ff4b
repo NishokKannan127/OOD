@@ -150,7 +150,7 @@ public class EnrollStudentJPanel extends JPanel {
 				
 				Person pObj = sFactory.createObject(st.toString());
 				daycare.getPersonDir().addStudentDet(new StudentDetails(pObj));
-				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+				FileUtil.writeItems(st.toString(), );
 //				CardLayout layout=(CardLayout)container.getLayout();
 //				StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
 //				container.add("StudentJPanel", studentJPanel);

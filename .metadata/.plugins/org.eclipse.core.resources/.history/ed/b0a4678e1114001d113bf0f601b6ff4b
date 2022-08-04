@@ -11,7 +11,6 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import neu.edu.csye6200.DayCare;
-import neu.edu.csye6200.models.FileUtil;
 import neu.edu.csye6200.models.Person;
 import neu.edu.csye6200.models.Student;
 import neu.edu.csye6200.models.StudentDetails;
@@ -150,7 +149,7 @@ public class EnrollStudentJPanel extends JPanel {
 				
 				Person pObj = sFactory.createObject(st.toString());
 				daycare.getPersonDir().addStudentDet(new StudentDetails(pObj));
-				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+				
 //				CardLayout layout=(CardLayout)container.getLayout();
 //				StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
 //				container.add("StudentJPanel", studentJPanel);
