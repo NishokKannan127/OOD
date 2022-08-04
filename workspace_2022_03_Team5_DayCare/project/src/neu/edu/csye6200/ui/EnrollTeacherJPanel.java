@@ -45,6 +45,7 @@ public class EnrollTeacherJPanel extends JPanel {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
 		this.dayCare=dayCare;
+		this.tFactory=(TeacherFactory) dayCare.gettFactory();
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 		

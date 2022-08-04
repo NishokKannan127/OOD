@@ -113,6 +113,14 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		textField_3.setColumns(10);
 		textField_3.setBounds(437, 326, 130, 26);
 		add(textField_3);
+		
+		JButton btnGoToDashboard = new JButton("Go to Dashboard");
+		btnGoToDashboard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnGoToDashboard.setBounds(58, 257, 117, 29);
+		add(btnGoToDashboard);
 
 		
 		
