@@ -17,4 +17,13 @@ public class Group {
 		this();
 		this.emp=emp;
 	}
+	
+	public void addStudentDetails(StudentDetails sd) {
+		this.studDetailsList.add(sd);
+	}
+	
+	@Override
+	public String toString() {
+		return "Group "+ String.valueOf(id);
+	}
 }
