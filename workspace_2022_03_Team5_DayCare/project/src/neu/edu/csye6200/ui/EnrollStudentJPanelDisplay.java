@@ -139,6 +139,14 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		textField_5.setColumns(10);
 		textField_5.setBounds(437, 443, 130, 26);
 		add(textField_5);
+		
+		JButton btnGoToDashboard = new JButton("Go to Dashboard");
+		btnGoToDashboard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnGoToDashboard.setBounds(58, 257, 117, 29);
+		add(btnGoToDashboard);
 
 		
 		

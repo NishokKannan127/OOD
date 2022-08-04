@@ -49,7 +49,7 @@ public class EnrollStudentJPanel extends JPanel {
 		this.container = container;
 		this.daycare=daycare;
 		this.setBounds(0, 0, 990, 990);
-		this.sFactory=(StudentFactory) daycare.getsFactory();
+		this.sFactory=daycare.getsFactory();
 		setLayout(null);
 		
 		JButton backButton = new JButton("<< back");

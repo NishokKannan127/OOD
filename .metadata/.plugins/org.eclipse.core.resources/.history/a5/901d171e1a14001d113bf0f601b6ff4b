@@ -22,13 +22,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class EnrollStudentJPanel extends JPanel {
+public class EnrollStudentJPanelDisplay extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
 	private JPanel container;
 	private DayCare daycare;
+	private StudentDetails st;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -44,12 +45,12 @@ public class EnrollStudentJPanel extends JPanel {
 	String age;
 	StudentFactory sFactory;
 	
-	public EnrollStudentJPanel(JPanel container, DayCare daycare) {
+	public EnrollStudentJPanelDisplay(JPanel container, DayCare daycare, StudentDetails st) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
 		this.daycare=daycare;
+		this.st=st;
 		this.setBounds(0, 0, 990, 990);
-		this.sFactory=(StudentFactory) daycare.getsFactory();
 		setLayout(null);
 		
 		JButton backButton = new JButton("<< back");
@@ -61,7 +62,7 @@ public class EnrollStudentJPanel extends JPanel {
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
 		
-		JLabel lblEnroll = new JLabel("Enroll Student");
+		JLabel lblEnroll = new JLabel("Student enrolled succesfully");
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblEnroll.setBounds(6, 6, 978, 78);
@@ -73,6 +74,8 @@ public class EnrollStudentJPanel extends JPanel {
 		add(firstNameLabel);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setEnabled(false);
 		textField.setColumns(10);
 		textField.setBounds(437, 159, 130, 26);
 		add(textField);
@@ -83,6 +86,8 @@ public class EnrollStudentJPanel extends JPanel {
 		add(lastNameLabel);
 		
 		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setEnabled(false);
 		textField_1.setColumns(10);
 		textField_1.setBounds(437, 214, 130, 26);
 		add(textField_1);
@@ -93,6 +98,8 @@ public class EnrollStudentJPanel extends JPanel {
 		add(addressLabel);
 		
 		textField_2 = new JTextField();
+		textField_2.setEditable(false);
+		textField_2.setEnabled(false);
 		textField_2.setColumns(10);
 		textField_2.setBounds(437, 269, 130, 26);
 		add(textField_2);
@@ -103,6 +110,8 @@ public class EnrollStudentJPanel extends JPanel {
 		add(parentNameLabel);
 		
 		textField_3 = new JTextField();
+		textField_3.setEnabled(false);
+		textField_3.setEditable(false);
 		textField_3.setColumns(10);
 		textField_3.setBounds(437, 326, 130, 26);
 		add(textField_3);
@@ -113,6 +122,8 @@ public class EnrollStudentJPanel extends JPanel {
 		add(dobLabel);
 		
 		textField_4 = new JTextField();
+		textField_4.setEnabled(false);
+		textField_4.setEditable(false);
 		textField_4.setColumns(10);
 		textField_4.setBounds(437, 380, 130, 26);
 		add(textField_4);
@@ -123,53 +134,41 @@ public class EnrollStudentJPanel extends JPanel {
 		add(ageLabel);
 		
 		textField_5 = new JTextField();
+		textField_5.setEditable(false);
+		textField_5.setEnabled(false);
 		textField_5.setColumns(10);
 		textField_5.setBounds(437, 443, 130, 26);
 		add(textField_5);
 		
-		JButton enrollBtn = new JButton("Enroll");
-		enrollBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fName=textField.getText();
-				lName=textField_1.getText();
-				address=textField_2.getText();
-				parentName=textField_3.getText();
-				dob=textField_4.getText();
-				age=textField_5.getText();
-				
-				StringBuilder st = new StringBuilder("");
-				st.append(",");
-				st.append(fName);
-				st.append(",");
-				st.append(lName);
-				st.append(",");
-				st.append(dob);
-				st.append(",");
-				st.append(parentName);
-				st.append(",");
-				st.append(address);
-				
-				Person pObj = sFactory.createObject(st.toString());
-				StudentDetails s = new StudentDetails(pObj);
-				daycare.getPersonDir().addStudentDet(s);
-				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
-				readStudent(s, e);
+		JButton btnGoToDashboard = new JButton("Go to Dashboard");
+		btnGoToDashboard.setBounds(58, 257, 117, 29);
+		add(btnGoToDashboard);
+
+		
+		
+//		JButton btnNewButton = new JButton("Enroll");
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
 //				CardLayout layout=(CardLayout)container.getLayout();
-//				StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
-//				container.add("StudentJPanel", studentJPanel);
+//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//				container.add("EnrollJPanel", enrollJPanel);
 //				layout.next(container);
-			}
-		});
-		enrollBtn.setBackground(new Color(102, 0, 51));
-		enrollBtn.setBounds(450, 519, 117, 29);
-		add(enrollBtn);
+//			}
+//		});
+//		btnNewButton.setBounds(243, 243, 169, 70);
+//		add(btnNewButton);
+		
+		displayStudent();
 	}
-	public void readStudent(StudentDetails st, java.awt.event.ActionEvent evt) {
-		CardLayout layout=(CardLayout)container.getLayout();
-		EnrollStudentJPanelDisplay studentJPanelDisp = new EnrollStudentJPanelDisplay(container, daycare, st);
-		container.add("StudentJPanelDisp", studentJPanelDisp);
-		layout.next(container);
+	public void displayStudent() {
+		textField.setText(st.getStudent().getFirstName());
+		textField_1.setText(st.getStudent().getLastName());
+		textField_2.setText(st.getStudent().getAddress());;
+		textField_3.setText(st.getParentName());
+		textField_4.setText(((Student) st.getStudent()).getDob());
+		textField_5.setText(((Student) st.getStudent()).getDob());
 	}
+	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		container.remove(this);
       Component[] componentArray = container.getComponents();
