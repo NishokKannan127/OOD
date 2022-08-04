@@ -11,15 +11,20 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
-public class EnrollJPanel extends JPanel {
+public class EnrollTeacherJPanel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
 	private JPanel container;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
 	
-	public EnrollJPanel(JPanel container) {
+	public EnrollTeacherJPanel(JPanel container) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
 		this.setBounds(0, 0, 990, 990);
@@ -34,38 +39,64 @@ public class EnrollJPanel extends JPanel {
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
 		
-		JLabel lblEnroll = new JLabel("Enroll");
+		JLabel lblEnroll = new JLabel("Enroll Teacher");
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblEnroll.setBounds(6, 6, 978, 78);
 		add(lblEnroll);
 		
-		JButton enrollStudents = new JButton("Enroll Students");
+		JLabel firstNameLabel = new JLabel("First Name");
+		firstNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		firstNameLabel.setBounds(305, 160, 72, 16);
+		add(firstNameLabel);
 		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(437, 159, 130, 26);
+		add(textField);
 		
+		JLabel lastNameLabel = new JLabel("Last Name");
+		lastNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		lastNameLabel.setBounds(305, 215, 72, 16);
+		add(lastNameLabel);
 		
-		enrollStudents.addActionListener(new ActionListener() {
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(437, 214, 130, 26);
+		add(textField_1);
+		
+		JLabel addressLabel = new JLabel("Address");
+		addressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		addressLabel.setBounds(305, 270, 72, 16);
+		add(addressLabel);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(437, 269, 130, 26);
+		add(textField_2);
+		
+		JLabel dojLabel = new JLabel("Date of Joining");
+		dojLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		dojLabel.setBounds(305, 327, 72, 16);
+		add(dojLabel);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(437, 326, 130, 26);
+		add(textField_3);
+		
+		JButton enrollBtn = new JButton("Enroll");
+		enrollBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollStudentJPanel enrollStudentJPanel = new EnrollStudentJPanel(container);
-				container.add("EnrollStudentJPanel", enrollStudentJPanel);
+				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+				container.add("EnrollJPanel", enrollJPanel);
 				layout.next(container);
 			}
 		});
-		enrollStudents.setBounds(247, 194, 117, 29);
-		add(enrollStudents);
-		
-		JButton enrollTeachers = new JButton("Enroll Teachers");
-		enrollTeachers.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollTeacherJPanel enrollStudentJPanel = new EnrollTeacherJPanel(container);
-				container.add("EnrollStudentJPanel", enrollStudentJPanel);
-				layout.next(container);
-			}
-		});
-		enrollTeachers.setBounds(247, 295, 117, 29);
-		add(enrollTeachers);
+		enrollBtn.setBackground(new Color(102, 0, 51));
+		enrollBtn.setBounds(450, 519, 117, 29);
+		add(enrollBtn);
 
 		
 		

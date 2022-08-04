@@ -47,8 +47,8 @@ public class EnrollJPanel extends JPanel {
 		enrollStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollStudentJPanel enrollStudentJPanel = new EnrollStudentJPanel(container);
-				container.add("EnrollStudentJPanel", enrollStudentJPanel);
+				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+				container.add("EnrollJPanel", enrollJPanel);
 				layout.next(container);
 			}
 		});
@@ -58,10 +58,6 @@ public class EnrollJPanel extends JPanel {
 		JButton enrollTeachers = new JButton("Enroll Teachers");
 		enrollTeachers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollTeacherJPanel enrollStudentJPanel = new EnrollTeacherJPanel(container);
-				container.add("EnrollStudentJPanel", enrollStudentJPanel);
-				layout.next(container);
 			}
 		});
 		enrollTeachers.setBounds(247, 295, 117, 29);

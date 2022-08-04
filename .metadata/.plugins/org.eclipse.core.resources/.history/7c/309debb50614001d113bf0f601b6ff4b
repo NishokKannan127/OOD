@@ -12,14 +12,14 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class EnrollJPanel extends JPanel {
+public class EnrollStudentJPanel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
 	private JPanel container;
 	
-	public EnrollJPanel(JPanel container) {
+	public EnrollStudentJPanel(JPanel container) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
 		this.setBounds(0, 0, 990, 990);
@@ -47,8 +47,8 @@ public class EnrollJPanel extends JPanel {
 		enrollStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollStudentJPanel enrollStudentJPanel = new EnrollStudentJPanel(container);
-				container.add("EnrollStudentJPanel", enrollStudentJPanel);
+				EnrollStudentJPanel enrollJPanel = new EnrollStudentJPanel(container);
+				container.add("EnrollJPanel", enrollJPanel);
 				layout.next(container);
 			}
 		});
@@ -58,10 +58,6 @@ public class EnrollJPanel extends JPanel {
 		JButton enrollTeachers = new JButton("Enroll Teachers");
 		enrollTeachers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollTeacherJPanel enrollStudentJPanel = new EnrollTeacherJPanel(container);
-				container.add("EnrollStudentJPanel", enrollStudentJPanel);
-				layout.next(container);
 			}
 		});
 		enrollTeachers.setBounds(247, 295, 117, 29);
