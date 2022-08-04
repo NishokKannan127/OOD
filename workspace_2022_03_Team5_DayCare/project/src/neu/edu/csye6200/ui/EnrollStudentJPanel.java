@@ -149,8 +149,10 @@ public class EnrollStudentJPanel extends JPanel {
 				st.append(address);
 				
 				Person pObj = sFactory.createObject(st.toString());
-				daycare.getPersonDir().addStudentDet(new StudentDetails(pObj));
+				StudentDetails s = new StudentDetails(pObj);
+				daycare.getPersonDir().addStudentDet(s);
 				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+				readStudent(s, e);
 //				CardLayout layout=(CardLayout)container.getLayout();
 //				StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
 //				container.add("StudentJPanel", studentJPanel);
@@ -160,22 +162,13 @@ public class EnrollStudentJPanel extends JPanel {
 		enrollBtn.setBackground(new Color(102, 0, 51));
 		enrollBtn.setBounds(450, 519, 117, 29);
 		add(enrollBtn);
-
-		
-		
-//		JButton btnNewButton = new JButton("Enroll");
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				CardLayout layout=(CardLayout)container.getLayout();
-//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
-//				container.add("EnrollJPanel", enrollJPanel);
-//				layout.next(container);
-//			}
-//		});
-//		btnNewButton.setBounds(243, 243, 169, 70);
-//		add(btnNewButton);
 	}
-	
+	public void readStudent(StudentDetails st, java.awt.event.ActionEvent evt) {
+		CardLayout layout=(CardLayout)container.getLayout();
+		EnrollStudentJPanelDisplay studentJPanelDisp = new EnrollStudentJPanelDisplay(container, daycare, st);
+		container.add("StudentJPanelDisp", studentJPanelDisp);
+		layout.next(container);
+	}
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		container.remove(this);
       Component[] componentArray = container.getComponents();

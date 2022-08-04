@@ -124,6 +124,7 @@ public class EnrollTeacherJPanel extends JPanel {
 				Teacher pObj = (Teacher)tFactory.createObject(st.toString());
 				dayCare.getPersonDir().addEmployee(new Employee(pObj, null));// addStudentDet(new StudentDetails(pObj));
 				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
+				readTeacher(pObj, e);
 //				CardLayout layout=(CardLayout)container.getLayout();
 //				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
 //				container.add("EnrollJPanel", enrollJPanel);
@@ -148,7 +149,12 @@ public class EnrollTeacherJPanel extends JPanel {
 //		btnNewButton.setBounds(243, 243, 169, 70);
 //		add(btnNewButton);
 	}
-	
+	public void readTeacher(Teacher teacher, java.awt.event.ActionEvent evt) {
+		CardLayout layout=(CardLayout)container.getLayout();
+		EnrollTeacherJPanelDisplay teacherJPanelDisp = new EnrollTeacherJPanelDisplay(container, dayCare, teacher);
+		container.add("TeacherJPanelDisp", teacherJPanelDisp);
+		layout.next(container);
+	}
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		container.remove(this);
       Component[] componentArray = container.getComponents();
