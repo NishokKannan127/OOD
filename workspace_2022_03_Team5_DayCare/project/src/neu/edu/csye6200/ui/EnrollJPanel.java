@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import neu.edu.csye6200.DayCare;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,10 +21,12 @@ public class EnrollJPanel extends JPanel {
 	 * Create the panel.
 	 */
 	private JPanel container;
+	private DayCare dayCare;
 	
-	public EnrollJPanel(JPanel container) {
+	public EnrollJPanel(JPanel container, DayCare dayCare) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
+		this.dayCare=dayCare;
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 		
@@ -47,7 +52,7 @@ public class EnrollJPanel extends JPanel {
 		enrollStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollStudentJPanel enrollStudentJPanel = new EnrollStudentJPanel(container);
+				EnrollStudentJPanel enrollStudentJPanel = new EnrollStudentJPanel(container, dayCare);
 				container.add("EnrollStudentJPanel", enrollStudentJPanel);
 				layout.next(container);
 			}
@@ -59,7 +64,7 @@ public class EnrollJPanel extends JPanel {
 		enrollTeachers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout layout=(CardLayout)container.getLayout();
-				EnrollTeacherJPanel enrollStudentJPanel = new EnrollTeacherJPanel(container);
+				EnrollTeacherJPanel enrollStudentJPanel = new EnrollTeacherJPanel(container, dayCare);
 				container.add("EnrollStudentJPanel", enrollStudentJPanel);
 				layout.next(container);
 			}

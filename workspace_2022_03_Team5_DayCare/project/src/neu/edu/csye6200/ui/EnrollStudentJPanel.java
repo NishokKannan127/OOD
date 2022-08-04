@@ -9,6 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import neu.edu.csye6200.DayCare;
+import neu.edu.csye6200.models.Person;
+import neu.edu.csye6200.models.Student;
+import neu.edu.csye6200.models.StudentDetails;
+import neu.edu.csye6200.models.StudentFactory;
+import neu.edu.csye6200.ui.student.StudentJPanel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -19,6 +27,7 @@ public class EnrollStudentJPanel extends JPanel {
 	 * Create the panel.
 	 */
 	private JPanel container;
+	private DayCare daycare;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -26,9 +35,18 @@ public class EnrollStudentJPanel extends JPanel {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	
-	public EnrollStudentJPanel(JPanel container) {
+	String fName;
+	String lName;
+	String address;
+	String parentName;
+	String dob;
+	String age;
+	StudentFactory sFactory;
+	
+	public EnrollStudentJPanel(JPanel container, DayCare daycare) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
+		this.daycare=daycare;
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 		
@@ -110,9 +128,31 @@ public class EnrollStudentJPanel extends JPanel {
 		JButton enrollBtn = new JButton("Enroll");
 		enrollBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				fName=textField.getText();
+				lName=textField_1.getText();
+				address=textField_2.getText();
+				parentName=textField_3.getText();
+				dob=textField_4.getText();
+				age=textField_5.getText();
+				
+				StringBuilder st = new StringBuilder("");
+				st.append(",");
+				st.append(fName);
+				st.append(",");
+				st.append(lName);
+				st.append(",");
+				st.append(dob);
+				st.append(",");
+				st.append(parentName);
+				st.append(",");
+				st.append(address);
+				
+				Person pObj = sFactory.createObject(st.toString());
+				daycare.getPersonDir().addStudentDet(new StudentDetails(pObj));
+				
 //				CardLayout layout=(CardLayout)container.getLayout();
-//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
-//				container.add("EnrollJPanel", enrollJPanel);
+//				StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
+//				container.add("StudentJPanel", studentJPanel);
 //				layout.next(container);
 			}
 		});
@@ -139,7 +179,7 @@ public class EnrollStudentJPanel extends JPanel {
 		container.remove(this);
       Component[] componentArray = container.getComponents();
       Component component = componentArray[componentArray.length - 1];
-      DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+      //DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
 
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);

@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import neu.edu.csye6200.DayCare;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -19,14 +22,16 @@ public class EnrollTeacherJPanel extends JPanel {
 	 * Create the panel.
 	 */
 	private JPanel container;
+	private DayCare dayCare;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	
-	public EnrollTeacherJPanel(JPanel container) {
+	public EnrollTeacherJPanel(JPanel container, DayCare dayCare) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
+		this.dayCare=dayCare;
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 		
