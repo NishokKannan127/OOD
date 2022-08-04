@@ -40,7 +40,36 @@ public class EnrollJPanel extends JPanel {
 		lblEnroll.setBounds(6, 6, 978, 78);
 		add(lblEnroll);
 		
+		JButton enrollStudents = new JButton("Enroll Students");
 		
+		enrollStudents.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		enrollStudents.setBounds(247, 194, 117, 29);
+		add(enrollStudents);
+		
+		JButton enrollTeachers = new JButton("Enroll Teachers");
+		enrollTeachers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		enrollTeachers.setBounds(247, 295, 117, 29);
+		add(enrollTeachers);
+
+		
+		
+//		JButton btnNewButton = new JButton("Enroll");
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				CardLayout layout=(CardLayout)container.getLayout();
+//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//				container.add("EnrollJPanel", enrollJPanel);
+//				layout.next(container);
+//			}
+//		});
+//		btnNewButton.setBounds(243, 243, 169, 70);
+//		add(btnNewButton);
 	}
 	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,5 +81,4 @@ public class EnrollJPanel extends JPanel {
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);
 	}
-
 }
