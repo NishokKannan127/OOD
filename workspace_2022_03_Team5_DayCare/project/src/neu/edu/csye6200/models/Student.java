@@ -26,7 +26,7 @@ public Student(String line) {
 		
 		this.setId(id);
 		this.setFirstName(fName);
-		this.setFirstName(lName);
+		this.setLastName(lName);
 		this.setDob(dob);
 		this.setParentName(parentName);
 		this.setAddress(address);
