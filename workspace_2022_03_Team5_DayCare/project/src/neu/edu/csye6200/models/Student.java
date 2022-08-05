@@ -9,7 +9,7 @@ public class Student extends Person{
 public Student(String line) {
 		
 		String delimiter[]=line.split(",");
-		id=counter++;
+		id=++counter;
 		//Integer id = 0;
 		String fName = "";
 		String lName = "";

@@ -1,11 +1,15 @@
 package neu.edu.csye6200.ui.student;
 
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JPanel;
 
 import neu.edu.csye6200.DayCare;
 import neu.edu.csye6200.models.StudentDetails;
+import neu.edu.csye6200.ui.DashBoardJPanel;
+import neu.edu.csye6200.models.Student;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -60,7 +64,7 @@ public class StudentJPanel extends JPanel {
 		table.setForeground(Color.WHITE);
 
 		table.setBackground(Color.BLACK);
-		table.setBounds(417, 180, 348, 64);
+		table.setBounds(317, 180, 650, 16);
 
 		table.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 		table.setModel(new javax.swing.table.DefaultTableModel(
@@ -68,6 +72,11 @@ public class StudentJPanel extends JPanel {
 				new String[] { "ID", "First Name", "Last Name", "Date of Birth", "Address" }));
 
 		JButton backButton = new JButton("<< back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backJButtonActionPerformed(e);
+			}
+		});
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
 
@@ -86,7 +95,7 @@ public class StudentJPanel extends JPanel {
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Last Name");
-		lblNewLabel_1.setBounds(638, 152, 83, 16);
+		lblNewLabel_1.setBounds(580, 152, 83, 16);
 		add(lblNewLabel_1);
 
 		classCombobox = new JComboBox<>();
@@ -111,6 +120,18 @@ public class StudentJPanel extends JPanel {
 		groupCombobox.setBounds(75, 284, 117, 27);
 		add(groupCombobox);
 		
+		JLabel lblId = new JLabel("ID");
+		lblId.setBounds(317, 152, 90, 16);
+		add(lblId);
+		
+		JLabel lblDateOfBirth = new JLabel("Date of Birth");
+		lblDateOfBirth.setBounds(706, 152, 90, 16);
+		add(lblDateOfBirth);
+		
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setBounds(834, 152, 90, 16);
+		add(lblAddress);
+		
 		populateTable();
 	}
 
@@ -129,42 +150,65 @@ public class StudentJPanel extends JPanel {
 		}
 		populateTable();
 	}
+	
+	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		container.remove(this);
+		Component[] componentArray = container.getComponents();
+		Component component = componentArray[componentArray.length - 1];
+		DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+		
+		CardLayout layout = (CardLayout) container.getLayout();
+		layout.previous(container);
+	}
 
 	public void populateTable() {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
 		int i = 16;
-		table.setBounds(417, 180, 348, i);
+		table.setBounds(317, 180, 650, i);
 
 		for (StudentDetails sd : daycare.getPersonDir().getStuDir().getStudentList()) {
+			System.out.println(sd);
 //            if ((sd.getGroupid().equals(groupCombobox.getSelectedItem()) && sd.getGroupid().equals(classCombobox.getSelectedItem())) ||
 //            		(sd.getGroupid().equals("All Groups") && sd.getGroupid().equals("All Classes"))) {
 //            }
 
 			if (classCombobox.getSelectedItem().equals("All Classes")) {
-				Object[] row = new Object[2];
-				row[0] = sd.getStudent().getFirstName();
-				row[1] = sd.getStudent().getLastName();
+				Object[] row = new Object[5];
+				row[0] = sd;
+				row[1] = sd.getStudent().getFirstName();
+				row[2] = sd.getStudent().getLastName();
+				row[3] = ((Student)sd.getStudent()).getDob();
+				row[4] = ((Student)sd.getStudent()).getAddress();
+				
 				model.addRow(row);
-				table.setBounds(417, 180, 348, i);
+				table.setBounds(317, 180, 650, i);
 				i += 16;
 			} else {
 				String temp = (String) groupCombobox.getSelectedItem();
 				if (sd.getClassid().equals(classCombobox.getSelectedItem()) && temp.equals("All Groups")) {
-					Object[] row = new Object[2];
-					row[0] = sd.getStudent().getFirstName();
-					row[1] = sd.getStudent().getLastName();
+					Object[] row = new Object[5];
+					row[0] = sd;
+					row[1] = sd.getStudent().getFirstName();
+					row[2] = sd.getStudent().getLastName();
+					row[3] = ((Student)sd.getStudent()).getDob();
+					row[4] = ((Student)sd.getStudent()).getAddress();
+					
 					model.addRow(row);
-					table.setBounds(417, 180, 348, i);
+					table.setBounds(317, 180, 650, i);
 					i += 16;
 				} else {
 					if ((sd.getGroupid().equals(groupCombobox.getSelectedItem())
 							&& sd.getClassid().equals(classCombobox.getSelectedItem()))) {
-						Object[] row = new Object[2];
-						row[0] = sd.getStudent().getFirstName();
-						row[1] = sd.getStudent().getLastName();
+						Object[] row = new Object[5];
+						row[0] = sd;
+						row[1] = sd.getStudent().getFirstName();
+						row[2] = sd.getStudent().getLastName();
+						row[3] = ((Student)sd.getStudent()).getDob();
+						row[4] = ((Student)sd.getStudent()).getAddress();
+						
 						model.addRow(row);
-						table.setBounds(417, 180, 348, i);
+						table.setBounds(317, 180, 650, i);
 						i += 16;
 					}
 				}
