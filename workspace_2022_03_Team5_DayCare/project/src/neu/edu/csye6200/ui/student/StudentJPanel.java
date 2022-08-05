@@ -3,10 +3,8 @@ package neu.edu.csye6200.ui.student;
 import java.awt.Color;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import neu.edu.csye6200.DayCare;
-import neu.edu.csye6200.models.Group;
 import neu.edu.csye6200.models.StudentDetails;
 
 import javax.swing.JLabel;
@@ -16,6 +14,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
@@ -23,15 +24,31 @@ public class StudentJPanel extends JPanel {
 
 	private JPanel container;
 	private DayCare daycare;
-	/**
-	 * Create the panel.
-	 */
-
-	JComboBox classCombobox;
-	JComboBox groupCombobox;
 	private JTable table;
 
+	JComboBox<String> classCombobox;
+	JComboBox<String> groupCombobox;
+	
+	private HashMap<String, List<String>> classmap;
+
 	public StudentJPanel(JPanel container, DayCare daycare) {
+		classmap = new HashMap<>();
+		List<String> class1 = new ArrayList<>();
+		class1.add("All Groups");
+		class1.add("Group 1");
+		class1.add("Group 2");
+		class1.add("Group 3");
+		classmap.put("Class 1", class1);
+		List<String> class2 = new ArrayList<>();
+		class2.add("All Groups");
+		class2.add("Group 1");
+		class2.add("Group 2");
+		class2.add("Group 3");
+		classmap.put("Class 2", class2);
+		List<String> allclasses = new ArrayList<>();
+		allclasses.add("All Groups");
+		classmap.put("All Classes", allclasses);
+		
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
 		this.daycare = daycare;
@@ -42,37 +59,13 @@ public class StudentJPanel extends JPanel {
 		table.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 		table.setForeground(Color.WHITE);
 
-		table.setBackground(Color.YELLOW);
+		table.setBackground(Color.BLACK);
 		table.setBounds(417, 180, 348, 64);
 
 		table.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-		table.setForeground(new java.awt.Color(255, 255, 255));
 		table.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { null, null }, { null, null }, { null, null }, { null, null } },
-				new String[] { "Username", "Retailer Name" }));
-
-		classCombobox = new JComboBox();
-		classCombobox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-//				populatGroupCombobox();
-//				populateTable();
-			}
-		});
-		classCombobox.setBackground(new Color(51, 204, 255));
-		classCombobox.setBounds(69, 199, 165, 27);
-		add(classCombobox);
-
-		groupCombobox = new JComboBox();
-		groupCombobox.setBackground(new Color(51, 204, 255));
-		groupCombobox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				populatGroupCombobox((String)groupCombobox.getSelectedItem());
-			}
-		});
-		groupCombobox.setBounds(69, 260, 165, 27);
-		add(groupCombobox);
-		populatClassCombobox();
-		populatGroupCombobox();
+				new Object[][] { { null, null }},
+				new String[] { "ID", "First Name", "Last Name", "Date of Birth", "Address" }));
 
 		JButton backButton = new JButton("<< back");
 		backButton.setBounds(58, 98, 117, 29);
@@ -84,36 +77,57 @@ public class StudentJPanel extends JPanel {
 		lblStudent.setBounds(6, 6, 978, 78);
 		add(lblStudent);
 
-//		populateTable();
+		
 
 		add(table);
 
+		JLabel lblNewLabel = new JLabel("First Name");
+		lblNewLabel.setBounds(446, 152, 90, 16);
+		add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Last Name");
+		lblNewLabel_1.setBounds(638, 152, 83, 16);
+		add(lblNewLabel_1);
+
+		classCombobox = new JComboBox<>();
+		classCombobox.addItem("All Classes");
+		classCombobox.addItem("Class 1");
+		classCombobox.addItem("Class 2");
+		classCombobox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				classComboboxChanged(e);
+			}
+		});
+		classCombobox.setBounds(75, 210, 117, 27);
+		add(classCombobox);
+
+		groupCombobox = new JComboBox<>();
+		groupCombobox.addItem("All Groups");
+		groupCombobox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				groupComboboxChanged(e);
+			}
+		});
+		groupCombobox.setBounds(75, 284, 117, 27);
+		add(groupCombobox);
+		
+		populateTable();
 	}
-	
-	public void populatGroupCombobox(String value) {
+
+	public void classComboboxChanged(ActionEvent e) {
+		List<String> classlist = classmap.get((String)classCombobox.getSelectedItem());
 		groupCombobox.removeAllItems();
-		groupCombobox.setSelectedItem(value);
-//		populateTable();
-		System.out.println("sdsf");
-	}
-	public void populatGroupCombobox() {
-		groupCombobox.removeAllItems();
-		if (classCombobox.getSelectedItem().equals("All Classes")) {
-			groupCombobox.addItem("All Groups");
-		} else {
-			groupCombobox.addItem("All Groups");
-			groupCombobox.addItem("Group 1");
-			groupCombobox.addItem("Group 2");
-			groupCombobox.addItem("Group 3");
+		for(String g:classlist) {
+			groupCombobox.addItem(g);
 		}
 		populateTable();
 	}
 
-	public void populatClassCombobox() {
-		classCombobox.removeAllItems();
-		classCombobox.addItem("All Classes");
-		classCombobox.addItem("Class 1");
-		classCombobox.addItem("Class 2");
+	public void groupComboboxChanged(ActionEvent e) {
+		if(groupCombobox.getSelectedItem() == null) {
+			return;
+		}
+		populateTable();
 	}
 
 	public void populateTable() {
@@ -135,9 +149,8 @@ public class StudentJPanel extends JPanel {
 				table.setBounds(417, 180, 348, i);
 				i += 16;
 			} else {
-				String temp = (String)groupCombobox.getSelectedItem();
-				if (sd.getClassid().equals(classCombobox.getSelectedItem())
-						&& temp.equals("All Groups")) {
+				String temp = (String) groupCombobox.getSelectedItem();
+				if (sd.getClassid().equals(classCombobox.getSelectedItem()) && temp.equals("All Groups")) {
 					Object[] row = new Object[2];
 					row[0] = sd.getStudent().getFirstName();
 					row[1] = sd.getStudent().getLastName();
