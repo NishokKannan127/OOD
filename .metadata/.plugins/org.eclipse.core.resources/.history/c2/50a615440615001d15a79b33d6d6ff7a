@@ -121,10 +121,6 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		});
 		btnGoToDashboard.setBounds(58, 257, 117, 29);
 		add(btnGoToDashboard);
-		
-		JButton btnReview = new JButton("Review");
-		btnReview.setBounds(305, 405, 117, 29);
-		add(btnReview);
 
 		
 		

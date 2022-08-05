@@ -11,43 +11,45 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import neu.edu.csye6200.DayCare;
-import neu.edu.csye6200.models.Employee;
 import neu.edu.csye6200.models.FileUtil;
 import neu.edu.csye6200.models.Person;
 import neu.edu.csye6200.models.Student;
 import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.models.StudentFactory;
-import neu.edu.csye6200.models.Teacher;
-import neu.edu.csye6200.models.TeacherFactory;
+import neu.edu.csye6200.ui.student.StudentJPanel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class EnrollTeacherJPanelDisplay extends JPanel {
+public class EnrollStudentJPanelDisplay extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
 	private JPanel container;
-	private DayCare dayCare;
-	private Teacher teacher;
+	private DayCare daycare;
+	private StudentDetails st;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private TeacherFactory tFactory;
+	private JTextField textField_4;
+	private JTextField textField_5;
 	
 	String fName;
 	String lName;
 	String address;
-	String doj;
+	String parentName;
+	String dob;
+	String age;
+	StudentFactory sFactory;
 	
-	public EnrollTeacherJPanelDisplay(JPanel container, DayCare dayCare, Teacher teacher) {
+	public EnrollStudentJPanelDisplay(JPanel container, DayCare daycare, StudentDetails st, boolean isEnroll) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
-		this.dayCare=dayCare;
-		this.teacher=teacher;
+		this.daycare=daycare;
+		this.st=st;
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 		
@@ -60,7 +62,14 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
 		
-		JLabel lblEnroll = new JLabel("Teacher enrolled Successfully");
+		JLabel lblEnroll = null;;
+		
+		if(isEnroll == true) {
+			lblEnroll= new JLabel("Student enrolled succesfully");
+		}
+		else {
+			lblEnroll= new JLabel("Student Details");
+		}
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblEnroll.setBounds(6, 6, 978, 78);
@@ -84,8 +93,8 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		add(lastNameLabel);
 		
 		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
 		textField_1.setEditable(false);
+		textField_1.setEnabled(false);
 		textField_1.setColumns(10);
 		textField_1.setBounds(437, 214, 130, 26);
 		add(textField_1);
@@ -102,17 +111,41 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		textField_2.setBounds(437, 269, 130, 26);
 		add(textField_2);
 		
-		JLabel dojLabel = new JLabel("Date of Joining");
-		dojLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		dojLabel.setBounds(305, 327, 72, 16);
-		add(dojLabel);
+		JLabel parentNameLabel = new JLabel("Parent Name");
+		parentNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		parentNameLabel.setBounds(305, 327, 72, 16);
+		add(parentNameLabel);
 		
 		textField_3 = new JTextField();
-		textField_3.setEditable(false);
 		textField_3.setEnabled(false);
+		textField_3.setEditable(false);
 		textField_3.setColumns(10);
 		textField_3.setBounds(437, 326, 130, 26);
 		add(textField_3);
+		
+		JLabel dobLabel = new JLabel("Date of Birth");
+		dobLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		dobLabel.setBounds(305, 381, 72, 16);
+		add(dobLabel);
+		
+		textField_4 = new JTextField();
+		textField_4.setEnabled(false);
+		textField_4.setEditable(false);
+		textField_4.setColumns(10);
+		textField_4.setBounds(437, 380, 130, 26);
+		add(textField_4);
+		
+		JLabel ageLabel = new JLabel("Age");
+		ageLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		ageLabel.setBounds(305, 444, 72, 16);
+		add(ageLabel);
+		
+		textField_5 = new JTextField();
+		textField_5.setEditable(false);
+		textField_5.setEnabled(false);
+		textField_5.setColumns(10);
+		textField_5.setBounds(437, 443, 130, 26);
+		add(textField_5);
 		
 		JButton btnGoToDashboard = new JButton("Go to Dashboard");
 		btnGoToDashboard.addActionListener(new ActionListener() {
@@ -122,9 +155,9 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		btnGoToDashboard.setBounds(58, 257, 117, 29);
 		add(btnGoToDashboard);
 		
-		JButton btnReview = new JButton("Review");
-		btnReview.setBounds(305, 405, 117, 29);
-		add(btnReview);
+		JButton btnInsurance = new JButton("Insurance");
+		btnInsurance.setBounds(318, 529, 117, 29);
+		add(btnInsurance);
 
 		
 		
@@ -140,22 +173,22 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 //		btnNewButton.setBounds(243, 243, 169, 70);
 //		add(btnNewButton);
 		
-		
-		displayTeacher();
+		displayStudent();
 	}
-	
-	public void displayTeacher() {
-		textField.setText(teacher.getFirstName());
-		textField_1.setText(teacher.getLastName());
-		textField_2.setText(teacher.getAddress());;
-		textField_3.setText(teacher.getDoj());
+	public void displayStudent() {
+		textField.setText(st.getStudent().getFirstName());
+		textField_1.setText(st.getStudent().getLastName());
+		textField_2.setText(st.getStudent().getAddress());;
+		textField_3.setText(st.getParentName());
+		textField_4.setText(((Student) st.getStudent()).getDob());
+		textField_5.setText(((Student) st.getStudent()).getDob());
 	}
 	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		container.remove(this);
       Component[] componentArray = container.getComponents();
       Component component = componentArray[componentArray.length - 1];
-      DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+      //DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
 
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);
