@@ -60,4 +60,9 @@ public class StudentDetails {
 		this.classid = classid;
 	}
 	
+	@Override
+	public String toString() {
+		return String.valueOf(this.getStudent().getId());
+	}
+	
 }

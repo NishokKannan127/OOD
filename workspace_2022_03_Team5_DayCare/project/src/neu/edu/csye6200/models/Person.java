@@ -2,7 +2,7 @@ package neu.edu.csye6200.models;
 
 public class Person {
 	long id=0;
-	static long counter=0;
+	static long counter=100;
 	String firstName;
 	String lastName;
 	String address;
