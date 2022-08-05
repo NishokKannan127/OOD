@@ -181,6 +181,7 @@ public class StudentJPanel extends JPanel {
 			groupCombobox.addItem(g);
 		}
 		populateTable();
+		
 	}
 
 	public void groupComboboxChanged(ActionEvent e) {
