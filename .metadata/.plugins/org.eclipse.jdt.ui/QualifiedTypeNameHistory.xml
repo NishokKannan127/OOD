@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.Student"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.Person"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.StudentDetails"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.DayCare"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.FileUtil"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.StudentFactory"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.Teacher"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.Employee"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.TeacherFactory"/>
+    <fullyQualifiedTypeName name="java.io.FileWriter"/>
+    <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+</qualifiedTypeNameHistroy>

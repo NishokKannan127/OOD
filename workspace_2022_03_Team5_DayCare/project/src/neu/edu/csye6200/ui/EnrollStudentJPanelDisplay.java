@@ -154,6 +154,14 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		});
 		btnGoToDashboard.setBounds(58, 257, 117, 29);
 		add(btnGoToDashboard);
+		
+		JButton btnInsurance = new JButton("Insurance");
+		btnInsurance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnInsurance.setBounds(318, 529, 117, 29);
+		add(btnInsurance);
 
 		
 		
