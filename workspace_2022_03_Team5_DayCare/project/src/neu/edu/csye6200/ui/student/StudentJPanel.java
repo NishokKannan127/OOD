@@ -141,6 +141,7 @@ public class StudentJPanel extends JPanel {
 				viewStudent(e);
 			}
 		});
+		
 		editBtn.setBounds(95, 258, 117, 29);
 		add(editBtn);
 		
