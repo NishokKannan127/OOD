@@ -9,9 +9,12 @@ import javax.swing.JPanel;
 import neu.edu.csye6200.DayCare;
 import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.ui.DashBoardJPanel;
+import neu.edu.csye6200.ui.EnrollStudentJPanelDisplay;
 import neu.edu.csye6200.models.Student;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -64,7 +67,7 @@ public class StudentJPanel extends JPanel {
 		table.setForeground(Color.WHITE);
 
 		table.setBackground(Color.BLACK);
-		table.setBounds(317, 180, 650, 16);
+		table.setBounds(317, 220, 650, 16);
 
 		table.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 		table.setModel(new javax.swing.table.DefaultTableModel(
@@ -91,11 +94,11 @@ public class StudentJPanel extends JPanel {
 		add(table);
 
 		JLabel lblNewLabel = new JLabel("First Name");
-		lblNewLabel.setBounds(446, 152, 90, 16);
+		lblNewLabel.setBounds(446, 192, 90, 16);
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Last Name");
-		lblNewLabel_1.setBounds(580, 152, 83, 16);
+		lblNewLabel_1.setBounds(580, 192, 83, 16);
 		add(lblNewLabel_1);
 
 		classCombobox = new JComboBox<>();
@@ -107,7 +110,7 @@ public class StudentJPanel extends JPanel {
 				classComboboxChanged(e);
 			}
 		});
-		classCombobox.setBounds(75, 210, 117, 27);
+		classCombobox.setBounds(317, 153, 152, 27);
 		add(classCombobox);
 
 		groupCombobox = new JComboBox<>();
@@ -117,22 +120,58 @@ public class StudentJPanel extends JPanel {
 				groupComboboxChanged(e);
 			}
 		});
-		groupCombobox.setBounds(75, 284, 117, 27);
+		groupCombobox.setBounds(504, 153, 137, 27);
 		add(groupCombobox);
 		
 		JLabel lblId = new JLabel("ID");
-		lblId.setBounds(317, 152, 90, 16);
+		lblId.setBounds(317, 192, 90, 16);
 		add(lblId);
 		
 		JLabel lblDateOfBirth = new JLabel("Date of Birth");
-		lblDateOfBirth.setBounds(706, 152, 90, 16);
+		lblDateOfBirth.setBounds(706, 192, 90, 16);
 		add(lblDateOfBirth);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(834, 152, 90, 16);
+		lblAddress.setBounds(834, 192, 90, 16);
 		add(lblAddress);
 		
+		JButton editBtn = new JButton("View");
+		editBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				viewStudent(e);
+			}
+		});
+		editBtn.setBounds(95, 258, 117, 29);
+		add(editBtn);
+		
+		JButton viewBtn = new JButton("Edit");
+		viewBtn.setBounds(95, 317, 117, 29);
+		add(viewBtn);
+		
+		JLabel lblNewLabel_2 = new JLabel("Select Class Room");
+		lblNewLabel_2.setBounds(341, 124, 128, 16);
+		add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Select Group");
+		lblNewLabel_3.setBounds(549, 124, 137, 16);
+		add(lblNewLabel_3);
+		
 		populateTable();
+	}
+	
+	public void viewStudent(ActionEvent e) {
+		int selectedRowIndex = table.getSelectedRow();
+		if(selectedRowIndex<0) {
+			JOptionPane.showMessageDialog(this, "Please select a row to View");
+            return;
+		}
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		StudentDetails sd = (StudentDetails) model.getValueAt(selectedRowIndex, 0);
+		
+		CardLayout layout=(CardLayout)container.getLayout();
+		EnrollStudentJPanelDisplay enrollStudentJPanelDisplay = new EnrollStudentJPanelDisplay(container, daycare, sd, false);
+		container.add("EnrollStudentJPanelDisplay", enrollStudentJPanelDisplay);
+		layout.next(container);
 	}
 
 	public void classComboboxChanged(ActionEvent e) {
@@ -165,10 +204,9 @@ public class StudentJPanel extends JPanel {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
 		int i = 16;
-		table.setBounds(317, 180, 650, i);
+		table.setBounds(317, 220, 650, i);
 
 		for (StudentDetails sd : daycare.getPersonDir().getStuDir().getStudentList()) {
-			System.out.println(sd);
 //            if ((sd.getGroupid().equals(groupCombobox.getSelectedItem()) && sd.getGroupid().equals(classCombobox.getSelectedItem())) ||
 //            		(sd.getGroupid().equals("All Groups") && sd.getGroupid().equals("All Classes"))) {
 //            }
@@ -182,7 +220,7 @@ public class StudentJPanel extends JPanel {
 				row[4] = ((Student)sd.getStudent()).getAddress();
 				
 				model.addRow(row);
-				table.setBounds(317, 180, 650, i);
+				table.setBounds(317, 220, 650, i);
 				i += 16;
 			} else {
 				String temp = (String) groupCombobox.getSelectedItem();
@@ -195,7 +233,7 @@ public class StudentJPanel extends JPanel {
 					row[4] = ((Student)sd.getStudent()).getAddress();
 					
 					model.addRow(row);
-					table.setBounds(317, 180, 650, i);
+					table.setBounds(317, 220, 650, i);
 					i += 16;
 				} else {
 					if ((sd.getGroupid().equals(groupCombobox.getSelectedItem())
@@ -208,7 +246,7 @@ public class StudentJPanel extends JPanel {
 						row[4] = ((Student)sd.getStudent()).getAddress();
 						
 						model.addRow(row);
-						table.setBounds(317, 180, 650, i);
+						table.setBounds(317, 220, 650, i);
 						i += 16;
 					}
 				}

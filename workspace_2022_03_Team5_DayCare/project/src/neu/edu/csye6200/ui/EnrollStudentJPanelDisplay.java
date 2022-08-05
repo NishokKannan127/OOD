@@ -45,7 +45,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 	String age;
 	StudentFactory sFactory;
 	
-	public EnrollStudentJPanelDisplay(JPanel container, DayCare daycare, StudentDetails st) {
+	public EnrollStudentJPanelDisplay(JPanel container, DayCare daycare, StudentDetails st, boolean isEnroll) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
 		this.daycare=daycare;
@@ -62,7 +62,14 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
 		
-		JLabel lblEnroll = new JLabel("Student enrolled succesfully");
+		JLabel lblEnroll = null;;
+		
+		if(isEnroll == true) {
+			lblEnroll= new JLabel("Student enrolled succesfully");
+		}
+		else {
+			lblEnroll= new JLabel("Student Details");
+		}
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblEnroll.setBounds(6, 6, 978, 78);

@@ -166,7 +166,7 @@ public class EnrollStudentJPanel extends JPanel {
 	}
 	public void readStudent(StudentDetails st, java.awt.event.ActionEvent evt) {
 		CardLayout layout=(CardLayout)container.getLayout();
-		EnrollStudentJPanelDisplay studentJPanelDisp = new EnrollStudentJPanelDisplay(container, daycare, st);
+		EnrollStudentJPanelDisplay studentJPanelDisp = new EnrollStudentJPanelDisplay(container, daycare, st, true);
 		container.add("StudentJPanelDisp", studentJPanelDisp);
 		layout.next(container);
 	}
