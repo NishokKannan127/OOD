@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import neu.edu.csye6200.DayCare;
 import neu.edu.csye6200.ui.student.StudentJPanel;
+import neu.edu.csye6200.ui.teacher.TeacherJPanel;
 
 public class DashBoardJPanel extends JPanel {
 
@@ -58,6 +59,11 @@ public class DashBoardJPanel extends JPanel {
 		add(titleLabel);
 		
 		JButton btnTeachers = new JButton("Teachers");
+		btnTeachers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				teacherJPanel(e);
+			}
+		});
 		btnTeachers.setBounds(462, 243, 169, 70);
 		add(btnTeachers);
 		
@@ -89,6 +95,13 @@ public class DashBoardJPanel extends JPanel {
 		CardLayout layout=(CardLayout)container.getLayout();
 		StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
 		container.add("StudentJPanel", studentJPanel);
+		layout.next(container);
+	}
+	
+	private void teacherJPanel(java.awt.event.ActionEvent evt) {
+		CardLayout layout=(CardLayout)container.getLayout();
+		TeacherJPanel teacherJPanel = new TeacherJPanel(container, daycare);
+		container.add("TeacherJPanel", teacherJPanel);
 		layout.next(container);
 	}
 
