@@ -36,6 +36,8 @@ public class EnrollTeacherJPanel extends JPanel {
 	private JTextField textField_3;
 	private TeacherFactory tFactory;
 	
+	private Employee employee;
+	
 	String fName;
 	String lName;
 	String address;
@@ -123,9 +125,10 @@ public class EnrollTeacherJPanel extends JPanel {
 				st.append(doj);
 				
 				Teacher pObj = (Teacher)tFactory.createObject(st.toString());
-				dayCare.getPersonDir().addEmployee(new Employee(pObj, null));// addStudentDet(new StudentDetails(pObj));
+				employee = new Employee(pObj, null);
+				dayCare.getPersonDir().addEmployee(employee);// addStudentDet(new StudentDetails(pObj));
 				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
-				readTeacher(pObj, e);
+				readTeacher(employee, e);
 //				CardLayout layout=(CardLayout)container.getLayout();
 //				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
 //				container.add("EnrollJPanel", enrollJPanel);
@@ -150,9 +153,9 @@ public class EnrollTeacherJPanel extends JPanel {
 //		btnNewButton.setBounds(243, 243, 169, 70);
 //		add(btnNewButton);
 	}
-	public void readTeacher(Teacher teacher, java.awt.event.ActionEvent evt) {
+	public void readTeacher(Employee employee, java.awt.event.ActionEvent evt) {
 		CardLayout layout=(CardLayout)container.getLayout();
-		EnrollTeacherJPanelDisplay teacherJPanelDisp = new EnrollTeacherJPanelDisplay(container, dayCare, teacher);
+		EnrollTeacherJPanelDisplay teacherJPanelDisp = new EnrollTeacherJPanelDisplay(container, dayCare, employee, true);
 		container.add("TeacherJPanelDisp", teacherJPanelDisp);
 		layout.next(container);
 	}

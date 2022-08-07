@@ -43,11 +43,12 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 	String address;
 	String doj;
 	
-	public EnrollTeacherJPanelDisplay(JPanel container, DayCare dayCare, Teacher teacher) {
+	public EnrollTeacherJPanelDisplay(JPanel container, DayCare dayCare, Employee employee, boolean isEnroll) {
+		System.out.println("I'm here");
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
 		this.dayCare=dayCare;
-		this.teacher=teacher;
+		this.teacher=employee.getEmployee();
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 		
@@ -60,7 +61,15 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
 		
-		JLabel lblEnroll = new JLabel("Teacher enrolled Successfully");
+		JLabel lblEnroll = null;
+		
+		if(isEnroll == true) {
+			lblEnroll= new JLabel("Teacher enrolled succesfully");
+		}
+		else {
+			lblEnroll= new JLabel("Teacher Details");
+		}
+		//JLabel lblEnroll = new JLabel("Teacher enrolled Successfully");
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblEnroll.setBounds(6, 6, 978, 78);
@@ -144,6 +153,10 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		displayTeacher();
 	}
 	
+//	public EnrollTeacherJPanelDisplay(JPanel container2, DayCare daycare2, Employee ed, boolean b) {
+//		// TODO Auto-generated constructor stub
+//	}
+
 	public void displayTeacher() {
 		textField.setText(teacher.getFirstName());
 		textField_1.setText(teacher.getLastName());

@@ -7,4 +7,13 @@ public class Employee {
 		this.rev=rev;
 		this.teacher=teacher;
 	}
+	public Teacher getEmployee()
+	{
+		return teacher;
+	}
+	@Override
+	public String toString() {
+		return String.valueOf(teacher.id);
+	}
+	
 }

@@ -33,7 +33,7 @@ public Teacher(String line) {
 		
 		//this.setId(id);
 		this.setFirstName(fName);
-		this.setFirstName(lName);
+		this.setLastName(lName);
 		this.setDoj(doj);
 		this.setAddress(address);
 		
