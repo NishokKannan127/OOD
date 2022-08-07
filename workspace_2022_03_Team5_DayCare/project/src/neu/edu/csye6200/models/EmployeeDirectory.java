@@ -13,4 +13,8 @@ public class EmployeeDirectory {
 		Employee stu = pers;
 		employeeList.add(stu);
 	}
+	public List<Employee> getEmployeeList()
+	{
+		return employeeList;
+	}
 }

@@ -101,6 +101,7 @@ public class DayCare {
 	public PersonDirectory getPersonDir() {
 		return personDir;
 	}
+	
 	public void setPersonDir(PersonDirectory personDir) {
 		this.personDir = personDir;
 	}
