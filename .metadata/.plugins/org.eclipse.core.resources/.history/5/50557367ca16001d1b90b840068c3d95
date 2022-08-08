@@ -27,7 +27,6 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -160,11 +159,7 @@ public class EnrollStudentJPanel extends JPanel {
 				StringBuilder st = new StringBuilder("");
 
 				age=textField_5.getText();
-				st.append("\n");
-				int min = 100000000;
-			    int max = 999999999;			      
-			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-				st.append(random_int.toString());
+				
 				st.append(",");
 				st.append(fName);
 				st.append(",");

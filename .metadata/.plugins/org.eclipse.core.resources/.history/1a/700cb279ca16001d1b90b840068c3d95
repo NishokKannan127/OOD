@@ -161,9 +161,11 @@ public class EnrollStudentJPanel extends JPanel {
 
 				age=textField_5.getText();
 				st.append("\n");
-				int min = 100000000;
-			    int max = 999999999;			      
-			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+				int min = 999999999;
+			      int max = 9999999999;
+			        
+			      
+			      int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
 				st.append(random_int.toString());
 				st.append(",");
 				st.append(fName);
