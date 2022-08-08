@@ -44,7 +44,13 @@ public class StudentDetails {
 		this.reg = reg;
 	}
 
+	public String getClassid() {
+		return this.classroom.getClassroomname();
+	}
 	
+	public String getGroupid() {
+		return this.group.getGroupName();
+	}
 	
 	public Person getPerson() {
 		return person;

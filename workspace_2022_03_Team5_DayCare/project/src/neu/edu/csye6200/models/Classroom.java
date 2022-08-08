@@ -2,15 +2,22 @@ package neu.edu.csye6200.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Classroom{
 	private List<Group> groupList;
+	private long id;
 	private GroupRule grouprule;
 	private boolean isFull;
+	private String classroomname;
 	
 	public Classroom() {
 		groupList = new ArrayList<>();
 		isFull = false;
+		long leftLimit = 1000L;
+	    long rightLimit = 10000L;
+	    this.id = leftLimit + (long) (new Random().nextFloat() * (rightLimit - leftLimit));
+	    this.classroomname = "Class ".concat(String.valueOf(id));
 	}
 	
 	public void addStudent(StudentDetails sd, EmployeeDirectory ed) {
@@ -31,12 +38,30 @@ public class Classroom{
 			Group newGroup = new Group(ed.getUnassignedEmployee());
 			newGroup.addStudentDetails(sd);
 			groupList.add(newGroup);
-			
+			sd.setGroup(newGroup);
+			sd.setClassroom(this);
 		}
 		
 		
 	}
 	
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getClassroomname() {
+		return classroomname;
+	}
+
+	public void setClassroomname(String classroomname) {
+		this.classroomname = classroomname;
+	}
+
 	public void addGroup(Group group) {
 		groupList.add(group);
 	}

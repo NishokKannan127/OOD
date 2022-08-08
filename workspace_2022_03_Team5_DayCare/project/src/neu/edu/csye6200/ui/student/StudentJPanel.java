@@ -10,6 +10,8 @@ import neu.edu.csye6200.DayCare;
 import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.ui.DashBoardJPanel;
 import neu.edu.csye6200.ui.EnrollStudentJPanelDisplay;
+import neu.edu.csye6200.models.Classroom;
+import neu.edu.csye6200.models.Group;
 import neu.edu.csye6200.models.Student;
 
 import javax.swing.JLabel;
@@ -39,22 +41,10 @@ public class StudentJPanel extends JPanel {
 	private HashMap<String, List<String>> classmap;
 
 	public StudentJPanel(JPanel container, DayCare daycare) {
+		
 		classmap = new HashMap<>();
-		List<String> class1 = new ArrayList<>();
-		class1.add("All Groups");
-		class1.add("Group 1");
-		class1.add("Group 2");
-		class1.add("Group 3");
-		classmap.put("Class 1", class1);
-		List<String> class2 = new ArrayList<>();
-		class2.add("All Groups");
-		class2.add("Group 1");
-		class2.add("Group 2");
-		class2.add("Group 3");
-		classmap.put("Class 2", class2);
-		List<String> allclasses = new ArrayList<>();
-		allclasses.add("All Groups");
-		classmap.put("All Classes", allclasses);
+		
+		
 		
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
@@ -102,9 +92,27 @@ public class StudentJPanel extends JPanel {
 		add(lblNewLabel_1);
 
 		classCombobox = new JComboBox<>();
+		groupCombobox = new JComboBox<>();
+		
+		List<String> allclasses = new ArrayList<>();
+		allclasses.add("All Groups");
+		classmap.put("All Classes", allclasses);
 		classCombobox.addItem("All Classes");
-		classCombobox.addItem("Class 1");
-		classCombobox.addItem("Class 2");
+		for(Classroom cr:daycare.getClassroomDir().getClassRoomDir()) {
+			classmap.put(cr.getClassroomname(), new ArrayList<>());
+			classmap.get(cr.getClassroomname()).add("All Groups");
+			groupCombobox.addItem("All Groups");
+			classCombobox.addItem(cr.getClassroomname());
+			for(Group g:cr.getGroupList()) {
+				classmap.get(cr.getClassroomname()).add(g.getGroupName());
+				groupCombobox.addItem(g.getGroupName());
+			}
+		}
+		
+		
+//		classCombobox.addItem("All Classes");
+//		classCombobox.addItem("Class 1");
+//		classCombobox.addItem("Class 2");
 		classCombobox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				classComboboxChanged(e);
@@ -113,8 +121,8 @@ public class StudentJPanel extends JPanel {
 		classCombobox.setBounds(317, 153, 152, 27);
 		add(classCombobox);
 
-		groupCombobox = new JComboBox<>();
-		groupCombobox.addItem("All Groups");
+		
+//		groupCombobox.addItem("All Groups");
 		groupCombobox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				groupComboboxChanged(e);
