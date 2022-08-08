@@ -4,28 +4,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Classroom{
-	List<Group> groupList;
+	private List<Group> groupList;
+	private GroupRule grouprule;
+	private boolean isFull;
+	
 	public Classroom() {
-		groupList = new ArrayList<Group>();
+		groupList = new ArrayList<>();
+		isFull = false;
 	}
-//	public void Initiate()
-//	{
-//		AbstractPersonFactory tFactory=new TeacherFactory();
-//		AbstractPersonFactory sFactory=new StudentFactory();
-//		String line;
-//		int i=0,j=0,k=0;
-//		List<String> employeeContent= FileUtil.readItems("src/edu/neu/csye6200/csv/EmployeeRoster.txt");
-//		while(i!=employeeContent.size())
-//		{
-//			Person obj= tFactory.createObject(employeeContent.get(i));
-//			i++;
-//		}
-//		List<String> enrollmentContent= FileUtil.readItems("src/edu/neu/csye6200/csv/EnrollmentRoster.txt");
-//		while(j!=enrollmentContent.size())
-//		{
-//			Person obj= sFactory.createObject(enrollmentContent.get(j));
-//			j++;
-//		}
-//	}
+	
+	public void addStudent(StudentDetails sd, EmployeeDirectory ed) {
+		boolean isAdded = false;
+		for(Group g:groupList) {
+			if(g.getStudDetailsList().size() < grouprule.getSize()) {
+				g.addStudentDetails(sd);
+				isAdded = true;
+				if(g.getStudDetailsList().size() == grouprule.getSize() && groupList.size() == grouprule.getMax()) {
+					isFull = true;
+				}
+				break;
+			}
+		}
+		if(!isAdded) {
+			Group newGroup = new Group(ed.getUnassignedEmployee());
+			newGroup.addStudentDetails(sd);
+			groupList.add(newGroup);
+			
+		}
+		
+	}
+	
+	public void addGroup(Group group) {
+		groupList.add(group);
+	}
+
+	public List<Group> getGroupList() {
+		return groupList;
+	}
+
+	public void setGroupList(List<Group> groupList) {
+		this.groupList = groupList;
+	}
+
+	public GroupRule getGrouprule() {
+		return grouprule;
+	}
+
+	public void setGrouprule(GroupRule grouprule) {
+		this.grouprule = grouprule;
+	}
+
+	public boolean isFull() {
+		return isFull;
+	}
+
+	public void setFull(boolean isFull) {
+		this.isFull = isFull;
+	}
+	
+	
 
 }

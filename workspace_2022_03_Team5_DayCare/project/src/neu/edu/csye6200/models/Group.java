@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
-	Employee emp;
-	List<StudentDetails> studDetailsList;
-	long id=0;
+	private Employee emp;
+	private List<StudentDetails> studDetailsList;
+	private long id=0;
 	static int counter=0;
 	
 	public Group() {
@@ -22,6 +22,30 @@ public class Group {
 		this.studDetailsList.add(sd);
 	}
 	
+	public Employee getEmp() {
+		return emp;
+	}
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
+	public List<StudentDetails> getStudDetailsList() {
+		return studDetailsList;
+	}
+	public void setStudDetailsList(List<StudentDetails> studDetailsList) {
+		this.studDetailsList = studDetailsList;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public static int getCounter() {
+		return counter;
+	}
+	public static void setCounter(int counter) {
+		Group.counter = counter;
+	}
 	@Override
 	public String toString() {
 		return "Group "+ String.valueOf(id);

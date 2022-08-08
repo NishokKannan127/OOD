@@ -5,8 +5,8 @@ public class StudentDetails {
 	String parentName;
 	Immunization im;
 	Registration reg;
-	String groupid;
-	String classid;
+	Group group;
+	Classroom classroom;
 	
 	public StudentDetails(Person person) {
 		this.person=person;
@@ -44,22 +44,32 @@ public class StudentDetails {
 		this.reg = reg;
 	}
 
-	public String getGroupid() {
-		return groupid;
-	}
-
-	public void setGroupid(String groupid) {
-		this.groupid = groupid;
-	}
-
-	public String getClassid() {
-		return classid;
-	}
-
-	public void setClassid(String classid) {
-		this.classid = classid;
-	}
 	
+	
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
+	public Classroom getClassroom() {
+		return classroom;
+	}
+
+	public void setClassroom(Classroom classroom) {
+		this.classroom = classroom;
+	}
+
 	@Override
 	public String toString() {
 		return String.valueOf(this.getStudent().getId());
