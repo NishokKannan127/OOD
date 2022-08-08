@@ -7,6 +7,8 @@ import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -19,6 +21,7 @@ import neu.edu.csye6200.models.StudentFactory;
 import neu.edu.csye6200.ui.student.StudentJPanel;
 
 import java.awt.event.ActionListener;
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -28,6 +31,8 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -51,7 +56,7 @@ public class EnrollStudentJPanel extends JPanel {
 	String parentName;
 	String dob;
 	String age;
-	String parentPhNo;
+	 String parentPhNo;
 	StudentFactory sFactory;
 	private JTextField textField_6;
 	
@@ -143,51 +148,68 @@ public class EnrollStudentJPanel extends JPanel {
 		JButton enrollBtn = new JButton("Enroll");
 		enrollBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				
 				fName=textField.getText();
 				lName=textField_1.getText();
 				address=textField_2.getText();
 				parentName=textField_3.getText();
 				dob=textField_4.getText();
-
+				parentPhNo=textField_6.getText();
+				Integer hasError=0;
+				try {
+					hasError=loginAuthenticate();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					hasError=1;
+				}
 				try {
 					age=calculateAge(dob);
 					textField_5.setText(age);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					hasError=1;
 				}//textField_5.getText();
-				parentPhNo=textField_6.getText();
 				StringBuilder st = new StringBuilder("");
 
-				age=textField_5.getText();				
-				int min = 100000000;
-			    int max = 999999999;			      
-			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-				st.append(random_int.toString());
-				st.append(",");
-				st.append(fName);
-				st.append(",");
-				st.append(lName);
-				st.append(",");
-				st.append(dob);
-				st.append(",");
-				st.append(parentName);
-				st.append(",");
-				st.append(address);
-				st.append(",");
-				st.append(parentPhNo);
+				age=textField_5.getText();		
 				
 				
-				Person pObj = sFactory.createObject(st.toString());
-				StudentDetails s = new StudentDetails(pObj);
-				daycare.getPersonDir().addStudentDet(s);
-				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
-				System.out.println(st);
-				readStudent(s, e);
-//				CardLayout layout=(CardLayout)container.getLayout();
-//				StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
-//				container.add("StudentJPanel", studentJPanel);
-//				layout.next(container);
+				if(hasError==0) {
+					int min = 100000000;
+				    int max = 999999999;			      
+				    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+					st.append(random_int.toString());
+					st.append(",");
+					st.append(fName);
+					st.append(",");
+					st.append(lName);
+					st.append(",");
+					st.append(dob);
+					st.append(",");
+					st.append(parentName);
+					st.append(",");
+					st.append(address);
+					st.append(",");
+					st.append(parentPhNo);
+					
+					
+					Person pObj = sFactory.createObject(st.toString());
+					StudentDetails s = new StudentDetails(pObj);
+					daycare.getPersonDir().addStudentDet(s);
+					FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+					System.out.println(st);
+					readStudent(s, e);
+//					CardLayout layout=(CardLayout)container.getLayout();
+//					StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
+//					container.add("StudentJPanel", studentJPanel);
+//					layout.next(container);
+				}
+				
+				
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));
@@ -203,6 +225,63 @@ public class EnrollStudentJPanel extends JPanel {
 		textField_6.setColumns(10);
 		textField_6.setBounds(490, 503, 130, 26);
 		add(textField_6);
+	}
+	public Integer loginAuthenticate() throws ParseException {
+		Integer hasError=0;
+		Pattern pattern = Pattern.compile("\\d{10}");
+	      Matcher matcher = pattern.matcher(parentPhNo);
+
+	      if (matcher.matches()) {
+	          System.out.println("Phone Number Valid");
+	      } else {
+	          System.out.println("Phone Number must be in the form XXX-XXXXXXX");
+	          JOptionPane.showMessageDialog(this,"Enter correct phone number");
+	          hasError=1;
+	      }
+	      
+	      SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	      
+	      String formattedDate="";
+	      try {
+	    	  Date x = sdf.parse(dob);
+	      formattedDate = sdf.format(x);
+	      }
+	      catch(Exception e) {
+	    	  //JOptionPane.showMessageDialog(this,"Enter correct date");
+	    	  hasError=1;
+	      }
+	      if (formattedDate.equals(dob)) {
+	          System.out.println("valid date");
+	      } else {
+	    	  JOptionPane.showMessageDialog(this,"Enter correct date");
+	    	  hasError=1;
+	      }
+	      
+	      if(fName.length()==0) {
+	    	  JOptionPane.showMessageDialog(this,"Enter first name");
+	    	  hasError=1;
+	      }
+	      if(lName.length()==0) {
+	    	  JOptionPane.showMessageDialog(this,"Enter last name");
+	    	  hasError=1;
+	      }
+	      if(address.length()==0) {
+	    	  JOptionPane.showMessageDialog(this,"Enter address");
+	    	  hasError=1;
+	      }
+	      if(parentName.length()==0) {
+	    	  JOptionPane.showMessageDialog(this,"Enter parent name");
+	    	  hasError=1;
+	      }
+	      
+	      System.out.print(fName);
+//	      fName=textField.getText();
+//			lName=textField_1.getText();
+//			address=textField_2.getText();
+//			parentName=textField_3.getText();
+//			dob=textField_4.getText();
+//			parentPhNo=textField_6.getText();
+	      return hasError;
 	}
 	public String calculateAge(String dob) throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");

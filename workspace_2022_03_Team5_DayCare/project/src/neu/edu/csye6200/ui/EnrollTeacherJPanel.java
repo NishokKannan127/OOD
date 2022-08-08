@@ -7,6 +7,8 @@ import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -20,6 +22,11 @@ import neu.edu.csye6200.models.Teacher;
 import neu.edu.csye6200.models.TeacherFactory;
 
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -113,30 +120,42 @@ public class EnrollTeacherJPanel extends JPanel {
 				lName=textField_1.getText();
 				address=textField_2.getText();
 				doj=textField_3.getText();
+				Integer hasError=0;
+				try {
+					hasError=loginAuthenticate();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					hasError=1;
+				}
 				
-				StringBuilder st = new StringBuilder("");
-				int min = 100000000;
-			    int max = 999999999;			      
-			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-				st.append(random_int.toString());
-				st.append(",");
-				st.append(fName);
-				st.append(",");
-				st.append(lName);
-				st.append(",");
-				st.append(doj);
-				st.append(",");
-				st.append(address);
 				
-				Teacher pObj = (Teacher)tFactory.createObject(st.toString());
-				employee = new Employee(pObj, null);
-				dayCare.getPersonDir().addEmployee(employee);// addStudentDet(new StudentDetails(pObj));
-				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
-				readTeacher(employee, e);
-//				CardLayout layout=(CardLayout)container.getLayout();
-//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
-//				container.add("EnrollJPanel", enrollJPanel);
-//				layout.next(container);
+				if(hasError==0) {
+					StringBuilder st = new StringBuilder("");
+					int min = 100000000;
+				    int max = 999999999;			      
+				    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+					st.append(random_int.toString());
+					st.append(",");
+					st.append(fName);
+					st.append(",");
+					st.append(lName);
+					st.append(",");
+					st.append(doj);
+					st.append(",");
+					st.append(address);
+					
+					Teacher pObj = (Teacher)tFactory.createObject(st.toString());
+					employee = new Employee(pObj, null);
+					dayCare.getPersonDir().addEmployee(employee);// addStudentDet(new StudentDetails(pObj));
+					FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
+					readTeacher(employee, e);
+//					CardLayout layout=(CardLayout)container.getLayout();
+//					EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//					container.add("EnrollJPanel", enrollJPanel);
+//					layout.next(container);
+				}
+				
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));
@@ -156,6 +175,41 @@ public class EnrollTeacherJPanel extends JPanel {
 //		});
 //		btnNewButton.setBounds(243, 243, 169, 70);
 //		add(btnNewButton);
+	}
+	public Integer loginAuthenticate() throws ParseException {
+		Integer hasError=0;
+		
+	      SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	      
+	      String formattedDate="";
+	      try {
+	    	  Date x = sdf.parse(doj);
+	      formattedDate = sdf.format(x);
+	      }
+	      catch(Exception e) {
+	    	  //JOptionPane.showMessageDialog(this,"Enter correct date");
+	    	  hasError=1;
+	      }
+	      if (formattedDate.equals(doj)) {
+	          System.out.println("valid date");
+	      } else {
+	    	  JOptionPane.showMessageDialog(this,"Enter correct date");
+	    	  hasError=1;
+	      }
+	      
+	      if(fName.length()==0) {
+	    	  JOptionPane.showMessageDialog(this,"Enter first name");
+	    	  hasError=1;
+	      }
+	      if(lName.length()==0) {
+	    	  JOptionPane.showMessageDialog(this,"Enter last name");
+	    	  hasError=1;
+	      }
+	      if(address.length()==0) {
+	    	  JOptionPane.showMessageDialog(this,"Enter address");
+	    	  hasError=1;
+	      }
+	      return hasError;
 	}
 	public void readTeacher(Employee employee, java.awt.event.ActionEvent evt) {
 		CardLayout layout=(CardLayout)container.getLayout();
