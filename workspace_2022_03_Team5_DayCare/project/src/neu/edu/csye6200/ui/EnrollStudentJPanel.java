@@ -137,7 +137,7 @@ public class EnrollStudentJPanel extends JPanel {
 				dob=textField_4.getText();
 				age=textField_5.getText();
 				
-				StringBuilder st = new StringBuilder("");
+				StringBuilder st = new StringBuilder("0");
 				st.append(",");
 				st.append(fName);
 				st.append(",");
@@ -149,10 +149,12 @@ public class EnrollStudentJPanel extends JPanel {
 				st.append(",");
 				st.append(address);
 				
+				
 				Person pObj = sFactory.createObject(st.toString());
 				StudentDetails s = new StudentDetails(pObj);
 				daycare.getPersonDir().addStudentDet(s);
 				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+				System.out.println(st);
 				readStudent(s, e);
 //				CardLayout layout=(CardLayout)container.getLayout();
 //				StudentJPanel studentJPanel = new StudentJPanel(container, daycare);

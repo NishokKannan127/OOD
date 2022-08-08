@@ -79,6 +79,14 @@ public class DashBoardJPanel extends JPanel {
 		JButton btnVaccination = new JButton("Vaccination");
 		btnVaccination.setBounds(462, 349, 169, 70);
 		add(btnVaccination);
+		
+		JButton btnRegistration = new JButton("Registration");
+		btnRegistration.setBounds(677, 243, 169, 70);
+		add(btnRegistration);
+		
+		JButton btnImmunization = new JButton("Immunization");
+		btnImmunization.setBounds(677, 349, 169, 70);
+		add(btnImmunization);
 
 	}
 	// signout code
