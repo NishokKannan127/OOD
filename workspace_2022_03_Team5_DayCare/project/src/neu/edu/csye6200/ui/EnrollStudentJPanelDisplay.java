@@ -158,13 +158,14 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		btnGoToDashboard.setBounds(58, 257, 117, 29);
 		add(btnGoToDashboard);
 		
-		JButton btnInsurance = new JButton("Insurance");
-		btnInsurance.addActionListener(new ActionListener() {
+		JButton btnImmunization = new JButton("btnImmunization");
+		btnImmunization.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnInsurance.setBounds(318, 577, 117, 29);
-		add(btnInsurance);
+
+		btnImmunization.setBounds(318, 577, 117, 29);
+		add(btnImmunization);
 		
 		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
 		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -178,6 +179,9 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		textField_6.setColumns(10);
 		textField_6.setBounds(493, 498, 130, 26);
 		add(textField_6);
+		btnImmunization.setBounds(318, 529, 117, 29);
+		add(btnImmunization);
+
 
 		
 		

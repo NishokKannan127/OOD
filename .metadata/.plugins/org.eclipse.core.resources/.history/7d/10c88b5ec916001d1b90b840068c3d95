@@ -147,7 +147,7 @@ public class EnrollStudentJPanel extends JPanel {
 				address=textField_2.getText();
 				parentName=textField_3.getText();
 				dob=textField_4.getText();
-
+<<<<<<< HEAD
 				try {
 					age=calculateAge(dob);
 					textField_5.setText(age);
@@ -157,9 +157,11 @@ public class EnrollStudentJPanel extends JPanel {
 				}//textField_5.getText();
 				parentPhNo=textField_6.getText();
 				StringBuilder st = new StringBuilder("");
-
+=======
 				age=textField_5.getText();
-		
+				
+				StringBuilder st = new StringBuilder("0");
+>>>>>>> 8917f326ac2292d2c5c61afa24efb46e3f19ebcf
 				st.append(",");
 				st.append(fName);
 				st.append(",");
