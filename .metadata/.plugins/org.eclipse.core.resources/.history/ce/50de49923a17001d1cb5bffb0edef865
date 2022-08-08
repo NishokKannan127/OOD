@@ -256,24 +256,6 @@ public class EnrollStudentJPanel extends JPanel {
 	    	  JOptionPane.showMessageDialog(this,"Enter correct date");
 	    	  hasError=1;
 	      }
-	      
-	      if(fName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter first name");
-	    	  hasError=1;
-	      }
-	      if(lName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter last name");
-	    	  hasError=1;
-	      }
-	      if(address.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter address");
-	    	  hasError=1;
-	      }
-	      if(parentName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter parent name");
-	    	  hasError=1;
-	      }
-	      
 	      System.out.print(fName);
 //	      fName=textField.getText();
 //			lName=textField_1.getText();

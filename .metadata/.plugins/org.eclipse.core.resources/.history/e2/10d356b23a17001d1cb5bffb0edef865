@@ -196,19 +196,6 @@ public class EnrollTeacherJPanel extends JPanel {
 	    	  JOptionPane.showMessageDialog(this,"Enter correct date");
 	    	  hasError=1;
 	      }
-	      
-	      if(fName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter first name");
-	    	  hasError=1;
-	      }
-	      if(lName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter last name");
-	    	  hasError=1;
-	      }
-	      if(address.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter address");
-	    	  hasError=1;
-	      }
 	      return hasError;
 	}
 	public void readTeacher(Employee employee, java.awt.event.ActionEvent evt) {

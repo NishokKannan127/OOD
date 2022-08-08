@@ -257,30 +257,16 @@ public class EnrollStudentJPanel extends JPanel {
 	    	  hasError=1;
 	      }
 	      
-	      if(fName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter first name");
-	    	  hasError=1;
-	      }
-	      if(lName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter last name");
-	    	  hasError=1;
-	      }
-	      if(address.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter address");
-	    	  hasError=1;
-	      }
-	      if(parentName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter parent name");
-	    	  hasError=1;
-	      }
-	      
-	      System.out.print(fName);
-//	      fName=textField.getText();
-//			lName=textField_1.getText();
-//			address=textField_2.getText();
-//			parentName=textField_3.getText();
-//			dob=textField_4.getText();
-//			parentPhNo=textField_6.getText();
+	  
+//		if(Long.valueOf(parentPhNo)>=1000000000 && Long.valueOf(parentPhNo)<9999999999l ) {
+//			CardLayout layout=(CardLayout)container.getLayout();
+//			DashBoardJPanel dashBoardJPanel = new DashBoardJPanel(container, daycare);
+//			container.add("dashBoardJPanel", dashBoardJPanel);
+//			layout.next(container);
+//		}
+//		else {
+//			JOptionPane.showMessageDialog(null, "Invalid credentials");
+//		}
 	      return hasError;
 	}
 	public String calculateAge(String dob) throws ParseException {
