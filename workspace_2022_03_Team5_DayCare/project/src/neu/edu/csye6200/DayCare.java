@@ -1,5 +1,6 @@
 package neu.edu.csye6200;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,11 +32,13 @@ public class DayCare {
 		classroomDir = new ClassroomDirectory();
 		tFactory=new TeacherFactory();
 		sFactory=new StudentFactory();
-		initializeStudents();
-		initializeEmployees();
 		groupRuleList = new ArrayList<>();
 		
 		initializeRules();
+		initializeEmployees();
+		initializeStudents();
+		
+		
 		
 	}
 	public int initializeStudents() {
@@ -53,21 +56,27 @@ public class DayCare {
 		{
 			Person obj= sFactory.createObject(enrollmentContent.get(j));
 			StudentDetails st = new StudentDetails(obj);
-			if(j%3==0) {
-				st.setGroupid("Group 1");
+			try {
+				this.autoAssignStudent(st);
+			} catch (NumberFormatException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			else if(j%3==1) {
-				st.setGroupid("Group 2");
-			}
-			else {
-				st.setGroupid("Group 3");
-			}
-			if((j%10)<5) {
-				st.setClassid("Class 1");
-			}
-			else {
-				st.setClassid("Class 2");
-			}
+//			if(j%3==0) {
+//				st.setGroupid("Group 1");
+//			}
+//			else if(j%3==1) {
+//				st.setGroupid("Group 2");
+//			}
+//			else {
+//				st.setGroupid("Group 3");
+//			}
+//			if((j%10)<5) {
+//				st.setClassid("Class 1");
+//			}
+//			else {
+//				st.setClassid("Class 2");
+//			}
 			personDir.addStudentDet(st);
 			j++;
 		}
@@ -120,11 +129,11 @@ public class DayCare {
 		}
 	}
 	
-	public void autoAssignStudent(StudentDetails sd) {
+	public void autoAssignStudent(StudentDetails sd) throws NumberFormatException, ParseException {
 		GroupRule gr=null;
 		Student st = (Student) sd.getStudent();
 		for(GroupRule g:groupRuleList) {
-			if(st.getAge() >=g.getAgeLower() && st.getAge() <=g.getAgeHigher()) {
+			if(Integer.parseInt(st.getAge()) >=g.getAgeLower() && Integer.parseInt(st.getAge()) <=g.getAgeHigher()) {
 				gr = g;
 			}
 		}

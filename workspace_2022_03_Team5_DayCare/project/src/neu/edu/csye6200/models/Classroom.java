@@ -22,6 +22,8 @@ public class Classroom{
 				if(g.getStudDetailsList().size() == grouprule.getSize() && groupList.size() == grouprule.getMax()) {
 					isFull = true;
 				}
+				sd.setGroup(g);
+				sd.setClassroom(this);
 				break;
 			}
 		}
@@ -31,6 +33,7 @@ public class Classroom{
 			groupList.add(newGroup);
 			
 		}
+		
 		
 	}
 	
