@@ -126,7 +126,6 @@ public class EnrollTeacherJPanel extends JPanel {
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					hasError=1;
 				}
 				
 				

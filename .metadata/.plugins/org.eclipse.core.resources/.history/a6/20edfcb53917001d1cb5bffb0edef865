@@ -120,42 +120,33 @@ public class EnrollTeacherJPanel extends JPanel {
 				lName=textField_1.getText();
 				address=textField_2.getText();
 				doj=textField_3.getText();
-				Integer hasError=0;
-				try {
-					hasError=loginAuthenticate();
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					hasError=1;
-				}
+				loginAuthenticate();
 				
 				
-				if(hasError==0) {
-					StringBuilder st = new StringBuilder("");
-					int min = 100000000;
-				    int max = 999999999;			      
-				    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-					st.append(random_int.toString());
-					st.append(",");
-					st.append(fName);
-					st.append(",");
-					st.append(lName);
-					st.append(",");
-					st.append(doj);
-					st.append(",");
-					st.append(address);
-					
-					Teacher pObj = (Teacher)tFactory.createObject(st.toString());
-					employee = new Employee(pObj, null);
-					dayCare.getPersonDir().addEmployee(employee);// addStudentDet(new StudentDetails(pObj));
-					FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
-					readTeacher(employee, e);
-//					CardLayout layout=(CardLayout)container.getLayout();
-//					EnrollJPanel enrollJPanel = new EnrollJPanel(container);
-//					container.add("EnrollJPanel", enrollJPanel);
-//					layout.next(container);
-				}
 				
+				StringBuilder st = new StringBuilder("");
+				int min = 100000000;
+			    int max = 999999999;			      
+			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+				st.append(random_int.toString());
+				st.append(",");
+				st.append(fName);
+				st.append(",");
+				st.append(lName);
+				st.append(",");
+				st.append(doj);
+				st.append(",");
+				st.append(address);
+				
+				Teacher pObj = (Teacher)tFactory.createObject(st.toString());
+				employee = new Employee(pObj, null);
+				dayCare.getPersonDir().addEmployee(employee);// addStudentDet(new StudentDetails(pObj));
+				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
+				readTeacher(employee, e);
+//				CardLayout layout=(CardLayout)container.getLayout();
+//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//				container.add("EnrollJPanel", enrollJPanel);
+//				layout.next(container);
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));

@@ -121,13 +121,7 @@ public class EnrollTeacherJPanel extends JPanel {
 				address=textField_2.getText();
 				doj=textField_3.getText();
 				Integer hasError=0;
-				try {
-					hasError=loginAuthenticate();
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					hasError=1;
-				}
+				hasError=loginAuthenticate();
 				
 				
 				if(hasError==0) {

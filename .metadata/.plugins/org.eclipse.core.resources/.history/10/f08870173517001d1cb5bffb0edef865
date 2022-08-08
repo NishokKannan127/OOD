@@ -120,42 +120,33 @@ public class EnrollTeacherJPanel extends JPanel {
 				lName=textField_1.getText();
 				address=textField_2.getText();
 				doj=textField_3.getText();
-				Integer hasError=0;
-				try {
-					hasError=loginAuthenticate();
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					hasError=1;
-				}
 				
 				
-				if(hasError==0) {
-					StringBuilder st = new StringBuilder("");
-					int min = 100000000;
-				    int max = 999999999;			      
-				    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-					st.append(random_int.toString());
-					st.append(",");
-					st.append(fName);
-					st.append(",");
-					st.append(lName);
-					st.append(",");
-					st.append(doj);
-					st.append(",");
-					st.append(address);
-					
-					Teacher pObj = (Teacher)tFactory.createObject(st.toString());
-					employee = new Employee(pObj, null);
-					dayCare.getPersonDir().addEmployee(employee);// addStudentDet(new StudentDetails(pObj));
-					FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
-					readTeacher(employee, e);
-//					CardLayout layout=(CardLayout)container.getLayout();
-//					EnrollJPanel enrollJPanel = new EnrollJPanel(container);
-//					container.add("EnrollJPanel", enrollJPanel);
-//					layout.next(container);
-				}
 				
+				
+				StringBuilder st = new StringBuilder("");
+				int min = 100000000;
+			    int max = 999999999;			      
+			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+				st.append(random_int.toString());
+				st.append(",");
+				st.append(fName);
+				st.append(",");
+				st.append(lName);
+				st.append(",");
+				st.append(doj);
+				st.append(",");
+				st.append(address);
+				
+				Teacher pObj = (Teacher)tFactory.createObject(st.toString());
+				employee = new Employee(pObj, null);
+				dayCare.getPersonDir().addEmployee(employee);// addStudentDet(new StudentDetails(pObj));
+				FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
+				readTeacher(employee, e);
+//				CardLayout layout=(CardLayout)container.getLayout();
+//				EnrollJPanel enrollJPanel = new EnrollJPanel(container);
+//				container.add("EnrollJPanel", enrollJPanel);
+//				layout.next(container);
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));
@@ -178,19 +169,29 @@ public class EnrollTeacherJPanel extends JPanel {
 	}
 	public Integer loginAuthenticate() throws ParseException {
 		Integer hasError=0;
-		
+		Pattern pattern = Pattern.compile("\\d{10}");
+	      Matcher matcher = pattern.matcher(parentPhNo);
+
+	      if (matcher.matches()) {
+	          System.out.println("Phone Number Valid");
+	      } else {
+	          System.out.println("Phone Number must be in the form XXX-XXXXXXX");
+	          JOptionPane.showMessageDialog(this,"Enter correct phone number");
+	          hasError=1;
+	      }
+	      
 	      SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	      
 	      String formattedDate="";
 	      try {
-	    	  Date x = sdf.parse(doj);
+	    	  Date x = sdf.parse(dob);
 	      formattedDate = sdf.format(x);
 	      }
 	      catch(Exception e) {
 	    	  //JOptionPane.showMessageDialog(this,"Enter correct date");
 	    	  hasError=1;
 	      }
-	      if (formattedDate.equals(doj)) {
+	      if (formattedDate.equals(dob)) {
 	          System.out.println("valid date");
 	      } else {
 	    	  JOptionPane.showMessageDialog(this,"Enter correct date");
