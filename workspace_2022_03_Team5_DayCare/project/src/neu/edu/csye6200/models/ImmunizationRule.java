@@ -9,7 +9,7 @@ public class ImmunizationRule {
 	private int hepatitisB;
 	private int MMR;
 	private int varicella;
-	
+
 	public ImmunizationRule(String line) {
 		String[] params = new String[4]; 
 		params = line.split(",");
@@ -21,7 +21,7 @@ public class ImmunizationRule {
 		this.MMR = Integer.parseInt(params[5]);
 		this.varicella= Integer.parseInt(params[6]);
 		this.hib=Integer.parseInt(params[7]);
-		
+
 	}
 
 	public int getAgeLower() {
@@ -87,7 +87,7 @@ public class ImmunizationRule {
 	public void setVaricella(int varicella) {
 		this.varicella = varicella;
 	}
-	
-	
+
+
 }
 
