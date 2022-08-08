@@ -17,4 +17,13 @@ public class EmployeeDirectory {
 	{
 		return employeeList;
 	}
+	
+	public Employee getUnassignedEmployee() {
+		for(Employee e:employeeList) {
+			if(!e.isEmployed) {
+				return e;
+			}
+		}
+		return null;
+	}
 }

@@ -4,8 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassroomDirectory {
-	List<Classroom> classRoomDir;
+	private List<Classroom> classRoomDir;
+	
 	public ClassroomDirectory() {
-		classRoomDir = new ArrayList<Classroom>();
+		this.classRoomDir = new ArrayList<>();
+	}
+	
+	public void addClassroom(Classroom classroom) {
+		this.classRoomDir.add(classroom);
+	}
+	
+	public List<Classroom> getClassRoomDir(){
+		return classRoomDir;
 	}
 }

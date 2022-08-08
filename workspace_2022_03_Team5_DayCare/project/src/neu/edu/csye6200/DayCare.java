@@ -2,8 +2,11 @@ package neu.edu.csye6200;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import neu.edu.csye6200.models.AbstractPersonFactory;
+import neu.edu.csye6200.models.Classroom;
 import neu.edu.csye6200.models.ClassroomDirectory;
 import neu.edu.csye6200.models.Employee;
 import neu.edu.csye6200.models.FileUtil;
@@ -14,12 +17,14 @@ import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.models.StudentFactory;
 import neu.edu.csye6200.models.Teacher;
 import neu.edu.csye6200.models.TeacherFactory;
+import neu.edu.csye6200.models.GroupRule;
 
 public class DayCare {
 	private PersonDirectory personDir;
 	private ClassroomDirectory classroomDir;
 	private AbstractPersonFactory tFactory;//=new TeacherFactory();
 	private AbstractPersonFactory sFactory;//=new StudentFactory();
+	private List<GroupRule> groupRuleList;
 	
 	public DayCare() {
 		personDir = new PersonDirectory();				;
@@ -28,6 +33,10 @@ public class DayCare {
 		sFactory=new StudentFactory();
 		initializeStudents();
 		initializeEmployees();
+		groupRuleList = new ArrayList<>();
+		
+		initializeRules();
+		
 	}
 	public int initializeStudents() {
 		String line;
@@ -43,8 +52,6 @@ public class DayCare {
 		while(j!=enrollmentContent.size())
 		{
 			Person obj= sFactory.createObject(enrollmentContent.get(j));
-//			System.out.print(obj);
-//			Student s = (Student)obj;
 			StudentDetails st = new StudentDetails(obj);
 			if(j%3==0) {
 				st.setGroupid("Group 1");
@@ -97,6 +104,40 @@ public class DayCare {
 		}
 	}
 	
+	public void initializeRules() {
+		List<String> groupRules = new ArrayList<>();
+		String errorCheck="";
+		try {
+			groupRules = FileUtil.readItems("src/neu/edu/csye6200/csv/GroupRulesCSV.txt");
+		}
+		catch(Exception ex) {
+			errorCheck = ex.toString()+" "+"unable to find contents";
+		}
+		
+		for(String rule: groupRules) {
+			GroupRule gr = new GroupRule(rule);
+			groupRuleList.add(gr);
+		}
+	}
+	
+	public void autoAssignStudent(StudentDetails sd) {
+		GroupRule gr=null;
+		Student st = (Student) sd.getStudent();
+		for(GroupRule g:groupRuleList) {
+			if(st.getAge() >=g.getAgeLower() && st.getAge() <=g.getAgeHigher()) {
+				gr = g;
+			}
+		}
+		boolean classfound = false;
+		
+		for(Classroom cr:classroomDir.getClassRoomDir()) {
+			if(cr.getGrouprule().equals(gr) && cr.isFull() == false) {
+				classfound = true;
+				cr.addStudent(sd, personDir.getEmpDir());
+			}
+		}
+		
+	}
 	
 	public PersonDirectory getPersonDir() {
 		return personDir;
