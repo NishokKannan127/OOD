@@ -77,7 +77,7 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		
 		JLabel firstNameLabel = new JLabel("First Name");
 		firstNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		firstNameLabel.setBounds(305, 160, 72, 16);
+		firstNameLabel.setBounds(240, 160, 137, 16);
 		add(firstNameLabel);
 		
 		textField = new JTextField();
@@ -89,7 +89,7 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		
 		JLabel lastNameLabel = new JLabel("Last Name");
 		lastNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		lastNameLabel.setBounds(305, 215, 72, 16);
+		lastNameLabel.setBounds(240, 215, 137, 16);
 		add(lastNameLabel);
 		
 		textField_1 = new JTextField();
@@ -101,7 +101,7 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		
 		JLabel addressLabel = new JLabel("Address");
 		addressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		addressLabel.setBounds(305, 270, 72, 16);
+		addressLabel.setBounds(240, 270, 137, 16);
 		add(addressLabel);
 		
 		textField_2 = new JTextField();
@@ -113,7 +113,7 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 		
 		JLabel dojLabel = new JLabel("Date of Joining");
 		dojLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		dojLabel.setBounds(305, 327, 72, 16);
+		dojLabel.setBounds(240, 327, 137, 16);
 		add(dojLabel);
 		
 		textField_3 = new JTextField();

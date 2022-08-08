@@ -98,7 +98,7 @@ public class EnrollTeacherJPanel extends JPanel {
 		
 		JLabel dojLabel = new JLabel("Date of Joining");
 		dojLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		dojLabel.setBounds(305, 327, 72, 16);
+		dojLabel.setBounds(260, 327, 117, 16);
 		add(dojLabel);
 		
 		textField_3 = new JTextField();
@@ -115,14 +115,18 @@ public class EnrollTeacherJPanel extends JPanel {
 				doj=textField_3.getText();
 				
 				StringBuilder st = new StringBuilder("");
+				int min = 100000000;
+			    int max = 999999999;			      
+			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+				st.append(random_int.toString());
 				st.append(",");
 				st.append(fName);
 				st.append(",");
 				st.append(lName);
 				st.append(",");
-				st.append(address);
-				st.append(",");
 				st.append(doj);
+				st.append(",");
+				st.append(address);
 				
 				Teacher pObj = (Teacher)tFactory.createObject(st.toString());
 				employee = new Employee(pObj, null);
@@ -168,4 +172,6 @@ public class EnrollTeacherJPanel extends JPanel {
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);
 	}
+	
+	
 }

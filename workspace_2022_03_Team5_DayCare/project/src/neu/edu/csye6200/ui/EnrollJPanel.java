@@ -57,7 +57,7 @@ public class EnrollJPanel extends JPanel {
 				layout.next(container);
 			}
 		});
-		enrollStudents.setBounds(247, 194, 117, 29);
+		enrollStudents.setBounds(247, 194, 161, 29);
 		add(enrollStudents);
 		
 		JButton enrollTeachers = new JButton("Enroll Teachers");
@@ -69,7 +69,7 @@ public class EnrollJPanel extends JPanel {
 				layout.next(container);
 			}
 		});
-		enrollTeachers.setBounds(247, 295, 117, 29);
+		enrollTeachers.setBounds(247, 295, 161, 29);
 		add(enrollTeachers);
 
 		

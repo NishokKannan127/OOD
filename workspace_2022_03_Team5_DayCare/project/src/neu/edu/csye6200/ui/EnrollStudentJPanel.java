@@ -19,6 +19,15 @@ import neu.edu.csye6200.models.StudentFactory;
 import neu.edu.csye6200.ui.student.StudentJPanel;
 
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -42,7 +51,9 @@ public class EnrollStudentJPanel extends JPanel {
 	String parentName;
 	String dob;
 	String age;
+	String parentPhNo;
 	StudentFactory sFactory;
+	private JTextField textField_6;
 	
 	public EnrollStudentJPanel(JPanel container, DayCare daycare) {
 		setBackground(new Color(204, 255, 255));
@@ -74,7 +85,7 @@ public class EnrollStudentJPanel extends JPanel {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(437, 159, 130, 26);
+		textField.setBounds(490, 156, 130, 26);
 		add(textField);
 		
 		JLabel lastNameLabel = new JLabel("Last Name");
@@ -84,7 +95,7 @@ public class EnrollStudentJPanel extends JPanel {
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(437, 214, 130, 26);
+		textField_1.setBounds(490, 211, 130, 26);
 		add(textField_1);
 		
 		JLabel addressLabel = new JLabel("Address");
@@ -94,17 +105,17 @@ public class EnrollStudentJPanel extends JPanel {
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(437, 269, 130, 26);
+		textField_2.setBounds(490, 266, 130, 26);
 		add(textField_2);
 		
 		JLabel parentNameLabel = new JLabel("Parent Name");
 		parentNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		parentNameLabel.setBounds(305, 327, 72, 16);
+		parentNameLabel.setBounds(260, 327, 117, 16);
 		add(parentNameLabel);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(437, 326, 130, 26);
+		textField_3.setBounds(490, 323, 130, 26);
 		add(textField_3);
 		
 		JLabel dobLabel = new JLabel("Date of Birth");
@@ -114,7 +125,7 @@ public class EnrollStudentJPanel extends JPanel {
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(437, 380, 130, 26);
+		textField_4.setBounds(490, 377, 130, 26);
 		add(textField_4);
 		
 		JLabel ageLabel = new JLabel("Age");
@@ -123,8 +134,10 @@ public class EnrollStudentJPanel extends JPanel {
 		add(ageLabel);
 		
 		textField_5 = new JTextField();
+		textField_5.setEnabled(false);
+		textField_5.setEditable(false);
 		textField_5.setColumns(10);
-		textField_5.setBounds(437, 443, 130, 26);
+		textField_5.setBounds(490, 440, 130, 26);
 		add(textField_5);
 		
 		JButton enrollBtn = new JButton("Enroll");
@@ -135,9 +148,22 @@ public class EnrollStudentJPanel extends JPanel {
 				address=textField_2.getText();
 				parentName=textField_3.getText();
 				dob=textField_4.getText();
-				age=textField_5.getText();
-				
-				StringBuilder st = new StringBuilder("0");
+
+				try {
+					age=calculateAge(dob);
+					textField_5.setText(age);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}//textField_5.getText();
+				parentPhNo=textField_6.getText();
+				StringBuilder st = new StringBuilder("");
+
+				age=textField_5.getText();				
+				int min = 100000000;
+			    int max = 999999999;			      
+			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+				st.append(random_int.toString());
 				st.append(",");
 				st.append(fName);
 				st.append(",");
@@ -148,6 +174,8 @@ public class EnrollStudentJPanel extends JPanel {
 				st.append(parentName);
 				st.append(",");
 				st.append(address);
+				st.append(",");
+				st.append(parentPhNo);
 				
 				
 				Person pObj = sFactory.createObject(st.toString());
@@ -163,8 +191,31 @@ public class EnrollStudentJPanel extends JPanel {
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));
-		enrollBtn.setBounds(450, 519, 117, 29);
+		enrollBtn.setBounds(451, 570, 117, 29);
 		add(enrollBtn);
+		
+		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
+		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblParentPhoneNo.setBounds(104, 504, 273, 16);
+		add(lblParentPhoneNo);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(490, 503, 130, 26);
+		add(textField_6);
+	}
+	public String calculateAge(String dob) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	    Date date = formatter.parse(dob);
+	    Instant instant = date.toInstant();
+	    ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
+	    LocalDate givenDate = zone.toLocalDate();
+	      
+		LocalDate dateDob = zone.toLocalDate();//LocalDate.parse((CharSequence) date );
+		LocalDate dateNow = LocalDate.now();
+		Period period = Period.between(dateDob, dateNow);
+		Integer months = period.getYears()*12 + period.getMonths();
+		return months.toString();
 	}
 	public void readStudent(StudentDetails st, java.awt.event.ActionEvent evt) {
 		CardLayout layout=(CardLayout)container.getLayout();

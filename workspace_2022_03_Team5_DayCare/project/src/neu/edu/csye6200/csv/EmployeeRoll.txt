@@ -1,4 +1,12 @@
 100,Marci,Lennon,01/14/2022,21 Merganser Way Walpole MA 02081
 200,Jacob,Leister,02/20/2022,903Huntington ave Boston MA 02115
-300,Emma,Roberts,03/01/2021,80 Saint Alphonsos Street MA 02120,r32q,re,areg,dag
-,aaa,aa,aaa,11-11-1111
+300,Emma,Roberts,03/01/2021,80 Saint Alphonsos Street MA 02120
+193722425,d,d,11-02-1992,d
+870438677,a,d,11-02-1992,d
+214334602,s,s,11-02-1992,s
+552308222,q,q,11-02-1992,sq
+454237564,p,p,11-02-1222,p
+230510499,s,s,22-02-2222,s
+403664926,sd,ds,22-03-1234,sd
+675507721,sd,ds,22-03-1234,sd
+798915614,s,s,11-02-1111,s
