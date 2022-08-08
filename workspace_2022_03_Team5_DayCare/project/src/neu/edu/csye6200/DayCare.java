@@ -19,6 +19,7 @@ import neu.edu.csye6200.models.StudentFactory;
 import neu.edu.csye6200.models.Teacher;
 import neu.edu.csye6200.models.TeacherFactory;
 import neu.edu.csye6200.models.GroupRule;
+import neu.edu.csye6200.models.ImmunizationRule;
 
 public class DayCare {
 	private PersonDirectory personDir;
@@ -26,20 +27,23 @@ public class DayCare {
 	private AbstractPersonFactory tFactory;//=new TeacherFactory();
 	private AbstractPersonFactory sFactory;//=new StudentFactory();
 	private List<GroupRule> groupRuleList;
-	
+	private List<ImmunizationRule> immunizationRuleList;
+
 	public DayCare() {
 		personDir = new PersonDirectory();				;
 		classroomDir = new ClassroomDirectory();
 		tFactory=new TeacherFactory();
 		sFactory=new StudentFactory();
 		groupRuleList = new ArrayList<>();
-		
+		immunizationRuleList = new ArrayList<>();
+
 		initializeRules();
+		initializeImmunization();
 		initializeEmployees();
 		initializeStudents();
-		
-		
-		
+
+
+
 	}
 	public int initializeStudents() {
 		String line;
@@ -62,21 +66,21 @@ public class DayCare {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			if(j%3==0) {
-//				st.setGroupid("Group 1");
-//			}
-//			else if(j%3==1) {
-//				st.setGroupid("Group 2");
-//			}
-//			else {
-//				st.setGroupid("Group 3");
-//			}
-//			if((j%10)<5) {
-//				st.setClassid("Class 1");
-//			}
-//			else {
-//				st.setClassid("Class 2");
-//			}
+			//			if(j%3==0) {
+			//				st.setGroupid("Group 1");
+			//			}
+			//			else if(j%3==1) {
+			//				st.setGroupid("Group 2");
+			//			}
+			//			else {
+			//				st.setGroupid("Group 3");
+			//			}
+			//			if((j%10)<5) {
+			//				st.setClassid("Class 1");
+			//			}
+			//			else {
+			//				st.setClassid("Class 2");
+			//			}
 			personDir.addStudentDet(st);
 			j++;
 		}
@@ -112,7 +116,25 @@ public class DayCare {
 			return 0;
 		}
 	}
-	
+
+	public void initializeImmunization()
+	{
+		List<String> immunizationRules = new ArrayList<>();
+		String errorCheck="";
+		try {
+			immunizationRules = FileUtil.readItems("src/neu/edu/csye6200/csv/ImmunizationCSV.txt");
+		}
+		catch(Exception ex)
+		{
+			errorCheck = ex.toString()+" "+"unable to find contents";
+		}
+		for(String dose: immunizationRules)
+		{
+			ImmunizationRule ir= new ImmunizationRule(dose);
+			immunizationRuleList.add(ir);		
+		}
+	}
+
 	public void initializeRules() {
 		List<String> groupRules = new ArrayList<>();
 		String errorCheck="";
@@ -122,13 +144,13 @@ public class DayCare {
 		catch(Exception ex) {
 			errorCheck = ex.toString()+" "+"unable to find contents";
 		}
-		
+
 		for(String rule: groupRules) {
 			GroupRule gr = new GroupRule(rule);
 			groupRuleList.add(gr);
 		}
 	}
-	
+
 	public void autoAssignStudent(StudentDetails sd) throws NumberFormatException, ParseException {
 		GroupRule gr=null;
 		Student st = (Student) sd.getStudent();
@@ -138,20 +160,20 @@ public class DayCare {
 			}
 		}
 		boolean classfound = false;
-		
+
 		for(Classroom cr:classroomDir.getClassRoomDir()) {
 			if(cr.getGrouprule().equals(gr) && cr.isFull() == false) {
 				classfound = true;
 				cr.addStudent(sd, personDir.getEmpDir());
 			}
 		}
-		
+
 	}
-	
+
 	public PersonDirectory getPersonDir() {
 		return personDir;
 	}
-	
+
 	public void setPersonDir(PersonDirectory personDir) {
 		this.personDir = personDir;
 	}
@@ -176,5 +198,5 @@ public class DayCare {
 	public DayCare getInstance() {
 		return this;
 	}
-	
+
 }
