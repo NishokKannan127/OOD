@@ -44,9 +44,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 	String parentName;
 	String dob;
 	String age;
-	String parentPhoneNo;
 	StudentFactory sFactory;
-	private JTextField textField_6;
 	
 	public EnrollStudentJPanelDisplay(JPanel container, DayCare daycare, StudentDetails st, boolean isEnroll) {
 		setBackground(new Color(204, 255, 255));
@@ -163,21 +161,8 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnInsurance.setBounds(318, 577, 117, 29);
+		btnInsurance.setBounds(318, 529, 117, 29);
 		add(btnInsurance);
-		
-		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
-		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblParentPhoneNo.setBounds(197, 499, 180, 16);
-		add(lblParentPhoneNo);
-		
-		textField_6 = new JTextField();
-		textField_6.setText((String) null);
-		textField_6.setEnabled(false);
-		textField_6.setEditable(false);
-		textField_6.setColumns(10);
-		textField_6.setBounds(493, 498, 130, 26);
-		add(textField_6);
 
 		
 		
@@ -208,7 +193,6 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		textField_6.setText(((Student)st.getStudent()).getPhoneNumberParent());
 	}
 	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {

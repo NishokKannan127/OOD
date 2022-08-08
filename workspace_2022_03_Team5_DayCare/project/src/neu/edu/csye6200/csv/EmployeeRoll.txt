@@ -1,6 +1,3 @@
 100,Marci,Lennon,01/14/2022,21 Merganser Way Walpole MA 02081
 200,Jacob,Leister,02/20/2022,903Huntington ave Boston MA 02115
-300,Emma,Roberts,03/01/2021,80 Saint Alphonsos Street MA 02120,r32q,re,areg,dag
-,aaa,aa,aaa,11-11-1111
-,j,j,j,11-02-1992
-,d,d,11-02-1992,d
+300,Emma,Roberts,03/01/2021,80 Saint Alphonsos Street MA 02120

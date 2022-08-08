@@ -55,9 +55,6 @@ public Student(String line) {
 	public void setPhoneNumberParent(String phoneNumberParent) {
 		this.parentPhoneNumber=phoneNumberParent;
 	}
-	public String getPhoneNumberParent() {
-		return parentPhoneNumber;
-	}
 	public String getParentName() {
 		return parentName;
 	}

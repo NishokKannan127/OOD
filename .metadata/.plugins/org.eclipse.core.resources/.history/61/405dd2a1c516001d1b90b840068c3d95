@@ -14,7 +14,6 @@ public class Student extends Person{
 	//mm/dd/yy
 	int age;
 	String parentName;
-	String parentPhoneNumber;
 	
 public Student(String line) {
 		
@@ -26,14 +25,12 @@ public Student(String line) {
 		String dob= "";
 		String parentName= "";
 		String address="";
-		String phoneNumberParent = "";
 		
 		fName = delimiter[1];
 		lName = delimiter[2];
 		dob= delimiter[3];
 		parentName = delimiter[4];
 		address = delimiter[5];
-		phoneNumberParent = delimiter[6];
 
 		
 		this.setId(id);
@@ -42,7 +39,6 @@ public Student(String line) {
 		this.setDob(dob);
 		this.setParentName(parentName);
 		this.setAddress(address);
-		this.setPhoneNumberParent(phoneNumberParent);
 		
 
 	}
@@ -52,19 +48,12 @@ public Student(String line) {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
-	public void setPhoneNumberParent(String phoneNumberParent) {
-		this.parentPhoneNumber=phoneNumberParent;
-	}
-	public String getPhoneNumberParent() {
-		return parentPhoneNumber;
-	}
 	public String getParentName() {
 		return parentName;
 	}
 	public void setParentName(String parentName) {
 		this.parentName = parentName;
 	}
-	
 	public String getAge() throws ParseException {
 		// TODO Auto-generated method stub
 		String dob = this.getDob();

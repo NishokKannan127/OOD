@@ -50,7 +50,9 @@ public class EnrollStudentJPanel extends JPanel {
 	String parentName;
 	String dob;
 	String age;
+	String parentPhNo;
 	StudentFactory sFactory;
+	private JTextField textField_6;
 	
 	public EnrollStudentJPanel(JPanel container, DayCare daycare) {
 		setBackground(new Color(204, 255, 255));
@@ -152,7 +154,7 @@ public class EnrollStudentJPanel extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}//textField_5.getText();
-				
+				parentPhNo=textField_6.getText();
 				StringBuilder st = new StringBuilder("");
 				st.append(",");
 				st.append(fName);
@@ -164,6 +166,8 @@ public class EnrollStudentJPanel extends JPanel {
 				st.append(parentName);
 				st.append(",");
 				st.append(address);
+				st.append(",");
+				st.append(parentPhNo);
 				
 				Person pObj = sFactory.createObject(st.toString());
 				StudentDetails s = new StudentDetails(pObj);
@@ -177,8 +181,18 @@ public class EnrollStudentJPanel extends JPanel {
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));
-		enrollBtn.setBounds(450, 519, 117, 29);
+		enrollBtn.setBounds(451, 570, 117, 29);
 		add(enrollBtn);
+		
+		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
+		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblParentPhoneNo.setBounds(104, 504, 273, 16);
+		add(lblParentPhoneNo);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(490, 503, 130, 26);
+		add(textField_6);
 	}
 	public String calculateAge(String dob) throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");

@@ -44,7 +44,6 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 	String parentName;
 	String dob;
 	String age;
-	String parentPhoneNo;
 	StudentFactory sFactory;
 	private JTextField textField_6;
 	
@@ -208,7 +207,6 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		textField_6.setText(((Student)st.getStudent()).getPhoneNumberParent());
 	}
 	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {

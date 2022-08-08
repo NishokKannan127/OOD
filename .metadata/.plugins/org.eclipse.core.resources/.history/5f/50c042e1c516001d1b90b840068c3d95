@@ -42,7 +42,7 @@ public Student(String line) {
 		this.setDob(dob);
 		this.setParentName(parentName);
 		this.setAddress(address);
-		this.setPhoneNumberParent(phoneNumberParent);
+		this.setPhoneNo(phoneNumberParent);
 		
 
 	}
@@ -54,9 +54,6 @@ public Student(String line) {
 	}
 	public void setPhoneNumberParent(String phoneNumberParent) {
 		this.parentPhoneNumber=phoneNumberParent;
-	}
-	public String getPhoneNumberParent() {
-		return parentPhoneNumber;
 	}
 	public String getParentName() {
 		return parentName;
