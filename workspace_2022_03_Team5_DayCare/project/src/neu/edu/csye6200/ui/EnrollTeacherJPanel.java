@@ -98,7 +98,7 @@ public class EnrollTeacherJPanel extends JPanel {
 		
 		JLabel dojLabel = new JLabel("Date of Joining");
 		dojLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		dojLabel.setBounds(305, 327, 72, 16);
+		dojLabel.setBounds(260, 327, 117, 16);
 		add(dojLabel);
 		
 		textField_3 = new JTextField();
@@ -120,9 +120,9 @@ public class EnrollTeacherJPanel extends JPanel {
 				st.append(",");
 				st.append(lName);
 				st.append(",");
-				st.append(address);
-				st.append(",");
 				st.append(doj);
+				st.append(",");
+				st.append(address);
 				
 				Teacher pObj = (Teacher)tFactory.createObject(st.toString());
 				employee = new Employee(pObj, null);

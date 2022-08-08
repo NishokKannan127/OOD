@@ -19,6 +19,7 @@ import neu.edu.csye6200.models.StudentFactory;
 import neu.edu.csye6200.ui.student.StudentJPanel;
 
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -77,74 +78,74 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		
 		JLabel firstNameLabel = new JLabel("First Name");
 		firstNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		firstNameLabel.setBounds(305, 160, 72, 16);
+		firstNameLabel.setBounds(247, 160, 130, 16);
 		add(firstNameLabel);
 		
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setEnabled(false);
 		textField.setColumns(10);
-		textField.setBounds(437, 159, 130, 26);
+		textField.setBounds(493, 156, 130, 26);
 		add(textField);
 		
 		JLabel lastNameLabel = new JLabel("Last Name");
 		lastNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		lastNameLabel.setBounds(305, 215, 72, 16);
+		lastNameLabel.setBounds(265, 215, 112, 16);
 		add(lastNameLabel);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
 		textField_1.setEnabled(false);
 		textField_1.setColumns(10);
-		textField_1.setBounds(437, 214, 130, 26);
+		textField_1.setBounds(493, 211, 130, 26);
 		add(textField_1);
 		
 		JLabel addressLabel = new JLabel("Address");
 		addressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		addressLabel.setBounds(305, 270, 72, 16);
+		addressLabel.setBounds(265, 270, 112, 16);
 		add(addressLabel);
 		
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
 		textField_2.setEnabled(false);
 		textField_2.setColumns(10);
-		textField_2.setBounds(437, 269, 130, 26);
+		textField_2.setBounds(493, 266, 130, 26);
 		add(textField_2);
 		
 		JLabel parentNameLabel = new JLabel("Parent Name");
 		parentNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		parentNameLabel.setBounds(305, 327, 72, 16);
+		parentNameLabel.setBounds(265, 327, 112, 16);
 		add(parentNameLabel);
 		
 		textField_3 = new JTextField();
 		textField_3.setEnabled(false);
 		textField_3.setEditable(false);
 		textField_3.setColumns(10);
-		textField_3.setBounds(437, 326, 130, 26);
+		textField_3.setBounds(493, 323, 130, 26);
 		add(textField_3);
 		
 		JLabel dobLabel = new JLabel("Date of Birth");
 		dobLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		dobLabel.setBounds(305, 381, 72, 16);
+		dobLabel.setBounds(265, 381, 112, 16);
 		add(dobLabel);
 		
 		textField_4 = new JTextField();
 		textField_4.setEnabled(false);
 		textField_4.setEditable(false);
 		textField_4.setColumns(10);
-		textField_4.setBounds(437, 380, 130, 26);
+		textField_4.setBounds(493, 377, 130, 26);
 		add(textField_4);
 		
 		JLabel ageLabel = new JLabel("Age");
 		ageLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		ageLabel.setBounds(305, 444, 72, 16);
+		ageLabel.setBounds(265, 444, 112, 16);
 		add(ageLabel);
 		
 		textField_5 = new JTextField();
 		textField_5.setEditable(false);
 		textField_5.setEnabled(false);
 		textField_5.setColumns(10);
-		textField_5.setBounds(437, 443, 130, 26);
+		textField_5.setBounds(493, 440, 130, 26);
 		add(textField_5);
 		
 		JButton btnGoToDashboard = new JButton("Go to Dashboard");
@@ -182,10 +183,16 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 	public void displayStudent() {
 		textField.setText(st.getStudent().getFirstName());
 		textField_1.setText(st.getStudent().getLastName());
-		textField_2.setText(st.getStudent().getAddress());;
-		textField_3.setText(st.getParentName());
+		textField_2.setText(st.getStudent().getAddress());
+		//st.getStudent().getgetParentName()
+		textField_3.setText(((Student) st.getStudent()).getParentName() );
 		textField_4.setText(((Student) st.getStudent()).getDob());
-		textField_5.setText(((Student) st.getStudent()).getDob());
+		try {
+			textField_5.setText(((Student) st.getStudent()).getAge());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
