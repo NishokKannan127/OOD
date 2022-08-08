@@ -155,11 +155,14 @@ public class DayCare {
 		GroupRule gr=null;
 		Student st = (Student) sd.getStudent();
 		for(GroupRule g:groupRuleList) {
+			System.out.println(st.getAge());
 			if(Integer.parseInt(st.getAge()) >=g.getAgeLower() && Integer.parseInt(st.getAge()) <=g.getAgeHigher()) {
 				gr = g;
 			}
 		}
 		boolean classfound = false;
+		
+		System.out.println(classroomDir.getClassRoomDir().size());
 
 		for(Classroom cr:classroomDir.getClassRoomDir()) {
 			if(cr.getGrouprule().equals(gr) && cr.isFull() == false) {
@@ -167,7 +170,15 @@ public class DayCare {
 				cr.addStudent(sd, personDir.getEmpDir());
 			}
 		}
-
+		
+		if(classfound == false) {
+			Classroom cr = new Classroom();
+			cr.setGrouprule(gr);
+			classroomDir.addClassroom(cr);
+			cr.addStudent(sd, personDir.getEmpDir());
+		}
+		
+		System.out.println(sd.getClassid());
 	}
 
 	public PersonDirectory getPersonDir() {
