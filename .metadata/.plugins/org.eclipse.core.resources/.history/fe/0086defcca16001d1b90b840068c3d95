@@ -115,6 +115,7 @@ public class EnrollTeacherJPanel extends JPanel {
 				doj=textField_3.getText();
 				
 				StringBuilder st = new StringBuilder("");
+				st.append("\n");
 				int min = 100000000;
 			    int max = 999999999;			      
 			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
@@ -172,6 +173,4 @@ public class EnrollTeacherJPanel extends JPanel {
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);
 	}
-	
-	
 }

@@ -159,7 +159,8 @@ public class EnrollStudentJPanel extends JPanel {
 				parentPhNo=textField_6.getText();
 				StringBuilder st = new StringBuilder("");
 
-				age=textField_5.getText();				
+				age=textField_5.getText();
+				st.append("\n");
 				int min = 100000000;
 			    int max = 999999999;			      
 			    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);

@@ -163,15 +163,15 @@ public class EnrollTeacherJPanel extends JPanel {
 		container.add("TeacherJPanelDisp", teacherJPanelDisp);
 		layout.next(container);
 	}
+
+	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		container.remove(this);
       Component[] componentArray = container.getComponents();
       Component component = componentArray[componentArray.length - 1];
-      DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+      //DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
 
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);
 	}
-	
-	
 }
