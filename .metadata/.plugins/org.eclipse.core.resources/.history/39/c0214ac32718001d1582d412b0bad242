@@ -17,7 +17,7 @@ public class Employee {
 	public List<Review> getAllReviews(){
 		return this.reviews;
 	}
-	public Employee(Teacher teacher) {
+	public Employee(Teacher teacher, Review rev) {
 		this.teacher=teacher;
 		this.isEmployed = false;
 		reviews = new ArrayList<Review>();

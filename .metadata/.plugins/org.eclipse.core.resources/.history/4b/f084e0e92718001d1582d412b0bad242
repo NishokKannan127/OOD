@@ -146,7 +146,7 @@ public class EnrollTeacherJPanel extends JPanel {
 					st.append(address);
 					
 					Teacher pObj = (Teacher)tFactory.createObject(st.toString());
-					employee = new Employee(pObj);//new Employee(pObj, null);
+					employee = new Employee(pObj, null);
 					dayCare.getPersonDir().addEmployee(employee);// addStudentDet(new StudentDetails(pObj));
 					FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EmployeeRoll.txt");
 					readTeacher(employee, e);
