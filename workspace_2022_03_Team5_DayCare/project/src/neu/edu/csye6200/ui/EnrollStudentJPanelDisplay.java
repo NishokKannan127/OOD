@@ -158,13 +158,13 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		btnGoToDashboard.setBounds(58, 257, 117, 29);
 		add(btnGoToDashboard);
 		
-		JButton btnImmunization = new JButton("btnImmunization");
+		JButton btnImmunization = new JButton("Immunization");
 		btnImmunization.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				immunizationButtonActionPerformed(st,e);
 			}
 		});
-
-		btnImmunization.setBounds(318, 577, 117, 29);
+		btnImmunization.setBounds(318, 577, 117, 29);		
 		add(btnImmunization);
 		
 		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
@@ -179,8 +179,8 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		textField_6.setColumns(10);
 		textField_6.setBounds(493, 498, 130, 26);
 		add(textField_6);
-		btnImmunization.setBounds(318, 529, 117, 29);
-		add(btnImmunization);
+//		btnImmunization.setBounds(318, 529, 117, 29);
+//		add(btnImmunization);
 
 
 		
@@ -223,5 +223,12 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);
+	}
+	public void immunizationButtonActionPerformed(StudentDetails st, java.awt.event.ActionEvent evt) {
+		System.out.println("hola");
+		CardLayout layout=(CardLayout)container.getLayout();
+		ImmunizationJPanel immunizationJPanel = new ImmunizationJPanel(container, daycare, st);
+		container.add("StudentJPanelDisp", immunizationJPanel);
+		layout.next(container);
 	}
 }
