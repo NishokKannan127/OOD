@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.JOptionPane;
+
 import java.util.HashMap;
 
 import neu.edu.csye6200.models.AbstractPersonFactory;
@@ -152,13 +155,18 @@ public class DayCare {
 	}
 
 	public void autoAssignStudent(StudentDetails sd) throws NumberFormatException, ParseException {
+		
 		GroupRule gr=null;
 		Student st = (Student) sd.getStudent();
+		System.out.println("ID "+ st.getFirstName() + ", Age: "+st.getAge());
 		for(GroupRule g:groupRuleList) {
-			System.out.println(st.getAge());
+			
 			if(Integer.parseInt(st.getAge()) >=g.getAgeLower() && Integer.parseInt(st.getAge()) <=g.getAgeHigher()) {
 				gr = g;
 			}
+		}
+		if(gr == null) {
+			return;
 		}
 		boolean classfound = false;
 		
@@ -168,6 +176,7 @@ public class DayCare {
 			if(cr.getGrouprule().equals(gr) && cr.isFull() == false) {
 				classfound = true;
 				cr.addStudent(sd, personDir.getEmpDir());
+				return;
 			}
 		}
 		
@@ -176,9 +185,9 @@ public class DayCare {
 			cr.setGrouprule(gr);
 			classroomDir.addClassroom(cr);
 			cr.addStudent(sd, personDir.getEmpDir());
+			cr.setFull(false);
 		}
 		
-		System.out.println(sd.getClassid());
 	}
 
 	public PersonDirectory getPersonDir() {
