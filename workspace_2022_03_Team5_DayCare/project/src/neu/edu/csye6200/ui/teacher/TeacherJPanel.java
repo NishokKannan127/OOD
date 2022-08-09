@@ -2,6 +2,7 @@ package neu.edu.csye6200.ui.teacher;
 
 import neu.edu.csye6200.models.Employee;
 import neu.edu.csye6200.models.StudentDetails;
+import neu.edu.csye6200.ui.EnrollStudentJPanel;
 import neu.edu.csye6200.ui.EnrollStudentJPanelDisplay;
 import neu.edu.csye6200.ui.EnrollTeacherJPanelDisplay;
 
@@ -80,6 +81,27 @@ public class TeacherJPanel extends JPanel {
 		});
 		btnNewButton_1.setBounds(116, 284, 89, 23);
 		add(btnNewButton_1);
+		
+		JButton btnReview = new JButton("Review");
+		btnReview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int selectedRowIndex = table.getSelectedRow();
+				if(selectedRowIndex<0) {
+					//JOptionPane.showMessageDialog(paintingChild, this, "Please select a row to View", selectedRowIndex);
+		            return;
+				}
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				Employee ed = (Employee) model.getValueAt(selectedRowIndex, 0);
+				
+				CardLayout layout=(CardLayout)container.getLayout();
+				ReviewJPanel reviewJPanel = new ReviewJPanel(container, daycare, ed);
+				container.add("ReviewJPanel", reviewJPanel);
+				layout.next(container);
+			}
+		});
+		btnReview.setBounds(481, 436, 89, 23);
+		add(btnReview);
 		populateTable();
 	}
 		public void populateTable()

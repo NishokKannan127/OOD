@@ -226,6 +226,4 @@ public class EnrollTeacherJPanel extends JPanel {
       CardLayout layout = (CardLayout) container.getLayout();
       layout.previous(container);
 	}
-	
-	
 }

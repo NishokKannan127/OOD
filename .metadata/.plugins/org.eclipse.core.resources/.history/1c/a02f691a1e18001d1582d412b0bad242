@@ -1,0 +1,45 @@
+package neu.edu.csye6200.models;
+
+import java.time.LocalDate;
+import java.util.Date;
+
+public class Review {
+	private Integer rating;
+	private LocalDate dateOfReview;
+	private LocalDate nextReviewDate;
+	private String description;
+	
+	//create button for alerting next review
+	
+	public Review(Integer rating, String description) {
+		this.dateOfReview=LocalDate.now();
+		this.rating=rating;
+		this.description=description;
+		this.nextReviewDate= LocalDate.parse(this.dateOfReview).plusYears(1);
+	}
+	
+	public Integer getRating() {
+		return rating;
+	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+	public Date getDateOfReview() {
+		return dateOfReview;
+	}
+	public void setDateOfReview(Date dateOfReview) {
+		this.dateOfReview = dateOfReview;
+	}
+	public Date getNextReviewDate() {
+		return nextReviewDate;
+	}
+	public void setNextReviewDate(Date nextReviewDate) {
+		this.nextReviewDate = nextReviewDate;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+}

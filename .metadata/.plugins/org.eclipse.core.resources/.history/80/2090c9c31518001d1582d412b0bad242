@@ -1,0 +1,35 @@
+package neu.edu.csye6200.models;
+
+import java.util.Date;
+
+public class Review {
+	private Integer rating;
+	private Date dateOfReview;
+	private Date nextReviewDate;
+	private String description;
+	
+	public Integer getRating() {
+		return rating;
+	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+	public Date getDateOfReview() {
+		return dateOfReview;
+	}
+	public void setDateOfReview(Date dateOfReview) {
+		this.dateOfReview = dateOfReview;
+	}
+	public Date getNextReviewDate() {
+		return nextReviewDate;
+	}
+	public void setNextReviewDate(Date nextReviewDate) {
+		this.nextReviewDate = nextReviewDate;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+}
