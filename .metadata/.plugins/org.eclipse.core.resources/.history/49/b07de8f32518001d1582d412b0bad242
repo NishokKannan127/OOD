@@ -99,15 +99,15 @@ public class ReviewJPanel extends JPanel {
 		add(table);
 
 		JLabel lblNewLabel = new JLabel("Rating");
-		lblNewLabel.setBounds(596, 139, 90, 16);
+		lblNewLabel.setBounds(596, 192, 90, 16);
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Description");
-		lblNewLabel_1.setBounds(851, 139, 83, 16);
+		lblNewLabel_1.setBounds(842, 192, 83, 16);
 		add(lblNewLabel_1);
 		
 		JLabel lblId = new JLabel("Date of review");
-		lblId.setBounds(317, 139, 90, 16);
+		lblId.setBounds(317, 192, 90, 16);
 		add(lblId);
 		
 		JButton btnReminderNextReview = new JButton("Reminder next review");
@@ -202,7 +202,6 @@ public class ReviewJPanel extends JPanel {
 				description=textField_2.getText();
 				
 				Review rev = new Review(rating, description);
-				employee.addReview(rev);
 				populateTable();
 			}
 		});
