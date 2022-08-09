@@ -178,7 +178,7 @@ public class ReviewJPanel extends JPanel {
 		textField_2.setBounds(449, 560, 130, 26);
 		add(textField_2);
 		
-		JSlider slider = new JSlider(0,5,0);
+		JSlider slider = new JSlider(0,5);
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
@@ -190,6 +190,7 @@ public class ReviewJPanel extends JPanel {
 		
 		slider.setBounds(449, 509, 130, 22);
 		add(slider);		
+		slider.setValue(0);
 		
 		
 		JButton btnSubmit = new JButton("Submit");
