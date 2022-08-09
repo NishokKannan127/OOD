@@ -1,0 +1,266 @@
+package neu.edu.csye6200.ui.teacher;
+
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+
+import javax.swing.JPanel;
+
+import neu.edu.csye6200.DayCare;
+import neu.edu.csye6200.models.StudentDetails;
+import neu.edu.csye6200.ui.DashBoardJPanel;
+import neu.edu.csye6200.ui.EnrollStudentJPanelDisplay;
+import neu.edu.csye6200.models.Classroom;
+import neu.edu.csye6200.models.Group;
+import neu.edu.csye6200.models.Student;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+
+public class ReviewJPanel extends JPanel {
+
+	
+	private Integer rating;
+	private LocalDate dateOfReview;
+	private LocalDate nextReviewDate;
+	private String description;
+	
+	private JPanel container;
+	private DayCare daycare;
+	private JTable table;
+	
+	private JTextField textField;
+	private JTextField textField_2;
+	private JTextField sliderVal;
+
+	public ReviewJPanel(JPanel container, DayCare daycare) {
+		
+		
+		
+		
+		
+		setBackground(new Color(204, 255, 255));
+		this.container = container;
+		this.daycare = daycare;
+		this.setBounds(0, 0, 990, 990);
+		setLayout(null);
+
+		table = new JTable();
+		table.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+		table.setForeground(Color.WHITE);
+
+		table.setBackground(Color.BLACK);
+		table.setBounds(317, 220, 650, 16);
+
+		table.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+			},
+			new String[] {
+				"ID", "First Name", "Last Name"
+			}
+		));
+
+		JButton backButton = new JButton("<< back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backJButtonActionPerformed(e);
+			}
+		});
+		backButton.setBounds(58, 98, 117, 29);
+		add(backButton);
+
+		JLabel lblStudent = new JLabel("Review");
+		lblStudent.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStudent.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblStudent.setBounds(6, 6, 978, 78);
+		add(lblStudent);
+
+		
+
+		add(table);
+
+		JLabel lblNewLabel = new JLabel("Rating");
+		lblNewLabel.setBounds(596, 192, 90, 16);
+		add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Description");
+		lblNewLabel_1.setBounds(842, 192, 83, 16);
+		add(lblNewLabel_1);
+		
+		List<String> allclasses = new ArrayList<>();
+		allclasses.add("All Groups");
+		classmap.put("All Classes", allclasses);
+		
+		
+		
+		for(Classroom cr:daycare.getClassroomDir().getClassRoomDir()) {
+			System.out.println("---- "+cr.getClassroomname());
+			classmap.put(cr.getClassroomname(), new ArrayList<>());
+			classmap.get(cr.getClassroomname()).add("All Groups");
+			classCombobox.addItem(cr.getClassroomname());
+			for(Group g:cr.getGroupList()) {
+				classmap.get(cr.getClassroomname()).add(g.getGroupName());
+			}
+		}
+		
+		JLabel lblId = new JLabel("Date of review");
+		lblId.setBounds(317, 192, 90, 16);
+		add(lblId);
+		
+		JButton btnReminderNextReview = new JButton("Reminder next review");
+		btnReminderNextReview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//popup on date of next review
+			}
+		});
+		btnReminderNextReview.setBounds(736, 620, 198, 29);
+		add(btnReminderNextReview);
+		
+		JLabel lblDateOfReview = new JLabel("Date of review");
+		lblDateOfReview.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDateOfReview.setBounds(317, 450, 72, 16);
+		add(lblDateOfReview);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setEnabled(false);
+		textField.setColumns(10);
+		textField.setBounds(449, 449, 130, 26);
+		add(textField);
+		
+		JLabel lblRating = new JLabel("Rating");
+		lblRating.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblRating.setBounds(317, 509, 72, 16);
+		add(lblRating);
+		
+		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDescription.setBounds(317, 561, 72, 16);
+		add(lblDescription);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(449, 560, 130, 26);
+		add(textField_2);
+		
+		JSlider slider = new JSlider();
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				sliderVal.setText(String.valueOf(slider.getValue()));
+			}
+		});
+		slider.setPaintLabels(true);
+		slider.setValue(0);
+		slider.setMaximum(5);
+		slider.setBounds(449, 509, 130, 22);
+		add(slider);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dateOfReview=LocalDate.now();//textField.getText();
+				rating=slider.getValue();
+				description=textField_2.getText();
+			}
+		});
+		btnSubmit.setBounds(446, 620, 198, 29);
+		add(btnSubmit);
+		
+		sliderVal = new JTextField();
+		sliderVal.setColumns(10);
+		sliderVal.setBounds(596, 508, 130, 26);
+		add(sliderVal);
+		
+		
+		
+		populateTable();
+	}
+	
+	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		container.remove(this);
+		Component[] componentArray = container.getComponents();
+		Component component = componentArray[componentArray.length - 1];
+		DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+		
+		CardLayout layout = (CardLayout) container.getLayout();
+		layout.previous(container);
+	}
+
+	public void populateTable() {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+		int i = 16;
+		table.setBounds(317, 220, 650, i);
+
+		for (StudentDetails sd : daycare.getPersonDir().getStuDir().getStudentList()) {
+//            if ((sd.getGroupid().equals(groupCombobox.getSelectedItem()) && sd.getGroupid().equals(classCombobox.getSelectedItem())) ||
+//            		(sd.getGroupid().equals("All Groups") && sd.getGroupid().equals("All Classes"))) {
+//            }
+			if(sd.getClassroom() ==null) {
+				continue;
+			}
+			if (classCombobox.getSelectedItem().equals("All Classes")) {
+				Object[] row = new Object[5];
+				row[0] = sd;
+				row[1] = sd.getStudent().getFirstName();
+				row[2] = sd.getStudent().getLastName();
+				row[3] = ((Student)sd.getStudent()).getDob();
+				row[4] = ((Student)sd.getStudent()).getAddress();
+				
+				model.addRow(row);
+				table.setBounds(317, 220, 650, i);
+				i += 16;
+			} else {
+				String temp = (String) groupCombobox.getSelectedItem();
+				if (sd.getClassid().equals(classCombobox.getSelectedItem()) && temp.equals("All Groups")) {
+					Object[] row = new Object[5];
+					row[0] = sd;
+					row[1] = sd.getStudent().getFirstName();
+					row[2] = sd.getStudent().getLastName();
+					row[3] = ((Student)sd.getStudent()).getDob();
+					row[4] = ((Student)sd.getStudent()).getAddress();
+					
+					model.addRow(row);
+					table.setBounds(317, 220, 650, i);
+					i += 16;
+				} else {
+					if ((sd.getGroupid().equals(groupCombobox.getSelectedItem())
+							&& sd.getClassid().equals(classCombobox.getSelectedItem()))) {
+						Object[] row = new Object[5];
+						row[0] = sd;
+						row[1] = sd.getStudent().getFirstName();
+						row[2] = sd.getStudent().getLastName();
+						row[3] = ((Student)sd.getStudent()).getDob();
+						row[4] = ((Student)sd.getStudent()).getAddress();
+						
+						model.addRow(row);
+						table.setBounds(317, 220, 650, i);
+						i += 16;
+					}
+				}
+			}
+
+		}
+	}
+}

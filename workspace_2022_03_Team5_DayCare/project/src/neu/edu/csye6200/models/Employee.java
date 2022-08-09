@@ -1,13 +1,27 @@
 package neu.edu.csye6200.models;
 
-public class Employee {
-	Review rev;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Employee {	
 	Teacher teacher;
 	boolean isEmployed;
-	public Employee(Teacher teacher, Review rev) {
-		this.rev=rev;
+	List<Review> reviews;
+	
+	public void addReview(Review rev) {
+		this.reviews.add(rev);
+	}
+	public Review getLatestReview() {
+		return this.reviews.get(this.reviews.size()-1);
+	}
+	public List<Review> getAllReviews(){
+		return this.reviews;
+	}
+	public Employee(Teacher teacher, Review rev) {	
 		this.teacher=teacher;
 		this.isEmployed = false;
+		reviews = new ArrayList<Review>();
+		reviews.add(rev);
 	}
 	public Teacher getEmployee()
 	{
@@ -15,12 +29,6 @@ public class Employee {
 	}
 	
 	
-	public Review getRev() {
-		return rev;
-	}
-	public void setRev(Review rev) {
-		this.rev = rev;
-	}
 	public Teacher getTeacher() {
 		return teacher;
 	}

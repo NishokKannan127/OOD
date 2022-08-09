@@ -1,0 +1,10 @@
+package neu.edu.csye6200.models;
+
+import java.util.Date;
+
+public class Review {
+	private Integer rating;
+	private Date dateOfReview;
+	private Date nextReviewDate;
+	private String description;
+}
