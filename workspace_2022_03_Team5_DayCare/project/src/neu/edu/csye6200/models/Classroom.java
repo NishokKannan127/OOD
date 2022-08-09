@@ -42,6 +42,8 @@ public class Classroom{
 			sd.setClassroom(this);
 		}
 		
+		System.out.println("Group id"+ sd.getGroupid());
+		System.out.println("Class id"+ sd.getClassid());
 		
 	}
 	

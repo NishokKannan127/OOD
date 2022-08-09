@@ -98,14 +98,17 @@ public class StudentJPanel extends JPanel {
 		allclasses.add("All Groups");
 		classmap.put("All Classes", allclasses);
 		classCombobox.addItem("All Classes");
+		groupCombobox.addItem("All Groups");
+		
+		
+		
 		for(Classroom cr:daycare.getClassroomDir().getClassRoomDir()) {
+			System.out.println("---- "+cr.getClassroomname());
 			classmap.put(cr.getClassroomname(), new ArrayList<>());
 			classmap.get(cr.getClassroomname()).add("All Groups");
-			groupCombobox.addItem("All Groups");
 			classCombobox.addItem(cr.getClassroomname());
 			for(Group g:cr.getGroupList()) {
 				classmap.get(cr.getClassroomname()).add(g.getGroupName());
-				groupCombobox.addItem(g.getGroupName());
 			}
 		}
 		
@@ -185,6 +188,7 @@ public class StudentJPanel extends JPanel {
 
 	public void classComboboxChanged(ActionEvent e) {
 		List<String> classlist = classmap.get((String)classCombobox.getSelectedItem());
+		System.out.println("--!!! "+classlist.size());
 		groupCombobox.removeAllItems();
 		for(String g:classlist) {
 			groupCombobox.addItem(g);
@@ -220,7 +224,9 @@ public class StudentJPanel extends JPanel {
 //            if ((sd.getGroupid().equals(groupCombobox.getSelectedItem()) && sd.getGroupid().equals(classCombobox.getSelectedItem())) ||
 //            		(sd.getGroupid().equals("All Groups") && sd.getGroupid().equals("All Classes"))) {
 //            }
-
+			if(sd.getClassroom() ==null) {
+				continue;
+			}
 			if (classCombobox.getSelectedItem().equals("All Classes")) {
 				Object[] row = new Object[5];
 				row[0] = sd;
