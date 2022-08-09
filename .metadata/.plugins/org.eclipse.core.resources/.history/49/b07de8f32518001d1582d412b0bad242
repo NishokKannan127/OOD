@@ -202,7 +202,6 @@ public class ReviewJPanel extends JPanel {
 				description=textField_2.getText();
 				
 				Review rev = new Review(rating, description);
-				employee.addReview(rev);
 				populateTable();
 			}
 		});

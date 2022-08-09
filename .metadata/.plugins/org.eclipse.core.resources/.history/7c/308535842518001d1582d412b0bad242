@@ -202,7 +202,6 @@ public class ReviewJPanel extends JPanel {
 				description=textField_2.getText();
 				
 				Review rev = new Review(rating, description);
-				employee.addReview(rev);
 				populateTable();
 			}
 		});
@@ -238,7 +237,6 @@ public class ReviewJPanel extends JPanel {
 
 		for (Review r : emp.getAllReviews()) {
 			Object[] row = new Object[3];
-			
 			if(r!=null) {
 				row[0]=r.getDateOfReview();
 				row[1]= r.getRating();

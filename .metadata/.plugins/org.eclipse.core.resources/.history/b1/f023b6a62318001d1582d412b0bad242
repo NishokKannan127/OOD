@@ -133,17 +133,7 @@ public class ReviewJPanel extends JPanel {
 				//LocalDate d = employee.getLatestReview().getNextReviewDate();
 				//if(LocalDate.now()==d) {
 					//btnReminderNextReview.setEnabled(true);
-				Review temp = employee.getLatestReview();
-				if(temp!=null) {
-					LocalDate d = temp.getNextReviewDate();
-					//check if it should be enabled
-					if(LocalDate.now()==d) {
-						//enable button
-						btnReminderNextReview.setEnabled(true);
-						JOptionPane.showMessageDialog(container,"Reminder, add review");
-					}
-				}
-					
+					JOptionPane.showMessageDialog(container,"Reminder, add review");
 				//}
 				//enable it once next year comes
 			}
@@ -186,14 +176,10 @@ public class ReviewJPanel extends JPanel {
 			}
 		});
 		slider.setPaintLabels(true);
-		
-		
+		slider.setValue(0);
+		slider.setMaximum(5);
 		slider.setBounds(449, 509, 130, 22);
 		add(slider);
-//		slider.setMaximum(5);
-//		slider.setMinimum(0);
-//		slider.setValue(0);
-		
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
@@ -202,7 +188,6 @@ public class ReviewJPanel extends JPanel {
 				description=textField_2.getText();
 				
 				Review rev = new Review(rating, description);
-				employee.addReview(rev);
 				populateTable();
 			}
 		});
@@ -238,14 +223,10 @@ public class ReviewJPanel extends JPanel {
 
 		for (Review r : emp.getAllReviews()) {
 			Object[] row = new Object[3];
-			
-			if(r!=null) {
-				row[0]=r.getDateOfReview();
-				row[1]= r.getRating();
-				row[2]= r.getDescription();
-				model.addRow(row);
-			}
-			
+			row[0]=r.getDateOfReview();
+			row[1]= r.getRating();
+			row[2]= r.getDescription();
+			model.addRow(row);
 			table.setBounds(317, 180, 650, i);
 			i += 16;
 		}
