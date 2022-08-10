@@ -37,7 +37,7 @@ public class ImmunizationJPanel extends JPanel {
 	private JButton addButton;
 	private StudentDetails st;
 	private DayCare daycare;
-	private List<String> moreVaccineRequired;
+	private List<String> moreImmunizationRequired;
 
 	public ImmunizationJPanel(JPanel container, DayCare daycare, StudentDetails st) {
 		this.container = container;

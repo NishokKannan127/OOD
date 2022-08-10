@@ -37,7 +37,6 @@ public class ImmunizationJPanel extends JPanel {
 	private JButton addButton;
 	private StudentDetails st;
 	private DayCare daycare;
-	private List<String> moreVaccineRequired;
 
 	public ImmunizationJPanel(JPanel container, DayCare daycare, StudentDetails st) {
 		this.container = container;
@@ -109,7 +108,6 @@ public class ImmunizationJPanel extends JPanel {
 	            public void actionPerformed(ActionEvent e) {
 	                moreImmunizationNeeded();
 	                //sendVaccineReminder();
-	                
 	                if(moreVaccineRequired.size()>0) {
 	                    // enable button to remind
 	                    StringBuilder immunizationMessage = new StringBuilder();
@@ -126,43 +124,25 @@ public class ImmunizationJPanel extends JPanel {
 	        });
 		populateTable();
 		
-//		if(moreImmunizationNeeded()) {
-//			// enable button to remind
-//		}
+		if(moreImmunizationNeeded()) {
+			// enable button to remind
+		}
 
 	}
-	public List<String> moreImmunizationNeeded()
-    {
-        ImmunizationRule ir = st.getImmunizationrule();
-        moreVaccineRequired= new ArrayList<String>();
-        System.out.println("im here");
-        for(String vaccine: st.getAllVaccines()) {
-            if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
-                System.out.println("yo no hashmap yet");
-                moreVaccineRequired.add(vaccine);
-            }
-            else if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
-                System.out.println("why here??");
-                moreVaccineRequired.add(vaccine);
-                //return true;
-            }
-        }
-        //return false;
-        return moreVaccineRequired;
-    }
-//	public boolean moreImmunizationNeeded() {
-//		ImmunizationRule ir = st.getImmunizationrule();
-//		
-//		for(String vaccine: st.getAllVaccines()) {
-//			if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
-//				return true;
-//			}
-//			if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
+	
+	public boolean moreImmunizationNeeded() {
+		ImmunizationRule ir = st.getImmunizationrule();
+		
+		for(String vaccine: st.getAllVaccines()) {
+			if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
+				return true;
+			}
+			if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public void vaccineDoseChange(java.awt.event.ActionEvent evt) {
 		vaccineDoseTextField.setEnabled(true);
