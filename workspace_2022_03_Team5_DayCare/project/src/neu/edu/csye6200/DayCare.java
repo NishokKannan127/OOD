@@ -234,14 +234,19 @@ public class DayCare {
 			errorCheck = ex.toString()+" "+"unable to find contents";
 		}
 		
+		
+		
+		
+		
 		List<Review> allReviews= em.getAllReviews();// getIm().getVaccineMap();
 		for(String revs:reviews) {
 			String[] params = revs.split(",");
 			if(Long.parseLong(params[0]) == em.getTeacher().getId() ) {
-				Integer t = Integer.valueOf(params[1]);//[1];
-				String q = params[2];
+				String t = params[1];
+				Integer q = Integer.valueOf(params[2]);
 				LocalDate k = LocalDate.parse(params[3]);
-				Review r = new Review(t, q, k);
+				//long string, int date
+				Review r = new Review(q, t, k);
 				
 				em.addReview(r);
 			}

@@ -114,7 +114,13 @@ public class ReviewJPanel extends JPanel {
 		add(lblId);
 		
 		JButton btnReminderNextReview = new JButton("Reminder next review");
+		
+		
+		//CHANGE THE BELOW 
 		btnReminderNextReview.setEnabled(false);
+		//btnReminderNextReview.setEnabled(true);
+		
+		
 		Review temp = employee.getLatestReview();
 		if(temp!=null) {
 			LocalDate d = temp.getNextReviewDate();
@@ -138,7 +144,7 @@ public class ReviewJPanel extends JPanel {
 				if(temp!=null) {
 					LocalDate d = temp.getNextReviewDate();
 					//check if it should be enabled
-					if(LocalDate.now()==d) {
+					//if(LocalDate.now()==d) {
 						//enable button
 						btnReminderNextReview.setEnabled(true);
 						JOptionPane.showMessageDialog(container,"Reminder, add review");
@@ -152,7 +158,7 @@ public class ReviewJPanel extends JPanel {
 					    } catch (MessagingException ex) {
 					        //Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
 					    }
-					}
+					//}
 				}
 					
 				//}
