@@ -6,14 +6,11 @@
     <fullyQualifiedTypeName name="neu.edu.csye6200.models.FileUtil"/>
     <fullyQualifiedTypeName name="neu.edu.csye6200.models.StudentFactory"/>
     <fullyQualifiedTypeName name="neu.edu.csye6200.models.Teacher"/>
-    <fullyQualifiedTypeName name="neu.edu.csye6200.models.Employee"/>
     <fullyQualifiedTypeName name="neu.edu.csye6200.models.TeacherFactory"/>
     <fullyQualifiedTypeName name="java.io.FileWriter"/>
     <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="java.util.Locale"/>
     <fullyQualifiedTypeName name="java.time.Period"/>
     <fullyQualifiedTypeName name="java.time.Instant"/>
@@ -25,4 +22,10 @@
     <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
     <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.Review"/>
+    <fullyQualifiedTypeName name="neu.edu.csye6200.models.Employee"/>
 </qualifiedTypeNameHistroy>

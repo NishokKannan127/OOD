@@ -227,9 +227,6 @@ public class ReviewJPanel extends JPanel {
 		CardLayout layout = (CardLayout) container.getLayout();
 		layout.previous(container);
 	}
-	public void sendEmail() {
-		
-	}
 	public void writeObject(Review rev) {
 		String employeeId = String.valueOf(employee.getEmployee().getId());
 		String desc = rev.getDescription();
@@ -264,31 +261,3 @@ public class ReviewJPanel extends JPanel {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
