@@ -32,6 +32,7 @@ public class ImmunizationJPanel extends JPanel {
 	private JPanel container;
 	private JTable table;
 	private JTextField vaccineDoseTextField;
+	private JButton addButton;
 	StudentDetails st;
 	public ImmunizationJPanel(JPanel container, DayCare daycare, StudentDetails st) {
 		this.container=container;
@@ -85,19 +86,21 @@ public class ImmunizationJPanel extends JPanel {
 		vaccineDoseTextField.setColumns(2);
 		vaccineDoseTextField.setEnabled(false);
 		
-		JButton Add = new JButton("New button");
-		Add.addActionListener(new ActionListener() {
+		addButton = new JButton("Add");
+		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addVaccineDose(e, vaccineDoseTextField, vaccineComboBox);
 			}
 		});
-		Add.setBounds(92, 463, 89, 23);
-		add(Add);
+		addButton.setBounds(92, 463, 89, 23);
+		add(addButton);
+		addButton.setEnabled(false);
 
 	}
 	public void vaccineDoseChange(java.awt.event.ActionEvent evt)
 	{
 		vaccineDoseTextField.setEnabled(true);
+		addButton.setEnabled(true);
 		if(st.getIm().getVaccineMap().containsKey(vaccineComboBox.getSelectedItem())) {
 			vaccineDoseTextField.setText(Integer.toString(st.getIm().getVaccineMap().get(vaccineComboBox.getSelectedItem())));
 		}
