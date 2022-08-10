@@ -117,8 +117,8 @@ public class ReviewJPanel extends JPanel {
 		
 		
 		//CHANGE THE BELOW 
-		btnReminderNextReview.setEnabled(false);
-		//btnReminderNextReview.setEnabled(true);
+		//btnReminderNextReview.setEnabled(false);
+		btnReminderNextReview.setEnabled(true);
 		
 		
 		Review temp = employee.getLatestReview();
@@ -157,6 +157,7 @@ public class ReviewJPanel extends JPanel {
 					        Mail.sendMail("nishok217@gmail.com",htmlCode,"Reminder!",s,ending);         
 					    } catch (MessagingException ex) {
 					        //Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
+					    	System.out.print("no email");
 					    }
 					//}
 				}
