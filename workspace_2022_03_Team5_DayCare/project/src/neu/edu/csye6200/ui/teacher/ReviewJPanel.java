@@ -7,6 +7,7 @@ import java.awt.Component;
 import javax.swing.JPanel;
 
 import neu.edu.csye6200.DayCare;
+import neu.edu.csye6200.Mail;
 import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.ui.DashBoardJPanel;
 import neu.edu.csye6200.ui.EnrollStudentJPanelDisplay;
@@ -24,6 +25,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
+import javax.mail.MessagingException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -112,8 +114,6 @@ public class ReviewJPanel extends JPanel {
 		add(lblId);
 		
 		JButton btnReminderNextReview = new JButton("Reminder next review");
-		
-		//initially disable
 		btnReminderNextReview.setEnabled(false);
 		Review temp = employee.getLatestReview();
 		if(temp!=null) {
@@ -142,7 +142,16 @@ public class ReviewJPanel extends JPanel {
 						//enable button
 						btnReminderNextReview.setEnabled(true);
 						JOptionPane.showMessageDialog(container,"Reminder, add review");
-						sendEmail();
+						//sendEmail();
+						
+						String s="<p style=\"color:#001f3f\">"+d+" "+"</p>"+"<p style=\"color:#001f3f\"></p><p></p><p></p>";
+			            String htmlCode=String.valueOf(d);
+			            String ending="<p></p><p></p><p style=\"color:#001f3f\"> Thank you! </p>";
+						try {
+					        Mail.sendMail("nishok217@gmail.com",htmlCode,"Reminder!",s,ending);         
+					    } catch (MessagingException ex) {
+					        //Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
+					    }
 					}
 				}
 					
@@ -226,9 +235,6 @@ public class ReviewJPanel extends JPanel {
 		
 		CardLayout layout = (CardLayout) container.getLayout();
 		layout.previous(container);
-	}
-	public void sendEmail() {
-		
 	}
 	public void writeObject(Review rev) {
 		String employeeId = String.valueOf(employee.getEmployee().getId());

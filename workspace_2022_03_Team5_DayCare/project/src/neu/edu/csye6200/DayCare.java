@@ -1,6 +1,7 @@
 package neu.edu.csye6200;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +14,11 @@ import neu.edu.csye6200.models.AbstractPersonFactory;
 import neu.edu.csye6200.models.Classroom;
 import neu.edu.csye6200.models.ClassroomDirectory;
 import neu.edu.csye6200.models.Employee;
+import neu.edu.csye6200.models.EmployeeDirectory;
 import neu.edu.csye6200.models.FileUtil;
 import neu.edu.csye6200.models.Person;
 import neu.edu.csye6200.models.PersonDirectory;
+import neu.edu.csye6200.models.Review;
 import neu.edu.csye6200.models.Student;
 import neu.edu.csye6200.models.StudentDetails;
 import neu.edu.csye6200.models.StudentFactory;
@@ -42,7 +45,12 @@ public class DayCare {
 //		initializeImmunization();
 		initializeEmployees();
 		initializeStudents();
+		
+		
+		initializeAllReviews(personDir.getEmpDir());
+		
 	}
+	
 	public int initializeStudents() {
 		String line;
 		String errorCheck="";
@@ -93,6 +101,7 @@ public class DayCare {
 			Person obj= tFactory.createObject(employeeContent.get(j));
 			//Employee emp = (Employee)obj;
 			personDir.addEmployee(new Employee((Teacher)obj, null));
+			
 			j++;
 		}
 		if(errorCheck=="") {
@@ -102,7 +111,7 @@ public class DayCare {
 			return 0;
 		}
 	}
-
+	
 	public void initializeVaccines(StudentDetails sd)
 	{
 		List<String> vaccineNames= new ArrayList<>();
@@ -214,6 +223,35 @@ public class DayCare {
 //		}
 	}
 	
+	
+	public void initializeReviews(Employee em) {
+		List<String> reviews = new ArrayList<>();
+		String errorCheck="";
+		try {
+			reviews = FileUtil.readItems("src/neu/edu/csye6200/csv/EmployeeReview.txt");
+		}
+		catch(Exception ex) {
+			errorCheck = ex.toString()+" "+"unable to find contents";
+		}
+		
+		List<Review> allReviews= em.getAllReviews();// getIm().getVaccineMap();
+		for(String revs:reviews) {
+			String[] params = revs.split(",");
+			if(Long.parseLong(params[0]) == em.getTeacher().getId() ) {
+				Integer t = Integer.valueOf(params[1]);//[1];
+				String q = params[2];
+				LocalDate k = LocalDate.parse(params[3]);
+				Review r = new Review(t, q, k);
+				
+				em.addReview(r);
+			}
+		}
+	}
+	private void initializeAllReviews(EmployeeDirectory empDir) {		
+		for(Employee em : empDir.getEmployeeList()) {
+			initializeReviews(em);
+		}
+	}
 	public void loadImmunization(StudentDetails sd) {
 		List<String> immunizationrecords = new ArrayList<>();
 		String errorCheck="";
