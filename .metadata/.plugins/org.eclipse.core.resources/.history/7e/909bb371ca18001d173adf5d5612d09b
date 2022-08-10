@@ -142,7 +142,6 @@ public class ReviewJPanel extends JPanel {
 						//enable button
 						btnReminderNextReview.setEnabled(true);
 						JOptionPane.showMessageDialog(container,"Reminder, add review");
-						sendEmail();
 					}
 				}
 					
@@ -227,20 +226,34 @@ public class ReviewJPanel extends JPanel {
 		CardLayout layout = (CardLayout) container.getLayout();
 		layout.previous(container);
 	}
-	public void sendEmail() {
-		
-	}
 	public void writeObject(Review rev) {
-		String employeeId = String.valueOf(employee.getEmployee().getId());
+		long employeeId = employee.getEmployee().getId();
 		String desc = rev.getDescription();
-		String rating = String.valueOf(rev.getRating());
-		String dateOfrev = String.valueOf(rev.getDateOfReview());
-		StringBuilder sb = new StringBuilder();
-		sb.append(employeeId).append(",").append(desc).append(",").append(rating).append(",").append(dateOfrev);
-		FileUtil.writeItems(sb.toString(), "src/neu/edu/csye6200/csv/EmployeeReview.txt");
+		Integer rating = rev.getRating();
+		LocalDate dateOfrev = rev.getDateOfReview();
 		//description
 		//rating
 		//date of review
+	}
+	public void addVaccineDose(java.awt.event.ActionEvent evt, JTextField vaccineDoseTextField) {
+		
+		HashMap<String, Integer> vaccinemap = st.getIm().getVaccineMap();
+		int dose = Integer.parseInt(vaccineDoseTextField.getText());
+		st.addVaccine((String)vaccineComboBox.getSelectedItem(), dose);
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.valueOf(st.getStudent().getId()));
+		sb.append(",");
+		for(String vaccine: st.getAllVaccines()) {
+			if(vaccinemap.containsKey(vaccine)) {
+				sb.append(vaccinemap.get(vaccine));
+			}
+			else {
+				sb.append("0");
+			}
+			sb.append(",");
+		}
+		FileUtil.writeItems(sb.toString(), "src/neu/edu/csye6200/csv/StudentImmunizationCSV.txt");
+		this.populateTable();
 	}
 	public void populateTable() {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
