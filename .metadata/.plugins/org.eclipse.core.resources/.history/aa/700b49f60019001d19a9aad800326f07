@@ -37,7 +37,6 @@ public class ImmunizationJPanel extends JPanel {
 	private JButton addButton;
 	private StudentDetails st;
 	private DayCare daycare;
-	private List<String> moreVaccineRequired;
 
 	public ImmunizationJPanel(JPanel container, DayCare daycare, StudentDetails st) {
 		this.container = container;
@@ -126,9 +125,9 @@ public class ImmunizationJPanel extends JPanel {
 	        });
 		populateTable();
 		
-//		if(moreImmunizationNeeded()) {
-//			// enable button to remind
-//		}
+		if(moreImmunizationNeeded()) {
+			// enable button to remind
+		}
 
 	}
 	public List<String> moreImmunizationNeeded()
@@ -150,19 +149,19 @@ public class ImmunizationJPanel extends JPanel {
         //return false;
         return moreVaccineRequired;
     }
-//	public boolean moreImmunizationNeeded() {
-//		ImmunizationRule ir = st.getImmunizationrule();
-//		
-//		for(String vaccine: st.getAllVaccines()) {
-//			if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
-//				return true;
-//			}
-//			if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
+	public boolean moreImmunizationNeeded() {
+		ImmunizationRule ir = st.getImmunizationrule();
+		
+		for(String vaccine: st.getAllVaccines()) {
+			if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
+				return true;
+			}
+			if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public void vaccineDoseChange(java.awt.event.ActionEvent evt) {
 		vaccineDoseTextField.setEnabled(true);
