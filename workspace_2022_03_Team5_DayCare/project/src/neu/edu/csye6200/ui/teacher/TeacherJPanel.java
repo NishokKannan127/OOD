@@ -8,6 +8,7 @@ import neu.edu.csye6200.ui.EnrollTeacherJPanelDisplay;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.JPanel;
@@ -21,6 +22,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TeacherJPanel extends JPanel {
 	private JPanel container;
@@ -39,6 +42,7 @@ public class TeacherJPanel extends JPanel {
 		setLayout(null);
 		
 		table = new JTable();
+		
 		table.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 		table.setForeground(Color.WHITE);
 
@@ -65,10 +69,12 @@ public class TeacherJPanel extends JPanel {
 		lblNewLabel_2.setBounds(650, 155, 76, 14);
 		add(lblNewLabel_2);
 		
+		JButton btnReview = new JButton("Review");
+		btnReview.setEnabled(true);
 		JButton btnNewButton = new JButton("View");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				viewTeacher(e);
+				viewTeacher(e);//, btnReview);
 			}
 		});
 		btnNewButton.setBounds(116, 203, 89, 23);
@@ -82,15 +88,16 @@ public class TeacherJPanel extends JPanel {
 		btnNewButton_1.setBounds(116, 284, 89, 23);
 		add(btnNewButton_1);
 		
-		JButton btnReview = new JButton("Review");
+		
 		btnReview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				int selectedRowIndex = table.getSelectedRow();
 				if(selectedRowIndex<0) {
-					//JOptionPane.showMessageDialog(paintingChild, this, "Please select a row to View", selectedRowIndex);
+					JOptionPane.showMessageDialog(container,  "Please select an Employee to Review", "Please select a row to View", selectedRowIndex);
 		            return;
 				}
+				//btnReview.setEnabled(true);
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				Employee ed = (Employee) model.getValueAt(selectedRowIndex, 0);
 				
@@ -102,6 +109,15 @@ public class TeacherJPanel extends JPanel {
 		});
 		btnReview.setBounds(481, 436, 89, 23);
 		add(btnReview);
+		
+		JButton backButton = new JButton("<< back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backJButtonActionPerformed(e);
+			}
+		});
+		backButton.setBounds(116, 107, 117, 29);
+		add(backButton);
 		populateTable();
 	}
 		public void populateTable()
@@ -126,13 +142,25 @@ public class TeacherJPanel extends JPanel {
 			
 			
 		}
-		public void viewTeacher(ActionEvent e) {
+		public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
+			container.remove(this);
+	        Component[] componentArray = container.getComponents();
+	        Component component = componentArray[componentArray.length - 1];
+	        // DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+
+
+
+	       CardLayout layout = (CardLayout) container.getLayout();
+	        layout.previous(container);
+		}
+		public void viewTeacher(ActionEvent e){//, JButton btnReview) {
 			//System.out.println("im here");
 			int selectedRowIndex = table.getSelectedRow();
 			if(selectedRowIndex<0) {
 				JOptionPane.showMessageDialog(this, "Please select a row to View");
 	            return;
 			}
+			//btnReview.setEnabled(true);
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			Employee ed = (Employee) model.getValueAt(selectedRowIndex, 0);
 			
