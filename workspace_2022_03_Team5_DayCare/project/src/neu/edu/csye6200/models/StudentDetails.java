@@ -1,5 +1,8 @@
 package neu.edu.csye6200.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudentDetails {
 	Person person;
 	String parentName;
@@ -7,10 +10,27 @@ public class StudentDetails {
 	Registration reg;
 	Group group;
 	Classroom classroom;
+	ImmunizationRule immunizationrule;
+	private List<String> allVaccines;
 	
 	public StudentDetails(Person person) {
 		this.person=person;
+		this.im = new Immunization();
+		this.allVaccines = new ArrayList<>();
 	}
+	
+
+	public List<String> getAllVaccines() {
+		return allVaccines;
+	}
+
+
+
+	public void setAllVaccines(List<String> allVaccines) {
+		this.allVaccines = allVaccines;
+	}
+
+
 
 	public Person getStudent() {
 		return person;
@@ -74,6 +94,20 @@ public class StudentDetails {
 
 	public void setClassroom(Classroom classroom) {
 		this.classroom = classroom;
+	}
+	
+	public void addVaccine(String vaccine, int value) {
+		this.im.addImmunizationRecord(vaccine, value);
+	}
+	
+	
+
+	public ImmunizationRule getImmunizationrule() {
+		return immunizationrule;
+	}
+
+	public void setImmunizationrule(ImmunizationRule immunizationrule) {
+		this.immunizationrule = immunizationrule;
 	}
 
 	@Override

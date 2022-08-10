@@ -1,1 +1,2 @@
 Hib,DTaP,Polio,HepatitisB,MMR,Varicella
+DTaP,Polio,HepatitisB,MMR,Varicella
