@@ -110,11 +110,14 @@ public class ImmunizationJPanel extends JPanel {
 		ImmunizationRule ir = st.getImmunizationrule();
 		
 		for(String vaccine: st.getAllVaccines()) {
+			if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
+				return true;
+			}
 			if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	public void vaccineDoseChange(java.awt.event.ActionEvent evt) {
