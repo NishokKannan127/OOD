@@ -63,7 +63,7 @@ public class ImmunizationJPanel extends JPanel {
 		vaccineComboBox = new JComboBox<>();
 		vaccineComboBox.setBounds(92, 346, 83, 22);
 		add(vaccineComboBox);
-		
+
 		vaccineComboBox.addItem("Select Vaccine");
 		for (String vaccines : st.getAllVaccines()) {
 			vaccineComboBox.addItem(vaccines);
@@ -97,79 +97,87 @@ public class ImmunizationJPanel extends JPanel {
 		});
 		addButton.setBounds(92, 463, 89, 23);
 		add(addButton);
-		addButton.setEnabled(false);
+		addButton.setEnabled(true);
 		JButton sendReminder = new JButton("Send Reminder");
 
 
 
-	       sendReminder.setBounds(313, 76, 116, 23);
-	        add(sendReminder);
-	        sendReminder.setEnabled(false);
-	        sendReminder.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	                moreImmunizationNeeded();
-	                //sendVaccineReminder();
-	                
-	                if(moreVaccineRequired.size()>0) {
-	                    // enable button to remind
-	                    StringBuilder immunizationMessage = new StringBuilder();
-	                    immunizationMessage.append("Hello, Immunization is due for: ");
-	                    for(String names: moreVaccineRequired)
-	                    {
-	                        immunizationMessage.append("\n").append(names);
-	                    }
+		sendReminder.setBounds(313, 76, 116, 23);
+		add(sendReminder);
+		if(moreImmunizationNeeded().size()==0)
+		{
+			sendReminder.setEnabled(false);
+		}
+		else
+		{
+			sendReminder.setEnabled(true);
+		}
+		sendReminder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				moreImmunizationNeeded();
+				//sendVaccineReminder();
+				System.out.println(moreVaccineRequired.size());
+
+				if(moreVaccineRequired.size()>0) {
+					// enable button to remind
+					StringBuilder immunizationMessage = new StringBuilder();
+					immunizationMessage.append("Hello, Immunization is due for: ");
+					for(String names: moreVaccineRequired)
+					{
+						immunizationMessage.append("\n").append(names);
+					}
+					System.out.println(immunizationMessage);
 
 
-
-	               }
-	            }
-	        });
+				}
+			}
+		});
 		populateTable();
-		
-//		if(moreImmunizationNeeded()) {
-//			// enable button to remind
-//		}
+
+		//		if(moreImmunizationNeeded()) {
+		//			// enable button to remind
+		//		}
 
 	}
 	public List<String> moreImmunizationNeeded()
-    {
-        ImmunizationRule ir = st.getImmunizationrule();
-        moreVaccineRequired= new ArrayList<String>();
-        System.out.println("im here");
-        for(String vaccine: st.getAllVaccines()) {
-            if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
-                System.out.println("yo no hashmap yet");
-                moreVaccineRequired.add(vaccine);
-            }
-            else if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
-                System.out.println("why here??");
-                moreVaccineRequired.add(vaccine);
-                //return true;
-            }
-        }
-        //return false;
-        return moreVaccineRequired;
-    }
-//	public boolean moreImmunizationNeeded() {
-//		ImmunizationRule ir = st.getImmunizationrule();
-//		
-//		for(String vaccine: st.getAllVaccines()) {
-//			if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
-//				return true;
-//			}
-//			if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
+	{
+		ImmunizationRule ir = st.getImmunizationrule();
+		moreVaccineRequired= new ArrayList<String>();
+		//System.out.println("im here");
+		for(String vaccine: st.getAllVaccines()) {
+			if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
+				System.out.println("yo no hashmap yet");
+				moreVaccineRequired.add(vaccine);
+			}
+			else if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
+				System.out.println("why here??");
+				moreVaccineRequired.add(vaccine);
+				//return true;
+			}
+		}
+		//return false;
+		return moreVaccineRequired;
+	}
+	//	public boolean moreImmunizationNeeded() {
+	//		ImmunizationRule ir = st.getImmunizationrule();
+	//		
+	//		for(String vaccine: st.getAllVaccines()) {
+	//			if(!st.getIm().getVaccineMap().containsKey(vaccine)) {
+	//				return true;
+	//			}
+	//			if(st.getIm().getVaccineMap().get(vaccine) < ir.getVaccineLimit().get(vaccine)) {
+	//				return true;
+	//			}
+	//		}
+	//		return false;
+	//	}
 
 	public void vaccineDoseChange(java.awt.event.ActionEvent evt) {
 		vaccineDoseTextField.setEnabled(true);
 		addButton.setEnabled(true);
 		if (st.getIm().getVaccineMap().containsKey(vaccineComboBox.getSelectedItem())) {
 			vaccineDoseTextField
-					.setText(Integer.toString(st.getIm().getVaccineMap().get(vaccineComboBox.getSelectedItem())));
+			.setText(Integer.toString(st.getIm().getVaccineMap().get(vaccineComboBox.getSelectedItem())));
 		} else {
 			vaccineDoseTextField.setText(Integer.toString(0));
 		}
@@ -177,7 +185,7 @@ public class ImmunizationJPanel extends JPanel {
 	}
 
 	public void addVaccineDose(java.awt.event.ActionEvent evt, JTextField vaccineDoseTextField) {
-		
+
 		HashMap<String, Integer> vaccinemap = st.getIm().getVaccineMap();
 		int dose = Integer.parseInt(vaccineDoseTextField.getText());
 		st.addVaccine((String)vaccineComboBox.getSelectedItem(), dose);
@@ -196,31 +204,31 @@ public class ImmunizationJPanel extends JPanel {
 		FileUtil.writeItems(sb.toString(), "src/neu/edu/csye6200/csv/StudentImmunizationCSV.txt");
 		this.populateTable();
 	}
-	
+
 	public void populateTable() {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.setRowCount(0);
-        int i = 16;
-        table.setBounds(317, 220, 650, i);
-        
-        HashMap<String, Integer> studentVaccMap=st.getIm().getVaccineMap();
-        
-        for(String vaccine: st.getAllVaccines()) {
-        	Object[] row = new Object[2];
-        	row[0] = vaccine;
-        	if(studentVaccMap.containsKey(vaccine)) {
-            	row[1] = studentVaccMap.get(vaccine);
-        	}
-        	else {
-        		row[1] = 0;
-        	}
-        	
-        	model.addRow(row);
-        	table.setBounds(317, 220, 650, i);
+		model.setRowCount(0);
+		int i = 16;
+		table.setBounds(317, 220, 650, i);
+
+		HashMap<String, Integer> studentVaccMap=st.getIm().getVaccineMap();
+
+		for(String vaccine: st.getAllVaccines()) {
+			Object[] row = new Object[2];
+			row[0] = vaccine;
+			if(studentVaccMap.containsKey(vaccine)) {
+				row[1] = studentVaccMap.get(vaccine);
+			}
+			else {
+				row[1] = 0;
+			}
+
+			model.addRow(row);
+			table.setBounds(317, 220, 650, i);
 			i += 16;
-        	
-        }
-        
+
+		}
+
 	}
 
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
