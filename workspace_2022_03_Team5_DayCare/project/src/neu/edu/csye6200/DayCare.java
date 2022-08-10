@@ -31,15 +31,18 @@ public class DayCare {
 	private AbstractPersonFactory sFactory;//=new StudentFactory();
 	private List<GroupRule> groupRuleList;
 	private List<ImmunizationRule> immunizationRuleList;
+	private List<String> allVaccines;
 
 	public DayCare() {
-		personDir = new PersonDirectory();				;
+		personDir = new PersonDirectory();				
 		classroomDir = new ClassroomDirectory();
 		tFactory=new TeacherFactory();
 		sFactory=new StudentFactory();
 		groupRuleList = new ArrayList<>();
 		immunizationRuleList = new ArrayList<>();
+		allVaccines= new ArrayList<>();
 
+		initializeVaccines();
 		initializeRules();
 		initializeImmunization();
 		initializeEmployees();
@@ -47,6 +50,12 @@ public class DayCare {
 
 
 
+	}
+	public List<String> getAllVaccines() {
+		return allVaccines;
+	}
+	public void setAllVaccines(List<String> allVaccines) {
+		this.allVaccines = allVaccines;
 	}
 	public int initializeStudents() {
 		String line;
@@ -120,6 +129,31 @@ public class DayCare {
 		}
 	}
 
+	public void initializeVaccines()
+	{
+		List<String> vaccineNames= new ArrayList();
+		String[] params = new String[6]; 
+		String errorCheck="";
+		try {
+			vaccineNames = FileUtil.readItems("src/neu/edu/csye6200/csv/VaccineCSV.txt");
+		}
+		catch(Exception ex)
+		{
+			errorCheck = ex.toString()+" "+"unable to find contents";
+		}
+
+
+		params = vaccineNames.get(0).split(",");
+		allVaccines.add(params[0]);
+		allVaccines.add(params[1]);
+		allVaccines.add(params[2]);
+		allVaccines.add(params[3]);
+		allVaccines.add(params[4]);
+		allVaccines.add(params[5]);
+
+
+	}
+
 	public void initializeImmunization()
 	{
 		List<String> immunizationRules = new ArrayList<>();
@@ -138,6 +172,7 @@ public class DayCare {
 		}
 	}
 
+
 	public void initializeRules() {
 		List<String> groupRules = new ArrayList<>();
 		String errorCheck="";
@@ -155,12 +190,12 @@ public class DayCare {
 	}
 
 	public void autoAssignStudent(StudentDetails sd) throws NumberFormatException, ParseException {
-		
+
 		GroupRule gr=null;
 		Student st = (Student) sd.getStudent();
 		System.out.println("ID "+ st.getFirstName() + ", Age: "+st.getAge());
 		for(GroupRule g:groupRuleList) {
-			
+
 			if(Integer.parseInt(st.getAge()) >=g.getAgeLower() && Integer.parseInt(st.getAge()) <=g.getAgeHigher()) {
 				gr = g;
 			}
@@ -169,7 +204,7 @@ public class DayCare {
 			return;
 		}
 		boolean classfound = false;
-		
+
 		System.out.println(classroomDir.getClassRoomDir().size());
 
 		for(Classroom cr:classroomDir.getClassRoomDir()) {
@@ -179,7 +214,7 @@ public class DayCare {
 				return;
 			}
 		}
-		
+
 		if(classfound == false) {
 			Classroom cr = new Classroom();
 			cr.setGrouprule(gr);
@@ -187,7 +222,7 @@ public class DayCare {
 			cr.addStudent(sd, personDir.getEmpDir());
 			cr.setFull(false);
 		}
-		
+
 	}
 
 	public PersonDirectory getPersonDir() {

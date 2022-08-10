@@ -13,20 +13,29 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class ImmunizationJPanel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
+	
+	JComboBox<String> vaccineComboBox;
 	private JPanel container;
 	private JTable table;
+	private JTextField vaccineDoseTextField;
+	StudentDetails st;
 	public ImmunizationJPanel(JPanel container, DayCare daycare, StudentDetails st) {
 		this.container=container;
+		this.st=st;
 		setBackground(new Color(204, 255, 255));
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
@@ -46,20 +55,65 @@ public class ImmunizationJPanel extends JPanel {
 		add(table);
 		
 		
+		vaccineComboBox = new JComboBox();
+		vaccineComboBox.setBounds(92, 346, 83, 22);
+		add(vaccineComboBox);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(92, 346, 83, 22);
-		add(comboBox);
-		
+		for(String vaccines: daycare.getAllVaccines())
+		{
+			vaccineComboBox.addItem(vaccines);
+		}
+		vaccineComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vaccineDoseChange(e);
+			}
+		});
 		JButton backButton = new JButton("<<Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backJButtonActionPerformed(e);
 			}
 		});
+		
+		
 		backButton.setBounds(81, 76, 89, 23);
 		add(backButton);
+		
+		vaccineDoseTextField = new JTextField();
+		vaccineDoseTextField.setBounds(89, 408, 86, 20);
+		add(vaccineDoseTextField);
+		vaccineDoseTextField.setColumns(2);
+		vaccineDoseTextField.setEnabled(false);
+		
+		JButton Add = new JButton("New button");
+		Add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addVaccineDose(e, vaccineDoseTextField, vaccineComboBox);
+			}
+		});
+		Add.setBounds(92, 463, 89, 23);
+		add(Add);
 
+	}
+	public void vaccineDoseChange(java.awt.event.ActionEvent evt)
+	{
+		vaccineDoseTextField.setEnabled(true);
+		if(st.getIm().getVaccineMap().containsKey(vaccineComboBox.getSelectedItem())) {
+			vaccineDoseTextField.setText(Integer.toString(st.getIm().getVaccineMap().get(vaccineComboBox.getSelectedItem())));
+		}
+		else
+			vaccineDoseTextField.setText(Integer.toString(0));
+			
+		
+	}
+	public void addVaccineDose(java.awt.event.ActionEvent evt, JTextField vaccineDoseTextField, JComboBox vaccineComboBox)
+	{
+		
+		HashMap<String,Integer> vaccineMap= new HashMap<>();
+		int dose=Integer.parseInt(vaccineDoseTextField.getText());
+		vaccineMap.put((String) vaccineComboBox.getSelectedItem(),dose);
+		st.getIm().setVaccineMap(vaccineMap);
+		
 	}
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		container.remove(this);
@@ -70,5 +124,4 @@ public class ImmunizationJPanel extends JPanel {
 		CardLayout layout = (CardLayout) container.getLayout();
 		layout.previous(container);
 	}
-	
 }

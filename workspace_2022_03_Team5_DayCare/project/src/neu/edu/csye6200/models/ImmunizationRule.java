@@ -1,5 +1,8 @@
 package neu.edu.csye6200.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ImmunizationRule {
 	private int ageLower;
 	private int ageHigher;
@@ -9,9 +12,12 @@ public class ImmunizationRule {
 	private int hepatitisB;
 	private int MMR;
 	private int varicella;
+	
+	
+	
 
 	public ImmunizationRule(String line) {
-		String[] params = new String[4]; 
+		String[] params = new String[8]; 
 		params = line.split(",");
 		this.ageLower = Integer.parseInt(params[0]);
 		this.ageHigher = Integer.parseInt(params[1]);
