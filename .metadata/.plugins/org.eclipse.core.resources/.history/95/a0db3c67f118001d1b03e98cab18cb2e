@@ -110,14 +110,23 @@ public class TeacherJPanel extends JPanel {
 		btnReview.setBounds(481, 436, 89, 23);
 		add(btnReview);
 		
-		JButton backButton = new JButton("<< back");
-		backButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				backJButtonActionPerformed(e);
-			}
-		});
-		backButton.setBounds(116, 107, 117, 29);
-		add(backButton);
+		
+		public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
+			container.remove(this);
+	        Component[] componentArray = container.getComponents();
+	        Component component = componentArray[componentArray.length - 1];
+	        // DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+
+
+
+	       CardLayout layout = (CardLayout) container.getLayout();
+	        layout.previous(container);
+		}
+		
+		
+		
+		btnBack.setBounds(116, 130, 89, 23);
+		add(btnBack);
 		populateTable();
 	}
 		public void populateTable()
@@ -141,17 +150,6 @@ public class TeacherJPanel extends JPanel {
 			
 			
 			
-		}
-		public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
-			container.remove(this);
-	        Component[] componentArray = container.getComponents();
-	        Component component = componentArray[componentArray.length - 1];
-	        // DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
-
-
-
-	       CardLayout layout = (CardLayout) container.getLayout();
-	        layout.previous(container);
 		}
 		public void viewTeacher(ActionEvent e){//, JButton btnReview) {
 			//System.out.println("im here");

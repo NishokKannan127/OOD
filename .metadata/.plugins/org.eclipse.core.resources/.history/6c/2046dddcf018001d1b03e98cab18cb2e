@@ -236,14 +236,12 @@ public class ReviewJPanel extends JPanel {
 	
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		container.remove(this);
-        Component[] componentArray = container.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        // DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
-
-
-
-       CardLayout layout = (CardLayout) container.getLayout();
-        layout.previous(container);
+		Component[] componentArray = container.getComponents();
+		Component component = componentArray[componentArray.length - 1];
+		DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+		
+		CardLayout layout = (CardLayout) container.getLayout();
+		layout.previous(container);
 	}
 	public void writeObject(Review rev) {
 		String employeeId = String.valueOf(employee.getEmployee().getId());
