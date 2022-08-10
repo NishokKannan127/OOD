@@ -1,4 +1,4 @@
-package neu.edu.csye6200.ui;
+	package neu.edu.csye6200.ui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
