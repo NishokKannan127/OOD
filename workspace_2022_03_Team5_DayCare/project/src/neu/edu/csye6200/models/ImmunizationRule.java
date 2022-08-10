@@ -1,33 +1,27 @@
 package neu.edu.csye6200.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ImmunizationRule {
 	private int ageLower;
 	private int ageHigher;
-	private int hib;
-	private int tdap;
-	private int polio;
-	private int hepatitisB;
-	private int MMR;
-	private int varicella;
-	
-	
-	
+	private Map<String, Integer> vaccineLimit;
 
-	public ImmunizationRule(String line) {
-		String[] params = new String[8]; 
+	public ImmunizationRule(String line, List<String> vaccines) {
+		System.out.println("vaccc");
+		this.vaccineLimit = new HashMap<>();
+		String[] params = new String[2+vaccines.size()]; 
 		params = line.split(",");
 		this.ageLower = Integer.parseInt(params[0]);
 		this.ageHigher = Integer.parseInt(params[1]);
-		this.tdap = Integer.parseInt(params[2]);
-		this.polio = Integer.parseInt(params[3]);
-		this.hepatitisB = Integer.parseInt(params[4]);
-		this.MMR = Integer.parseInt(params[5]);
-		this.varicella= Integer.parseInt(params[6]);
-		this.hib=Integer.parseInt(params[7]);
-
+		int count=2;
+		for(String vaccine:vaccines) {
+			vaccineLimit.put(vaccine, Integer.parseInt(params[count++]));
+		}
+		
 	}
 
 	public int getAgeLower() {
@@ -46,54 +40,13 @@ public class ImmunizationRule {
 		this.ageHigher = ageHigher;
 	}
 
-	public int getHib() {
-		return hib;
+	public Map<String, Integer> getVaccineLimit() {
+		return vaccineLimit;
 	}
 
-	public void setHib(int hib) {
-		this.hib = hib;
+	public void setVaccineLimit(Map<String, Integer> vaccineLimit) {
+		this.vaccineLimit = vaccineLimit;
 	}
-
-	public int getTdap() {
-		return tdap;
-	}
-
-	public void setTdap(int tdap) {
-		this.tdap = tdap;
-	}
-
-	public int getPolio() {
-		return polio;
-	}
-
-	public void setPolio(int polio) {
-		this.polio = polio;
-	}
-
-	public int getHepatitisB() {
-		return hepatitisB;
-	}
-
-	public void setHepatitisB(int hepatitisB) {
-		this.hepatitisB = hepatitisB;
-	}
-
-	public int getMMR() {
-		return MMR;
-	}
-
-	public void setMMR(int mMR) {
-		MMR = mMR;
-	}
-
-	public int getVaricella() {
-		return varicella;
-	}
-
-	public void setVaricella(int varicella) {
-		this.varicella = varicella;
-	}
-
 
 }
 

@@ -30,8 +30,6 @@ public class DayCare {
 	private AbstractPersonFactory tFactory;//=new TeacherFactory();
 	private AbstractPersonFactory sFactory;//=new StudentFactory();
 	private List<GroupRule> groupRuleList;
-	private List<ImmunizationRule> immunizationRuleList;
-	private List<String> allVaccines;
 
 	public DayCare() {
 		personDir = new PersonDirectory();				
@@ -39,23 +37,11 @@ public class DayCare {
 		tFactory=new TeacherFactory();
 		sFactory=new StudentFactory();
 		groupRuleList = new ArrayList<>();
-		immunizationRuleList = new ArrayList<>();
-		allVaccines= new ArrayList<>();
 
-		initializeVaccines();
 		initializeRules();
-		initializeImmunization();
+//		initializeImmunization();
 		initializeEmployees();
 		initializeStudents();
-
-
-
-	}
-	public List<String> getAllVaccines() {
-		return allVaccines;
-	}
-	public void setAllVaccines(List<String> allVaccines) {
-		this.allVaccines = allVaccines;
 	}
 	public int initializeStudents() {
 		String line;
@@ -78,21 +64,9 @@ public class DayCare {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//			if(j%3==0) {
-			//				st.setGroupid("Group 1");
-			//			}
-			//			else if(j%3==1) {
-			//				st.setGroupid("Group 2");
-			//			}
-			//			else {
-			//				st.setGroupid("Group 3");
-			//			}
-			//			if((j%10)<5) {
-			//				st.setClassid("Class 1");
-			//			}
-			//			else {
-			//				st.setClassid("Class 2");
-			//			}
+			this.initializeVaccines(st);
+			this.assignImmunizationRule(st);
+			this.loadImmunization(st);
 			personDir.addStudentDet(st);
 			j++;
 		}
@@ -129,9 +103,10 @@ public class DayCare {
 		}
 	}
 
-	public void initializeVaccines()
+	public void initializeVaccines(StudentDetails sd)
 	{
-		List<String> vaccineNames= new ArrayList();
+		List<String> vaccineNames= new ArrayList<>();
+		List<String> allVaccines = sd.getAllVaccines();
 		String[] params = new String[6]; 
 		String errorCheck="";
 		try {
@@ -141,36 +116,46 @@ public class DayCare {
 		{
 			errorCheck = ex.toString()+" "+"unable to find contents";
 		}
-
-
-		params = vaccineNames.get(0).split(",");
-		allVaccines.add(params[0]);
-		allVaccines.add(params[1]);
-		allVaccines.add(params[2]);
-		allVaccines.add(params[3]);
-		allVaccines.add(params[4]);
-		allVaccines.add(params[5]);
-
-
-	}
-
-	public void initializeImmunization()
-	{
-		List<String> immunizationRules = new ArrayList<>();
-		String errorCheck="";
+		
+		int count =0;
+		
+		String vaccinetext = "";
+		Student st = (Student) sd.getStudent();
 		try {
-			immunizationRules = FileUtil.readItems("src/neu/edu/csye6200/csv/ImmunizationCSV.txt");
+			if(Integer.parseInt(st.getAge()) <=24) {
+				vaccinetext = vaccineNames.get(0);
+			}
+			else {
+				vaccinetext = vaccineNames.get(1);
+			}
+		} catch (NumberFormatException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		catch(Exception ex)
-		{
-			errorCheck = ex.toString()+" "+"unable to find contents";
+		params = vaccinetext.split(",");
+		for(int i=0; i<params.length; i++) {
+			allVaccines.add(params[i]);
 		}
-		for(String dose: immunizationRules)
-		{
-			ImmunizationRule ir= new ImmunizationRule(dose);
-			immunizationRuleList.add(ir);		
-		}
+
 	}
+
+//	public void initializeImmunization()
+//	{
+//		List<String> immunizationRules = new ArrayList<>();
+//		String errorCheck="";
+//		try {
+//			immunizationRules = FileUtil.readItems("src/neu/edu/csye6200/csv/ImmunizationRulesCSV.txt");
+//		}
+//		catch(Exception ex)
+//		{
+//			errorCheck = ex.toString()+" "+"unable to find contents";
+//		}
+//		for(String dose: immunizationRules)
+//		{
+//			ImmunizationRule ir= new ImmunizationRule(dose, this.allVaccines);
+//			immunizationRuleList.add(ir);		
+//		}
+//	}
 
 
 	public void initializeRules() {
@@ -187,6 +172,69 @@ public class DayCare {
 			GroupRule gr = new GroupRule(rule);
 			groupRuleList.add(gr);
 		}
+	}
+	
+	public void assignImmunizationRule(StudentDetails sd) {
+		Student st = (Student) sd.getStudent();
+		
+		List<String> immunizationRules = new ArrayList<>();
+		String errorCheck="";
+		try {
+			immunizationRules = FileUtil.readItems("src/neu/edu/csye6200/csv/ImmunizationRulesCSV.txt");
+		}
+		catch(Exception ex)
+		{
+			errorCheck = ex.toString()+" "+"unable to find contents";
+		}
+		
+		for(String dose: immunizationRules)
+		{
+			
+			String[] params = dose.split(",");
+			
+			try {
+				if(Integer.parseInt(params[0]) <= Integer.parseInt(st.getAge()) && Integer.parseInt(params[1]) >= Integer.parseInt(st.getAge())) {
+					sd.setImmunizationrule(new ImmunizationRule(dose, sd.getAllVaccines()));
+				}
+			} catch (NumberFormatException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+//		for(ImmunizationRule rule:immunizationRuleList) {
+//			try {
+//				if(rule.getAgeLower() >= Integer.parseInt(st.getAge()) && rule.getAgeHigher() <= Integer.parseInt(st.getAge())) {
+//					sd.setImmunizationrule(rule);
+//				}
+//			} catch (NumberFormatException | ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+	}
+	
+	public void loadImmunization(StudentDetails sd) {
+		List<String> immunizationrecords = new ArrayList<>();
+		String errorCheck="";
+		try {
+			immunizationrecords = FileUtil.readItems("src/neu/edu/csye6200/csv/StudentImmunizationCSV.txt");
+		}
+		catch(Exception ex) {
+			errorCheck = ex.toString()+" "+"unable to find contents";
+		}
+		
+		HashMap<String, Integer> vaccinemap = sd.getIm().getVaccineMap();
+		for(String record:immunizationrecords) {
+			String[] params = record.split(",");
+			if(Long.parseLong(params[0]) == sd.getStudent().getId() ) {
+				int count = 1;
+				for(String vaccine: sd.getAllVaccines()) {
+					vaccinemap.put(vaccine, Integer.parseInt(params[count++]));
+				}
+			}
+		}
+		
 	}
 
 	public void autoAssignStudent(StudentDetails sd) throws NumberFormatException, ParseException {
