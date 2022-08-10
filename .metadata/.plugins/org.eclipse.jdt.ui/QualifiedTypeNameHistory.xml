@@ -28,4 +28,7 @@
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="neu.edu.csye6200.models.Review"/>
     <fullyQualifiedTypeName name="neu.edu.csye6200.models.Employee"/>
+    <fullyQualifiedTypeName name="java.util.Properties"/>
+    <fullyQualifiedTypeName name="java.net.Authenticator"/>
+    <fullyQualifiedTypeName name="java.net.PasswordAuthentication"/>
 </qualifiedTypeNameHistroy>

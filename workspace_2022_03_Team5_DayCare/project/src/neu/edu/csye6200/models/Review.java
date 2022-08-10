@@ -11,6 +11,12 @@ public class Review {
 	
 	//create button for alerting next review
 	
+	public Review(Integer rating, String description, LocalDate dateOfReview) {
+		this.dateOfReview=dateOfReview;
+		this.rating=rating;
+		this.description=description;
+		this.nextReviewDate= this.dateOfReview.plusYears(1);
+	}
 	public Review(Integer rating, String description) {
 		this.dateOfReview=LocalDate.now();
 		this.rating=rating;

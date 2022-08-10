@@ -1,20 +1,17 @@
 package neu.edu.csye6200;
 
-import java.net.Authenticator;
+import javax.mail.Authenticator;
 import java.net.PasswordAuthentication;
 import java.util.Properties;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
-import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.mail.Authenticator;       
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -24,6 +21,11 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class Mail {
+	
+
+//public static class PasswordValidator extends Authenticator {  
+	  
+   
 
     /**
      * @param args the command line arguments
@@ -37,21 +39,21 @@ public class Mail {
     properties.put("mail.smtp.host","smtp.gmail.com");
     properties.put("mail.smtp.port","587");
     
-    String myAccountEmail = "nishok127@gmail.com";
-    String password = "incredibleindia95";
+    String myAccountEmail = "team5dayCare@gmail.com";
+    String password = "Sneha123!";
+   
     
-    Session session = Session.getInstance(properties, new Authenticator(){
+    Session session = Session.getInstance(properties, new javax.mail.Authenticator(){
     
         @Override
-        protected  PasswordAuthentication getPasswordAuthentication(){
-            return new PasswordAuthentication(myAccountEmail,password);
+        protected  javax.mail.PasswordAuthentication getPasswordAuthentication(){
+            return new javax.mail.PasswordAuthentication(myAccountEmail,password);
     }
     });
     
     Message message = prepareMessage(session, myAccountEmail, recepient, subject, body, body2, body3);
     
     Transport.send(message);
-    //System.out.println("Dona, pls tell me what happened!");
     }
     
     private static Message prepareMessage(Session session, String myAccountEmail, String recepient, String subject, String body, String plainBody, String body2){
@@ -84,9 +86,9 @@ public class Mail {
             messageBodyPart3.setContent(body2, "text/html");
             multipart.addBodyPart(messageBodyPart3);
             
-            DataSource fds = new FileDataSource("F:\\Northeastern University\\New folder\\AED_FinalProject\\AED_FinalProject\\RapidExpress\\src\\Images\\imageProj.jpg");////src//Images//imageProj.jpg");
+//            DataSource fds = new FileDataSource("F:\\Northeastern University\\New folder\\AED_FinalProject\\AED_FinalProject\\RapidExpress\\src\\Images\\imageProj.jpg");////src//Images//imageProj.jpg");
             BodyPart messageBodyPart4=new MimeBodyPart();
-            messageBodyPart4.setDataHandler(new DataHandler(fds));
+  //          messageBodyPart4.setDataHandler(new DataHandler(fds));
             messageBodyPart4.setHeader("Content-ID", "<image>");
             multipart.addBodyPart(messageBodyPart4);
             
@@ -108,4 +110,6 @@ public class Mail {
         }
         return null;
 } 
+//}
+
 }
