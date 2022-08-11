@@ -125,21 +125,12 @@ public class ImmunizationJPanel extends JPanel {
 					// enable button to remind
 					StringBuilder immunizationMessage = new StringBuilder();
 					immunizationMessage.append("Hello, Immunization is due for: ");
-					
-					
 					for(String names: moreVaccineRequired)
 					{
 						immunizationMessage.append("\n").append(names);
 					}
 					System.out.println(immunizationMessage);
-					
-					
-		            
-		            String to="nishok217@gmail.com";
-		            String subject="Vaccine";
-		            String body=immunizationMessage.toString();
-					
-					email.sendMail(to, subject, body);
+					email.sendMail();
 
 				}
 				

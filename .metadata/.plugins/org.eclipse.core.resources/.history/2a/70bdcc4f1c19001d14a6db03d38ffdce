@@ -150,18 +150,20 @@ public class ReviewJPanel extends JPanel {
 						JOptionPane.showMessageDialog(container,"Reminder, add review");
 						//sendEmail();
 						
-						String s=d.toString();
+						String s="<p style=\"color:#001f3f\">"+d+" "+"</p>"+"<p style=\"color:#001f3f\"></p><p></p><p></p>";
 			            String htmlCode=String.valueOf(d);
 			            String ending="<p></p><p></p><p style=\"color:#001f3f\"> Thank you! </p>";
 			            
 			            
-			            String to="nishok217@gmail.com";
-			            String subject="Next review date";
+			            String to[] = new String[1];
+			            to[0]="nishok217@gmail.com";
+			            String subject;
 			            String body=s;
 			            
 						try {
 					        Mail.sendMail(to,subject,body);         
 					    } catch (Exception ex) {
+					        //Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
 					    	System.out.print("no email");
 					    }
 					//}

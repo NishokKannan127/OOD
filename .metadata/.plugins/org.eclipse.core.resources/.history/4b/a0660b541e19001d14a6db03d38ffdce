@@ -136,7 +136,7 @@ public class ImmunizationJPanel extends JPanel {
 					
 		            
 		            String to="nishok217@gmail.com";
-		            String subject="Vaccine";
+		            String subject="Next review date";
 		            String body=immunizationMessage.toString();
 					
 					email.sendMail(to, subject, body);
