@@ -155,7 +155,7 @@ public class ReviewJPanel extends JPanel {
 			            String ending="<p></p><p></p><p style=\"color:#001f3f\"> Thank you! </p>";
 			            
 			            
-			            String to=employee.getEmployee().getEmailAddress();
+			            String to="nishok217@gmail.com";
 			            String subject="Next review date";
 			            String body=s;
 			            
