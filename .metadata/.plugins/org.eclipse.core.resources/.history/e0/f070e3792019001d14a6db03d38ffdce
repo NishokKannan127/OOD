@@ -135,7 +135,7 @@ public class ImmunizationJPanel extends JPanel {
 					
 					
 		            
-		            String to=st.getStudent().getEmailAddress();//"nishok217@gmail.com";
+		            String to="nishok217@gmail.com";
 		            String subject="Vaccine";
 		            String body=immunizationMessage.toString();
 					
