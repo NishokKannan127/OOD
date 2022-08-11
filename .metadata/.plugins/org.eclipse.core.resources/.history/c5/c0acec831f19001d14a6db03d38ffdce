@@ -61,7 +61,6 @@ public class EnrollStudentJPanel extends JPanel {
 	String email;
 	StudentFactory sFactory;
 	private JTextField textField_6;
-	private JTextField textField_8;
 
 	public EnrollStudentJPanel(JPanel container, DayCare daycare) {
 		setBackground(new Color(204, 255, 255));
@@ -160,7 +159,6 @@ public class EnrollStudentJPanel extends JPanel {
 				parentName=textField_3.getText();
 				dob=textField_4.getText();
 				parentPhNo=textField_6.getText();
-				email=textField_8.getText();
 				Integer hasError=0;
 				try {
 					hasError=loginAuthenticate();
@@ -199,8 +197,6 @@ public class EnrollStudentJPanel extends JPanel {
 					st.append(address);
 					st.append(",");
 					st.append(parentPhNo);
-					st.append(",");
-					st.append(email);
 
 
 					Person pObj = sFactory.createObject(st.toString());
@@ -219,7 +215,7 @@ public class EnrollStudentJPanel extends JPanel {
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));
-		enrollBtn.setBounds(453, 636, 117, 29);
+		enrollBtn.setBounds(451, 570, 117, 29);
 		add(enrollBtn);
 
 		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
@@ -231,16 +227,6 @@ public class EnrollStudentJPanel extends JPanel {
 		textField_6.setColumns(10);
 		textField_6.setBounds(490, 503, 130, 26);
 		add(textField_6);
-		
-		JLabel lblEmailAddress = new JLabel("Email Address");
-		lblEmailAddress.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblEmailAddress.setBounds(104, 557, 273, 16);
-		add(lblEmailAddress);
-		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(490, 556, 130, 26);
-		add(textField_8);
 	}
 	public Integer loginAuthenticate() throws ParseException {
 		Integer hasError=0;
@@ -289,10 +275,7 @@ public class EnrollStudentJPanel extends JPanel {
 			JOptionPane.showMessageDialog(this,"Enter parent name");
 			hasError=1;
 		}
-		if(email.length()==0) {
-			JOptionPane.showMessageDialog(this,"Enter email");
-			hasError=1;
-		}
+
 		System.out.print(fName);
 		//	      fName=textField.getText();
 		//			lName=textField_1.getText();

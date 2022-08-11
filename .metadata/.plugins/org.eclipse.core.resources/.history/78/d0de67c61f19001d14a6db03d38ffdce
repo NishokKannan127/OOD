@@ -160,7 +160,6 @@ public class EnrollStudentJPanel extends JPanel {
 				parentName=textField_3.getText();
 				dob=textField_4.getText();
 				parentPhNo=textField_6.getText();
-				email=textField_8.getText();
 				Integer hasError=0;
 				try {
 					hasError=loginAuthenticate();
@@ -289,10 +288,7 @@ public class EnrollStudentJPanel extends JPanel {
 			JOptionPane.showMessageDialog(this,"Enter parent name");
 			hasError=1;
 		}
-		if(email.length()==0) {
-			JOptionPane.showMessageDialog(this,"Enter email");
-			hasError=1;
-		}
+
 		System.out.print(fName);
 		//	      fName=textField.getText();
 		//			lName=textField_1.getText();

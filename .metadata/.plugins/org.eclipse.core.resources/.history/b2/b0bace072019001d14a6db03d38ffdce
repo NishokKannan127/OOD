@@ -149,8 +149,6 @@ public class EnrollTeacherJPanel extends JPanel {
 					st.append(doj);
 					st.append(",");
 					st.append(address);
-					st.append(",");
-					st.append(emailAddress);
 					
 					Teacher pObj = (Teacher)tFactory.createObject(st.toString());
 					employee = new Employee(pObj);//new Employee(pObj, null);
@@ -224,10 +222,6 @@ public class EnrollTeacherJPanel extends JPanel {
 	      }
 	      if(address.length()==0) {
 	    	  JOptionPane.showMessageDialog(this,"Enter address");
-	    	  hasError=1;
-	      }
-	      if(emailAddress.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter email address");
 	    	  hasError=1;
 	      }
 	      return hasError;
