@@ -226,10 +226,6 @@ public class EnrollTeacherJPanel extends JPanel {
 	    	  JOptionPane.showMessageDialog(this,"Enter address");
 	    	  hasError=1;
 	      }
-	      if(emailAddress.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter email address");
-	    	  hasError=1;
-	      }
 	      return hasError;
 	}
 	public void readTeacher(Employee employee, java.awt.event.ActionEvent evt) {

@@ -49,9 +49,6 @@ public class EnrollTeacherJPanel extends JPanel {
 	String lName;
 	String address;
 	String doj;
-	String emailAddress;
-	
-	private JTextField textField_4;
 	
 	public EnrollTeacherJPanel(JPanel container, DayCare dayCare) {
 		setBackground(new Color(204, 255, 255));
@@ -123,8 +120,6 @@ public class EnrollTeacherJPanel extends JPanel {
 				lName=textField_1.getText();
 				address=textField_2.getText();
 				doj=textField_3.getText();
-				emailAddress=textField_4.getText();
-				
 				Integer hasError=0;
 				try {
 					hasError=loginAuthenticate();
@@ -149,8 +144,6 @@ public class EnrollTeacherJPanel extends JPanel {
 					st.append(doj);
 					st.append(",");
 					st.append(address);
-					st.append(",");
-					st.append(emailAddress);
 					
 					Teacher pObj = (Teacher)tFactory.createObject(st.toString());
 					employee = new Employee(pObj);//new Employee(pObj, null);
@@ -168,16 +161,6 @@ public class EnrollTeacherJPanel extends JPanel {
 		enrollBtn.setBackground(new Color(102, 0, 51));
 		enrollBtn.setBounds(450, 519, 117, 29);
 		add(enrollBtn);
-		
-		JLabel dojLabel_1 = new JLabel("Email Address");
-		dojLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		dojLabel_1.setBounds(260, 384, 117, 16);
-		add(dojLabel_1);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(437, 383, 130, 26);
-		add(textField_4);
 
 		
 		
@@ -224,10 +207,6 @@ public class EnrollTeacherJPanel extends JPanel {
 	      }
 	      if(address.length()==0) {
 	    	  JOptionPane.showMessageDialog(this,"Enter address");
-	    	  hasError=1;
-	      }
-	      if(emailAddress.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter email address");
 	    	  hasError=1;
 	      }
 	      return hasError;
