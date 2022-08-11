@@ -150,7 +150,7 @@ public class ReviewJPanel extends JPanel {
 						JOptionPane.showMessageDialog(container,"Reminder, add review");
 						//sendEmail();
 						
-						String s=d.toString();
+						String s="<p style=\"color:#001f3f\">"+d+" "+"</p>"+"<p style=\"color:#001f3f\"></p><p></p><p></p>";
 			            String htmlCode=String.valueOf(d);
 			            String ending="<p></p><p></p><p style=\"color:#001f3f\"> Thank you! </p>";
 			            

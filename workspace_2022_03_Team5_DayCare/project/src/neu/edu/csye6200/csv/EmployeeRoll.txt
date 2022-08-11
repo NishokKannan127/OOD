@@ -1,12 +1,12 @@
-100,Marci,Lennon,01/14/2022,21 Merganser Way Walpole MA 02081
-200,Jacob,Leister,02/20/2022,903Huntington ave Boston MA 02115
-300,Emma,Roberts,03/01/2021,80 Saint Alphonsos Street MA 02120
-193722425,d,d,11-02-1992,d
-870438677,a,d,11-02-1992,d
-214334602,s,s,11-02-1992,s
-552308222,q,q,11-02-1992,sq
-454237564,p,p,11-02-1222,p
-230510499,s,s,22-02-2222,s
-403664926,sd,ds,22-03-1234,sd
-675507721,sd,ds,22-03-1234,sd
-798915614,s,s,11-02-1111,s
+100,Marci,Lennon,01/14/2022,21 Merganser Way Walpole MA 02081,nishok217@gmail.com
+200,Jacob,Leister,02/20/2022,903Huntington ave Boston MA 02115,nishok217@gmail.com
+300,Emma,Roberts,03/01/2021,80 Saint Alphonsos Street MA 02120,nishok217@gmail.com
+193722425,d,d,11-02-1992,d,nishok217@gmail.com
+870438677,a,d,11-02-1992,d,nishok217@gmail.com
+214334602,s,s,11-02-1992,s,nishok217@gmail.com
+552308222,q,q,11-02-1992,sq,nishok217@gmail.com
+454237564,p,p,11-02-1222,p,nishok217@gmail.com
+230510499,s,s,22-02-2222,s,nishok217@gmail.com
+403664926,sd,ds,22-03-1234,sd,nishok217@gmail.com
+675507721,sd,ds,22-03-1234,sd,nishok217@gmail.com
+798915614,s,s,11-02-1111,s,nishok217@gmail.com
