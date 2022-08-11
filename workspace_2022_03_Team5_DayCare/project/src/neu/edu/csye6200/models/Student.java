@@ -27,6 +27,7 @@ public Student(String line) {
 		String parentName= "";
 		String address="";
 		String phoneNumberParent = "";
+		String email = "";
 		
 		fName = delimiter[1];
 		lName = delimiter[2];
@@ -34,6 +35,7 @@ public Student(String line) {
 		parentName = delimiter[4];
 		address = delimiter[5];
 		phoneNumberParent = delimiter[6];
+		email = delimiter[7];
 
 		
 		this.setId(id);
@@ -43,6 +45,7 @@ public Student(String line) {
 		this.setParentName(parentName);
 		this.setAddress(address);
 		this.setPhoneNumberParent(phoneNumberParent);
+		this.setEmailAddress(email);
 		
 
 	}

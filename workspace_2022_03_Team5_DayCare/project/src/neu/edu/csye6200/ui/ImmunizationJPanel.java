@@ -8,6 +8,7 @@ import neu.edu.csye6200.DayCare;
 import neu.edu.csye6200.models.FileUtil;
 import neu.edu.csye6200.models.ImmunizationRule;
 import neu.edu.csye6200.models.StudentDetails;
+import neu.edu.csye6200.Mail;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -38,10 +39,12 @@ public class ImmunizationJPanel extends JPanel {
 	private StudentDetails st;
 	private DayCare daycare;
 	private List<String> moreVaccineRequired;
+	private Mail email;
 
 	public ImmunizationJPanel(JPanel container, DayCare daycare, StudentDetails st) {
 		this.container = container;
 		this.daycare = daycare;
+		email = new Mail();
 		this.st = st;
 		setBackground(new Color(204, 255, 255));
 		this.setBounds(0, 0, 990, 990);
@@ -127,10 +130,13 @@ public class ImmunizationJPanel extends JPanel {
 						immunizationMessage.append("\n").append(names);
 					}
 					System.out.println(immunizationMessage);
-
+					email.sendMail();
 
 				}
+				
 			}
+
+			
 		});
 		populateTable();
 
