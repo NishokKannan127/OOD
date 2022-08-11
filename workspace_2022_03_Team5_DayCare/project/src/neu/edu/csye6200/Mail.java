@@ -34,9 +34,9 @@ public class Mail {
         String from = "ravichandran.sn.northeastern@gmail.com";
         String pass = "zlduhnledxaarmrp";
         //String[] to = { "snehaemailid@gmail.com" };
-        this.to=to;
-        this.subject= subject;
-        this.body = body;
+        to=to;
+        subject= subject;
+        body = body;
 
         sendFromGMail(from, pass, to, subject, body);
     }

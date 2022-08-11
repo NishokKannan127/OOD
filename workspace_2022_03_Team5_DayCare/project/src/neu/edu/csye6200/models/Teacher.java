@@ -21,6 +21,7 @@ public Teacher(String line) {
 		String lName = "";
 		String doj= "";
 		String address="";
+		String email="";
 		
 
 		try {
@@ -34,6 +35,7 @@ public Teacher(String line) {
 		lName = delimiter[2];
 		doj= delimiter[3];
 		address= delimiter[4];
+		email=delimiter[5];
 
 		
 		//this.setId(id);
@@ -41,6 +43,7 @@ public Teacher(String line) {
 		this.setLastName(lName);
 		this.setDoj(doj);
 		this.setAddress(address);
+		this.setEmailAddress(email);
 		
 
 	}

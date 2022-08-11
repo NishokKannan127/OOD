@@ -49,17 +49,19 @@ public class EnrollStudentJPanel extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	
+	private JTextField textField_7;
+
 	String fName;
 	String lName;
 	String address;
 	String parentName;
 	String dob;
 	String age;
-	 String parentPhNo;
+	String parentPhNo;
+	String email;
 	StudentFactory sFactory;
 	private JTextField textField_6;
-	
+
 	public EnrollStudentJPanel(JPanel container, DayCare daycare) {
 		setBackground(new Color(204, 255, 255));
 		this.container = container;
@@ -67,7 +69,7 @@ public class EnrollStudentJPanel extends JPanel {
 		this.setBounds(0, 0, 990, 990);
 		this.sFactory=(StudentFactory) daycare.getsFactory();
 		setLayout(null);
-		
+
 		JButton backButton = new JButton("<< back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,81 +78,81 @@ public class EnrollStudentJPanel extends JPanel {
 		});
 		backButton.setBounds(58, 98, 117, 29);
 		add(backButton);
-		
+
 		JLabel lblEnroll = new JLabel("Enroll Student");
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblEnroll.setBounds(6, 6, 978, 78);
 		add(lblEnroll);
-		
+
 		JLabel firstNameLabel = new JLabel("First Name");
 		firstNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		firstNameLabel.setBounds(305, 160, 72, 16);
 		add(firstNameLabel);
-		
+
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(490, 156, 130, 26);
 		add(textField);
-		
+
 		JLabel lastNameLabel = new JLabel("Last Name");
 		lastNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		lastNameLabel.setBounds(305, 215, 72, 16);
 		add(lastNameLabel);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(490, 211, 130, 26);
 		add(textField_1);
-		
+
 		JLabel addressLabel = new JLabel("Address");
 		addressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		addressLabel.setBounds(305, 270, 72, 16);
 		add(addressLabel);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(490, 266, 130, 26);
 		add(textField_2);
-		
+
 		JLabel parentNameLabel = new JLabel("Parent Name");
 		parentNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		parentNameLabel.setBounds(260, 327, 117, 16);
 		add(parentNameLabel);
-		
+
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(490, 323, 130, 26);
 		add(textField_3);
-		
+
 		JLabel dobLabel = new JLabel("Date of Birth");
 		dobLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		dobLabel.setBounds(305, 381, 72, 16);
 		add(dobLabel);
-		
+
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(490, 377, 130, 26);
 		add(textField_4);
-		
+
 		JLabel ageLabel = new JLabel("Age");
 		ageLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		ageLabel.setBounds(305, 444, 72, 16);
 		add(ageLabel);
-		
+
 		textField_5 = new JTextField();
 		textField_5.setEnabled(false);
 		textField_5.setEditable(false);
 		textField_5.setColumns(10);
 		textField_5.setBounds(490, 440, 130, 26);
 		add(textField_5);
-		
+
 		JButton enrollBtn = new JButton("Enroll");
 		enrollBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
+
+
+
 				fName=textField.getText();
 				lName=textField_1.getText();
 				address=textField_2.getText();
@@ -176,12 +178,12 @@ public class EnrollStudentJPanel extends JPanel {
 				StringBuilder st = new StringBuilder("");
 
 				age=textField_5.getText();		
-				
-				
+
+
 				if(hasError==0) {
 					int min = 100000000;
-				    int max = 999999999;			      
-				    Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+					int max = 999999999;			      
+					Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
 					st.append(random_int.toString());
 					st.append(",");
 					st.append(fName);
@@ -195,32 +197,32 @@ public class EnrollStudentJPanel extends JPanel {
 					st.append(address);
 					st.append(",");
 					st.append(parentPhNo);
-					
-					
+
+
 					Person pObj = sFactory.createObject(st.toString());
 					StudentDetails s = new StudentDetails(pObj);
 					daycare.getPersonDir().addStudentDet(s);
 					FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
 					System.out.println(st);
 					readStudent(s, e);
-//					CardLayout layout=(CardLayout)container.getLayout();
-//					StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
-//					container.add("StudentJPanel", studentJPanel);
-//					layout.next(container);
+					//					CardLayout layout=(CardLayout)container.getLayout();
+					//					StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
+					//					container.add("StudentJPanel", studentJPanel);
+					//					layout.next(container);
 				}
-				
-				
+
+
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));
 		enrollBtn.setBounds(451, 570, 117, 29);
 		add(enrollBtn);
-		
+
 		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
 		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblParentPhoneNo.setBounds(104, 504, 273, 16);
 		add(lblParentPhoneNo);
-		
+
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
 		textField_6.setBounds(490, 503, 130, 26);
@@ -229,67 +231,67 @@ public class EnrollStudentJPanel extends JPanel {
 	public Integer loginAuthenticate() throws ParseException {
 		Integer hasError=0;
 		Pattern pattern = Pattern.compile("\\d{10}");
-	      Matcher matcher = pattern.matcher(parentPhNo);
+		Matcher matcher = pattern.matcher(parentPhNo);
 
-	      if (matcher.matches()) {
-	          System.out.println("Phone Number Valid");
-	      } else {
-	          System.out.println("Phone Number must be in the form XXX-XXXXXXX");
-	          JOptionPane.showMessageDialog(this,"Enter correct phone number");
-	          hasError=1;
-	      }
-	      
-	      SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	      
-	      String formattedDate="";
-	      try {
-	    	  Date x = sdf.parse(dob);
-	      formattedDate = sdf.format(x);
-	      }
-	      catch(Exception e) {
-	    	  //JOptionPane.showMessageDialog(this,"Enter correct date");
-	    	  hasError=1;
-	      }
-	      if (formattedDate.equals(dob)) {
-	          System.out.println("valid date");
-	      } else {
-	    	  JOptionPane.showMessageDialog(this,"Enter correct date");
-	    	  hasError=1;
-	      }
-	      
-	      if(fName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter first name");
-	    	  hasError=1;
-	      }
-	      if(lName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter last name");
-	    	  hasError=1;
-	      }
-	      if(address.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter address");
-	    	  hasError=1;
-	      }
-	      if(parentName.length()==0) {
-	    	  JOptionPane.showMessageDialog(this,"Enter parent name");
-	    	  hasError=1;
-	      }
-	      
-	      System.out.print(fName);
-//	      fName=textField.getText();
-//			lName=textField_1.getText();
-//			address=textField_2.getText();
-//			parentName=textField_3.getText();
-//			dob=textField_4.getText();
-//			parentPhNo=textField_6.getText();
-	      return hasError;
+		if (matcher.matches()) {
+			System.out.println("Phone Number Valid");
+		} else {
+			System.out.println("Phone Number must be in the form XXX-XXXXXXX");
+			JOptionPane.showMessageDialog(this,"Enter correct phone number");
+			hasError=1;
+		}
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+		String formattedDate="";
+		try {
+			Date x = sdf.parse(dob);
+			formattedDate = sdf.format(x);
+		}
+		catch(Exception e) {
+			//JOptionPane.showMessageDialog(this,"Enter correct date");
+			hasError=1;
+		}
+		if (formattedDate.equals(dob)) {
+			System.out.println("valid date");
+		} else {
+			JOptionPane.showMessageDialog(this,"Enter correct date");
+			hasError=1;
+		}
+
+		if(fName.length()==0) {
+			JOptionPane.showMessageDialog(this,"Enter first name");
+			hasError=1;
+		}
+		if(lName.length()==0) {
+			JOptionPane.showMessageDialog(this,"Enter last name");
+			hasError=1;
+		}
+		if(address.length()==0) {
+			JOptionPane.showMessageDialog(this,"Enter address");
+			hasError=1;
+		}
+		if(parentName.length()==0) {
+			JOptionPane.showMessageDialog(this,"Enter parent name");
+			hasError=1;
+		}
+
+		System.out.print(fName);
+		//	      fName=textField.getText();
+		//			lName=textField_1.getText();
+		//			address=textField_2.getText();
+		//			parentName=textField_3.getText();
+		//			dob=textField_4.getText();
+		//			parentPhNo=textField_6.getText();
+		return hasError;
 	}
 	public String calculateAge(String dob) throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-	    Date date = formatter.parse(dob);
-	    Instant instant = date.toInstant();
-	    ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
-	    LocalDate givenDate = zone.toLocalDate();
-	      
+		Date date = formatter.parse(dob);
+		Instant instant = date.toInstant();
+		ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
+		LocalDate givenDate = zone.toLocalDate();
+
 		LocalDate dateDob = zone.toLocalDate();//LocalDate.parse((CharSequence) date );
 		LocalDate dateNow = LocalDate.now();
 		Period period = Period.between(dateDob, dateNow);
@@ -304,11 +306,11 @@ public class EnrollStudentJPanel extends JPanel {
 	}
 	public void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		container.remove(this);
-      Component[] componentArray = container.getComponents();
-      Component component = componentArray[componentArray.length - 1];
-      //DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+		Component[] componentArray = container.getComponents();
+		Component component = componentArray[componentArray.length - 1];
+		//DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
 
-      CardLayout layout = (CardLayout) container.getLayout();
-      layout.previous(container);
+		CardLayout layout = (CardLayout) container.getLayout();
+		layout.previous(container);
 	}
 }
