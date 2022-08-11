@@ -30,7 +30,7 @@ public class Mail {
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void sendMail(String[] to, String subject, String body){
+	public void sendMail(String[] to, String subject, String body){
         String from = "ravichandran.sn.northeastern@gmail.com";
         String pass = "zlduhnledxaarmrp";
         //String[] to = { "snehaemailid@gmail.com" };

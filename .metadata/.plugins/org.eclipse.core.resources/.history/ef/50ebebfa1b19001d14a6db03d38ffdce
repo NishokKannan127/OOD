@@ -155,14 +155,13 @@ public class ReviewJPanel extends JPanel {
 			            String ending="<p></p><p></p><p style=\"color:#001f3f\"> Thank you! </p>";
 			            
 			            
-			            String to[] = new String[1];
-			            to[0]="nishok217@gmail.com";
-			            String subject="Next review date";
-			            String body=s;
-			            
+			            String to;
+			            String subject;
+			            String body;
 						try {
-					        Mail.sendMail(to,subject,body);         
-					    } catch (Exception ex) {
+					        Mail.sendMail("nishok217@gmail.com",htmlCode,"Reminder!",s,ending);         
+					    } catch (MessagingException ex) {
+					        //Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
 					    	System.out.print("no email");
 					    }
 					//}
