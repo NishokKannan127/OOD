@@ -146,19 +146,26 @@ public class StudentJPanel extends JPanel {
 		lblAddress.setBounds(834, 192, 90, 16);
 		add(lblAddress);
 		
-		JButton editBtn = new JButton("View");
-		editBtn.addActionListener(new ActionListener() {
+		JButton viewBtn = new JButton("View");
+		viewBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("nnn");
 				viewStudent(e);
 			}
 		});
 		
-		editBtn.setBounds(95, 258, 117, 29);
-		add(editBtn);
-		
-		JButton viewBtn = new JButton("Edit");
-		viewBtn.setBounds(95, 317, 117, 29);
+		viewBtn.setBounds(95, 258, 117, 29);
 		add(viewBtn);
+		
+		JButton editBtn = new JButton("Edit");
+		editBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("nnn");
+				editStudent(e);
+			}
+		});
+		editBtn.setBounds(95, 317, 117, 29);
+		add(editBtn);
 		
 		JLabel lblNewLabel_2 = new JLabel("Select Class Room");
 		lblNewLabel_2.setBounds(341, 124, 128, 16);
@@ -183,6 +190,22 @@ public class StudentJPanel extends JPanel {
 		CardLayout layout=(CardLayout)container.getLayout();
 		EnrollStudentJPanelDisplay enrollStudentJPanelDisplay = new EnrollStudentJPanelDisplay(container, daycare, sd, false);
 		container.add("EnrollStudentJPanelDisplay", enrollStudentJPanelDisplay);
+		layout.next(container);
+	}
+	
+	public void editStudent(ActionEvent e) {
+		System.out.println("YYyy");
+		int selectedRowIndex = table.getSelectedRow();
+		if(selectedRowIndex<0) {
+			JOptionPane.showMessageDialog(this, "Please select a row to View");
+            return;
+		}
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		StudentDetails sd = (StudentDetails) model.getValueAt(selectedRowIndex, 0);
+		
+		CardLayout layout=(CardLayout)container.getLayout();
+		StudentEditJPanel studentEditJPanel = new StudentEditJPanel(container, daycare, sd);
+		container.add("StudentEditJPanel", studentEditJPanel);
 		layout.next(container);
 	}
 
