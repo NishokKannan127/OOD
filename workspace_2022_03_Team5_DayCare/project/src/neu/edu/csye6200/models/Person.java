@@ -6,6 +6,9 @@ public class Person {
 	String firstName;
 	String lastName;
 	String address;
+	
+
+	String emailAddress;
 
 	public long getId() {
 		return id;
@@ -30,6 +33,12 @@ public class Person {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 	
 	@Override
