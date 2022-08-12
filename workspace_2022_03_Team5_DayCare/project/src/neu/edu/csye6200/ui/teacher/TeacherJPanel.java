@@ -35,7 +35,7 @@ public class TeacherJPanel extends JPanel {
 	 */
 	
 	public TeacherJPanel(JPanel container, DayCare daycare) {
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.daycare = daycare;
 		this.setBounds(0, 0, 990, 990);
@@ -55,16 +55,19 @@ public class TeacherJPanel extends JPanel {
 		add(table);
 		
 		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblNewLabel.setBounds(417, 148, 92, 32);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("FirstName");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblNewLabel_1.setBounds(535, 154, 79, 21);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Last Name");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblNewLabel_2.setBounds(650, 155, 76, 14);
 		add(lblNewLabel_2);
@@ -77,7 +80,7 @@ public class TeacherJPanel extends JPanel {
 				viewTeacher(e);//, btnReview);
 			}
 		});
-		btnNewButton.setBounds(116, 203, 89, 23);
+		btnNewButton.setBounds(116, 203, 89, 46);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Edit");
@@ -85,7 +88,7 @@ public class TeacherJPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(116, 284, 89, 23);
+		btnNewButton_1.setBounds(116, 284, 89, 46);
 		add(btnNewButton_1);
 		
 		
@@ -107,7 +110,7 @@ public class TeacherJPanel extends JPanel {
 				layout.next(container);
 			}
 		});
-		btnReview.setBounds(481, 436, 89, 23);
+		btnReview.setBounds(481, 436, 89, 46);
 		add(btnReview);
 		
 		JButton backButton = new JButton("<< back");
@@ -116,7 +119,7 @@ public class TeacherJPanel extends JPanel {
 				backJButtonActionPerformed(e);
 			}
 		});
-		backButton.setBounds(116, 107, 117, 29);
+		backButton.setBounds(116, 107, 117, 39);
 		add(backButton);
 		populateTable();
 	}

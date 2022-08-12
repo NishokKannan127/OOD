@@ -46,7 +46,7 @@ public class StudentJPanel extends JPanel {
 		
 		
 		
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.daycare = daycare;
 		this.setBounds(0, 0, 990, 990);
@@ -70,12 +70,13 @@ public class StudentJPanel extends JPanel {
 				backJButtonActionPerformed(e);
 			}
 		});
-		backButton.setBounds(58, 98, 117, 29);
+		backButton.setBounds(58, 98, 117, 42);
 		add(backButton);
 
 		JLabel lblStudent = new JLabel("Student");
+		lblStudent.setForeground(new Color(255, 255, 255));
 		lblStudent.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStudent.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblStudent.setFont(new Font("Lucida Grande", Font.PLAIN, 29));
 		lblStudent.setBounds(6, 6, 978, 78);
 		add(lblStudent);
 
@@ -84,10 +85,12 @@ public class StudentJPanel extends JPanel {
 		add(table);
 
 		JLabel lblNewLabel = new JLabel("First Name");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(446, 192, 90, 16);
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Last Name");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBounds(580, 192, 83, 16);
 		add(lblNewLabel_1);
 
@@ -135,14 +138,17 @@ public class StudentJPanel extends JPanel {
 		add(groupCombobox);
 		
 		JLabel lblId = new JLabel("ID");
+		lblId.setForeground(new Color(255, 255, 255));
 		lblId.setBounds(317, 192, 90, 16);
 		add(lblId);
 		
 		JLabel lblDateOfBirth = new JLabel("Date of Birth");
+		lblDateOfBirth.setForeground(new Color(255, 255, 255));
 		lblDateOfBirth.setBounds(706, 192, 90, 16);
 		add(lblDateOfBirth);
 		
 		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setForeground(new Color(255, 255, 255));
 		lblAddress.setBounds(834, 192, 90, 16);
 		add(lblAddress);
 		
@@ -154,7 +160,7 @@ public class StudentJPanel extends JPanel {
 			}
 		});
 		
-		viewBtn.setBounds(95, 258, 117, 29);
+		viewBtn.setBounds(95, 258, 117, 47);
 		add(viewBtn);
 		
 		JButton editBtn = new JButton("Edit");
@@ -164,14 +170,16 @@ public class StudentJPanel extends JPanel {
 				editStudent(e);
 			}
 		});
-		editBtn.setBounds(95, 317, 117, 29);
+		editBtn.setBounds(95, 317, 117, 42);
 		add(editBtn);
 		
 		JLabel lblNewLabel_2 = new JLabel("Select Class Room");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setBounds(341, 124, 128, 16);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Select Group");
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setBounds(549, 124, 137, 16);
 		add(lblNewLabel_3);
 		

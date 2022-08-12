@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -49,7 +50,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 	private JTextField textField_6;
 	
 	public EnrollStudentJPanelDisplay(JPanel container, DayCare daycare, StudentDetails st, boolean isEnroll) {
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.daycare=daycare;
 		this.st=st;
@@ -62,7 +63,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 				backJButtonActionPerformed(e);
 			}
 		});
-		backButton.setBounds(58, 98, 117, 29);
+		backButton.setBounds(58, 98, 117, 40);
 		add(backButton);
 		
 		JLabel lblEnroll = null;;
@@ -79,6 +80,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		add(lblEnroll);
 		
 		JLabel firstNameLabel = new JLabel("First Name");
+		firstNameLabel.setForeground(new Color(255, 255, 255));
 		firstNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		firstNameLabel.setBounds(247, 160, 130, 16);
 		add(firstNameLabel);
@@ -91,6 +93,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		add(textField);
 		
 		JLabel lastNameLabel = new JLabel("Last Name");
+		lastNameLabel.setForeground(new Color(255, 255, 255));
 		lastNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		lastNameLabel.setBounds(265, 215, 112, 16);
 		add(lastNameLabel);
@@ -103,6 +106,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		add(textField_1);
 		
 		JLabel addressLabel = new JLabel("Address");
+		addressLabel.setForeground(new Color(255, 255, 255));
 		addressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		addressLabel.setBounds(265, 270, 112, 16);
 		add(addressLabel);
@@ -115,6 +119,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		add(textField_2);
 		
 		JLabel parentNameLabel = new JLabel("Parent Name");
+		parentNameLabel.setForeground(new Color(255, 255, 255));
 		parentNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		parentNameLabel.setBounds(265, 327, 112, 16);
 		add(parentNameLabel);
@@ -127,6 +132,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		add(textField_3);
 		
 		JLabel dobLabel = new JLabel("Date of Birth");
+		dobLabel.setForeground(new Color(255, 255, 255));
 		dobLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		dobLabel.setBounds(265, 381, 112, 16);
 		add(dobLabel);
@@ -139,6 +145,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		add(textField_4);
 		
 		JLabel ageLabel = new JLabel("Age");
+		ageLabel.setForeground(new Color(255, 255, 255));
 		ageLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		ageLabel.setBounds(265, 444, 112, 16);
 		add(ageLabel);
@@ -155,7 +162,7 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGoToDashboard.setBounds(58, 257, 117, 29);
+		btnGoToDashboard.setBounds(58, 257, 117, 48);
 		add(btnGoToDashboard);
 		
 		JButton btnImmunization = new JButton("Immunization");
@@ -164,10 +171,11 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 				immunizationButtonActionPerformed(st,e);
 			}
 		});
-		btnImmunization.setBounds(318, 577, 117, 29);		
+		btnImmunization.setBounds(436, 557, 117, 48);		
 		add(btnImmunization);
 		
 		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
+		lblParentPhoneNo.setForeground(new Color(255, 255, 255));
 		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblParentPhoneNo.setBounds(197, 499, 180, 16);
 		add(lblParentPhoneNo);
@@ -179,6 +187,12 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		textField_6.setColumns(10);
 		textField_6.setBounds(493, 498, 130, 26);
 		add(textField_6);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(476, 41, 101, 66);
+		add(lblNewLabel);
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/img7.png"));
+		lblNewLabel.setIcon(img);
 //		btnImmunization.setBounds(318, 529, 117, 29);
 //		add(btnImmunization);
 

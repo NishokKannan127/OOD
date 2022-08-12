@@ -46,7 +46,7 @@ public class ImmunizationJPanel extends JPanel {
 		this.daycare = daycare;
 		email = new Mail();
 		this.st = st;
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.setBounds(0, 0, 990, 990);
 		setLayout(null);
 
@@ -83,7 +83,7 @@ public class ImmunizationJPanel extends JPanel {
 			}
 		});
 
-		backButton.setBounds(81, 76, 89, 23);
+		backButton.setBounds(81, 76, 89, 38);
 		add(backButton);
 
 		vaccineDoseTextField = new JTextField();
@@ -98,14 +98,14 @@ public class ImmunizationJPanel extends JPanel {
 				addVaccineDose(e, vaccineDoseTextField);
 			}
 		});
-		addButton.setBounds(92, 463, 89, 23);
+		addButton.setBounds(92, 463, 89, 49);
 		add(addButton);
 		addButton.setEnabled(true);
 		JButton sendReminder = new JButton("Send Reminder");
 
 
 
-		sendReminder.setBounds(313, 76, 116, 23);
+		sendReminder.setBounds(313, 76, 116, 38);
 		add(sendReminder);
 		if(moreImmunizationNeeded().size()==0)
 		{

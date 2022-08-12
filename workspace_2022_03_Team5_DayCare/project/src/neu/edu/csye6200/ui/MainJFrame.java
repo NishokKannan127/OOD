@@ -19,6 +19,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -54,24 +55,27 @@ public class MainJFrame extends JFrame {
 		passwordReal = "";
 		
 		JPanel homePanel = new JPanel();
-		homePanel.setBackground(new Color(204, 255, 255));
+		homePanel.setBackground(new Color(153, 50, 204));
 		container.add("HomePanel", homePanel);
 		homePanel.setLayout(null);
 		
 		JLabel titleLabel = new JLabel("Day Care");
+		titleLabel.setForeground(new Color(255, 255, 255));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 29));
 		titleLabel.setBounds(6, 6, 978, 78);
 		homePanel.add(titleLabel);
 		
 		JLabel useridLabel = new JLabel("User ID");
+		useridLabel.setForeground(new Color(255, 255, 255));
 		useridLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		useridLabel.setBounds(400, 295, 72, 16);
+		useridLabel.setBounds(388, 470, 72, 16);
 		homePanel.add(useridLabel);
 		
 		JLabel passwordLabel = new JLabel("Password");
+		passwordLabel.setForeground(new Color(255, 255, 255));
 		passwordLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		passwordLabel.setBounds(400, 333, 72, 16);
+		passwordLabel.setBounds(400, 512, 72, 16);
 		homePanel.add(passwordLabel);
 		
 		passwordText = new JTextField();
@@ -98,12 +102,12 @@ public class MainJFrame extends JFrame {
 			}
 		});
 		passwordText.setColumns(10);
-		passwordText.setBounds(503, 328, 130, 26);
+		passwordText.setBounds(514, 507, 130, 26);
 		homePanel.add(passwordText);
 		
 		useridText = new JTextField();
 		useridText.setColumns(10);
-		useridText.setBounds(503, 290, 130, 26);
+		useridText.setBounds(514, 465, 130, 26);
 		homePanel.add(useridText);
 		
 //		for(StudentDetails sd: daycare.getPersonDir().getStuDir().getStudentList()) {
@@ -131,8 +135,14 @@ public class MainJFrame extends JFrame {
 			}
 		});
 		loginBtn.setBackground(new Color(102, 0, 51));
-		loginBtn.setBounds(450, 405, 117, 29);
+		loginBtn.setBounds(449, 578, 117, 48);
 		homePanel.add(loginBtn);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(261, 77, 509, 318);
+		homePanel.add(lblNewLabel);
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/img12.jpeg"));
+		lblNewLabel.setIcon(img);
 	}
 	
 	public void loginAuthenticate() {

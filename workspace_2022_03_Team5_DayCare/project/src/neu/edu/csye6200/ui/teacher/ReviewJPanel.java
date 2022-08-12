@@ -58,7 +58,7 @@ public class ReviewJPanel extends JPanel {
 	private JTextField sliderVal;
 
 	public ReviewJPanel(JPanel container, DayCare daycare, Employee employee) {
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.daycare = daycare;
 		this.employee=employee;
@@ -88,12 +88,13 @@ public class ReviewJPanel extends JPanel {
 				backJButtonActionPerformed(e);
 			}
 		});
-		backButton.setBounds(58, 98, 117, 29);
+		backButton.setBounds(58, 98, 117, 39);
 		add(backButton);
 
 		JLabel lblStudent = new JLabel("Review");
+		lblStudent.setForeground(new Color(255, 255, 255));
 		lblStudent.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStudent.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblStudent.setFont(new Font("Lucida Grande", Font.PLAIN, 29));
 		lblStudent.setBounds(6, 6, 978, 78);
 		add(lblStudent);
 
@@ -102,15 +103,18 @@ public class ReviewJPanel extends JPanel {
 		add(table);
 
 		JLabel lblNewLabel = new JLabel("Rating");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(596, 139, 90, 16);
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Description");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBounds(851, 139, 83, 16);
 		add(lblNewLabel_1);
 		
 		JLabel lblId = new JLabel("Date of review");
-		lblId.setBounds(317, 139, 90, 16);
+		lblId.setForeground(new Color(255, 255, 255));
+		lblId.setBounds(317, 139, 116, 16);
 		add(lblId);
 		
 		JButton btnReminderNextReview = new JButton("Reminder next review");
@@ -171,12 +175,13 @@ public class ReviewJPanel extends JPanel {
 				//enable it once next year comes
 			}
 		});
-		btnReminderNextReview.setBounds(736, 620, 198, 29);
+		btnReminderNextReview.setBounds(736, 620, 198, 49);
 		add(btnReminderNextReview);
 		
 		JLabel lblDateOfReview = new JLabel("Date of review");
+		lblDateOfReview.setForeground(new Color(255, 255, 255));
 		lblDateOfReview.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDateOfReview.setBounds(317, 450, 72, 16);
+		lblDateOfReview.setBounds(317, 450, 116, 16);
 		add(lblDateOfReview);
 		
 		textField = new JTextField();
@@ -187,13 +192,15 @@ public class ReviewJPanel extends JPanel {
 		add(textField);
 		
 		JLabel lblRating = new JLabel("Rating");
+		lblRating.setForeground(new Color(255, 255, 255));
 		lblRating.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblRating.setBounds(317, 509, 72, 16);
+		lblRating.setBounds(317, 509, 116, 16);
 		add(lblRating);
 		
 		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setForeground(new Color(255, 255, 255));
 		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDescription.setBounds(317, 561, 72, 16);
+		lblDescription.setBounds(317, 561, 116, 16);
 		add(lblDescription);
 		
 		textField_2 = new JTextField();
@@ -226,7 +233,7 @@ public class ReviewJPanel extends JPanel {
 				populateTable();
 			}
 		});
-		btnSubmit.setBounds(446, 620, 198, 29);
+		btnSubmit.setBounds(446, 620, 198, 49);
 		add(btnSubmit);
 		
 		sliderVal = new JTextField();

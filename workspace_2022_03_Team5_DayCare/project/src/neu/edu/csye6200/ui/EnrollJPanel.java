@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -24,7 +25,7 @@ public class EnrollJPanel extends JPanel {
 	private DayCare dayCare;
 	
 	public EnrollJPanel(JPanel container, DayCare dayCare) {
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.dayCare=dayCare;
 		this.setBounds(0, 0, 990, 990);
@@ -36,12 +37,13 @@ public class EnrollJPanel extends JPanel {
 				backJButtonActionPerformed(e);
 			}
 		});
-		backButton.setBounds(58, 98, 117, 29);
+		backButton.setBounds(58, 98, 117, 41);
 		add(backButton);
 		
 		JLabel lblEnroll = new JLabel("Enroll");
+		lblEnroll.setForeground(new Color(255, 255, 255));
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 29));
 		lblEnroll.setBounds(6, 6, 978, 78);
 		add(lblEnroll);
 		
@@ -57,7 +59,7 @@ public class EnrollJPanel extends JPanel {
 				layout.next(container);
 			}
 		});
-		enrollStudents.setBounds(247, 194, 161, 29);
+		enrollStudents.setBounds(247, 194, 161, 47);
 		add(enrollStudents);
 		
 		JButton enrollTeachers = new JButton("Enroll Teachers");
@@ -69,8 +71,14 @@ public class EnrollJPanel extends JPanel {
 				layout.next(container);
 			}
 		});
-		enrollTeachers.setBounds(247, 295, 161, 29);
+		enrollTeachers.setBounds(247, 295, 161, 47);
 		add(enrollTeachers);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(470, 79, 91, 69);
+		add(lblNewLabel);
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/img5.png"));
+		lblNewLabel.setIcon(img);
 
 		
 		

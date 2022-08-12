@@ -1,6 +1,7 @@
 package neu.edu.csye6200.ui;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.CardLayout;
@@ -24,7 +25,7 @@ public class DashBoardJPanel extends JPanel {
 	DayCare daycare;
 
 	public DashBoardJPanel(JPanel container, DayCare daycare) {
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.daycare = daycare;
 		this.setBounds(0, 0, 990, 990);
@@ -49,12 +50,13 @@ public class DashBoardJPanel extends JPanel {
 
 			}
 		});
-		btnNewButton_1.setBounds(830, 108, 117, 29);
+		btnNewButton_1.setBounds(828, 51, 117, 51);
 		add(btnNewButton_1);
 		
 		JLabel titleLabel = new JLabel("Day Care");
+		titleLabel.setForeground(new Color(255, 255, 255));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 29));
 		titleLabel.setBounds(6, 6, 978, 78);
 		add(titleLabel);
 		
@@ -87,6 +89,14 @@ public class DashBoardJPanel extends JPanel {
 		JButton btnImmunization = new JButton("Immunization");
 		btnImmunization.setBounds(677, 349, 169, 70);
 		add(btnImmunization);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(462, 78, 117, 70);
+		add(lblNewLabel);
+		
+		
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/img4.png"));
+		lblNewLabel.setIcon(img);
 
 	}
 	// signout code
@@ -112,5 +122,4 @@ public class DashBoardJPanel extends JPanel {
 		container.add("TeacherJPanel", teacherJPanel);
 		layout.next(container);
 	}
-
 }
