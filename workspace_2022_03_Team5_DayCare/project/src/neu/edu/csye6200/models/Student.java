@@ -19,7 +19,7 @@ public class Student extends Person{
 public Student(String line) {
 		
 		String delimiter[]=line.split(",");
-		id=++counter;
+		this.setId(Long.parseLong(delimiter[0]));
 		//Integer id = 0;
 		String fName = "";
 		String lName = "";

@@ -2,6 +2,7 @@ package neu.edu.csye6200.models;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,5 +37,17 @@ public class FileUtil {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+	}
+	
+	public static void deleteFileItems(String filename) {
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(filename, true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BufferedWriter bw = new BufferedWriter(fw);
+		new File(filename).delete();
 	}
 }
