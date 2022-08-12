@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -64,7 +65,7 @@ public class EnrollStudentJPanel extends JPanel {
 	private JTextField textField_8;
 
 	public EnrollStudentJPanel(JPanel container, DayCare daycare) {
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.daycare=daycare;
 		this.setBounds(0, 0, 990, 990);
@@ -77,16 +78,18 @@ public class EnrollStudentJPanel extends JPanel {
 				backJButtonActionPerformed(e);
 			}
 		});
-		backButton.setBounds(58, 98, 117, 29);
+		backButton.setBounds(58, 98, 117, 47);
 		add(backButton);
 
 		JLabel lblEnroll = new JLabel("Enroll Student");
+		lblEnroll.setForeground(new Color(255, 255, 255));
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 29));
 		lblEnroll.setBounds(6, 6, 978, 78);
 		add(lblEnroll);
 
 		JLabel firstNameLabel = new JLabel("First Name");
+		firstNameLabel.setForeground(new Color(255, 255, 255));
 		firstNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		firstNameLabel.setBounds(305, 160, 72, 16);
 		add(firstNameLabel);
@@ -97,6 +100,7 @@ public class EnrollStudentJPanel extends JPanel {
 		add(textField);
 
 		JLabel lastNameLabel = new JLabel("Last Name");
+		lastNameLabel.setForeground(new Color(255, 255, 255));
 		lastNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		lastNameLabel.setBounds(305, 215, 72, 16);
 		add(lastNameLabel);
@@ -107,6 +111,7 @@ public class EnrollStudentJPanel extends JPanel {
 		add(textField_1);
 
 		JLabel addressLabel = new JLabel("Address");
+		addressLabel.setForeground(new Color(255, 255, 255));
 		addressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		addressLabel.setBounds(305, 270, 72, 16);
 		add(addressLabel);
@@ -117,6 +122,7 @@ public class EnrollStudentJPanel extends JPanel {
 		add(textField_2);
 
 		JLabel parentNameLabel = new JLabel("Parent Name");
+		parentNameLabel.setForeground(new Color(255, 255, 255));
 		parentNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		parentNameLabel.setBounds(260, 327, 117, 16);
 		add(parentNameLabel);
@@ -127,6 +133,7 @@ public class EnrollStudentJPanel extends JPanel {
 		add(textField_3);
 
 		JLabel dobLabel = new JLabel("Date of Birth");
+		dobLabel.setForeground(new Color(255, 255, 255));
 		dobLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		dobLabel.setBounds(305, 381, 72, 16);
 		add(dobLabel);
@@ -137,6 +144,7 @@ public class EnrollStudentJPanel extends JPanel {
 		add(textField_4);
 
 		JLabel ageLabel = new JLabel("Age");
+		ageLabel.setForeground(new Color(255, 255, 255));
 		ageLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		ageLabel.setBounds(305, 444, 72, 16);
 		add(ageLabel);
@@ -219,10 +227,11 @@ public class EnrollStudentJPanel extends JPanel {
 			}
 		});
 		enrollBtn.setBackground(new Color(102, 0, 51));
-		enrollBtn.setBounds(453, 636, 117, 29);
+		enrollBtn.setBounds(453, 636, 117, 47);
 		add(enrollBtn);
 
 		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
+		lblParentPhoneNo.setForeground(new Color(255, 255, 255));
 		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblParentPhoneNo.setBounds(104, 504, 273, 16);
 		add(lblParentPhoneNo);
@@ -233,6 +242,7 @@ public class EnrollStudentJPanel extends JPanel {
 		add(textField_6);
 		
 		JLabel lblEmailAddress = new JLabel("Email Address");
+		lblEmailAddress.setForeground(new Color(255, 255, 255));
 		lblEmailAddress.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblEmailAddress.setBounds(104, 557, 273, 16);
 		add(lblEmailAddress);
@@ -241,6 +251,12 @@ public class EnrollStudentJPanel extends JPanel {
 		textField_8.setColumns(10);
 		textField_8.setBounds(490, 556, 130, 26);
 		add(textField_8);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(453, 76, 72, 69);
+		add(lblNewLabel);
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/img6.png"));
+		lblNewLabel.setIcon(img);
 	}
 	public Integer loginAuthenticate() throws ParseException {
 		Integer hasError=0;

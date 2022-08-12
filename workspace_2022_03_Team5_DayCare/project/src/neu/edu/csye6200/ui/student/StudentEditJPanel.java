@@ -68,7 +68,7 @@ public class StudentEditJPanel extends JPanel {
 	
 
 	public StudentEditJPanel(JPanel container, DayCare daycare, StudentDetails sd) {
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.daycare=daycare;
 		this.setBounds(0, 0, 990, 990);
@@ -83,16 +83,18 @@ public class StudentEditJPanel extends JPanel {
 				backJButtonActionPerformed(e);
 			}
 		});
-		backButton.setBounds(58, 98, 117, 29);
+		backButton.setBounds(58, 98, 117, 43);
 		add(backButton);
 
 		JLabel lblEnroll = new JLabel("Enroll Student");
+		lblEnroll.setForeground(new Color(255, 255, 255));
 		lblEnroll.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblEnroll.setFont(new Font("Lucida Grande", Font.PLAIN, 29));
 		lblEnroll.setBounds(6, 6, 978, 78);
 		add(lblEnroll);
 
 		JLabel firstNameLabel = new JLabel("First Name");
+		firstNameLabel.setForeground(new Color(255, 255, 255));
 		firstNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		firstNameLabel.setBounds(305, 160, 72, 16);
 		add(firstNameLabel);
@@ -104,6 +106,7 @@ public class StudentEditJPanel extends JPanel {
 		add(textField);
 
 		JLabel lastNameLabel = new JLabel("Last Name");
+		lastNameLabel.setForeground(new Color(255, 255, 255));
 		lastNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		lastNameLabel.setBounds(305, 215, 72, 16);
 		add(lastNameLabel);
@@ -115,6 +118,7 @@ public class StudentEditJPanel extends JPanel {
 		add(textField_1);
 
 		JLabel addressLabel = new JLabel("Address");
+		addressLabel.setForeground(new Color(255, 255, 255));
 		
 		addressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		addressLabel.setBounds(305, 270, 72, 16);
@@ -127,6 +131,7 @@ public class StudentEditJPanel extends JPanel {
 		add(textField_2);
 
 		JLabel parentNameLabel = new JLabel("Parent Name");
+		parentNameLabel.setForeground(new Color(255, 255, 255));
 		parentNameLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		parentNameLabel.setBounds(260, 327, 117, 16);
 		add(parentNameLabel);
@@ -138,6 +143,7 @@ public class StudentEditJPanel extends JPanel {
 		add(textField_3);
 
 		JLabel dobLabel = new JLabel("Date of Birth");
+		dobLabel.setForeground(new Color(255, 255, 255));
 		dobLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		dobLabel.setBounds(305, 381, 72, 16);
 		add(dobLabel);
@@ -149,6 +155,7 @@ public class StudentEditJPanel extends JPanel {
 		add(textField_4);
 
 		JLabel ageLabel = new JLabel("Age");
+		ageLabel.setForeground(new Color(255, 255, 255));
 		ageLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		ageLabel.setBounds(305, 444, 72, 16);
 		add(ageLabel);
@@ -284,6 +291,7 @@ public class StudentEditJPanel extends JPanel {
 		add(modifyBtn);
 
 		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
+		lblParentPhoneNo.setForeground(new Color(255, 255, 255));
 		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblParentPhoneNo.setBounds(104, 504, 273, 16);
 		add(lblParentPhoneNo);
@@ -295,6 +303,7 @@ public class StudentEditJPanel extends JPanel {
 		add(textField_6);
 		
 		JLabel lblEmailAddress = new JLabel("Email Address");
+		lblEmailAddress.setForeground(new Color(255, 255, 255));
 		lblEmailAddress.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblEmailAddress.setBounds(104, 557, 273, 16);
 		add(lblEmailAddress);

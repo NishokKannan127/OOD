@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -45,7 +46,7 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 	
 	public EnrollTeacherJPanelDisplay(JPanel container, DayCare dayCare, Employee employee, boolean isEnroll) {
 		System.out.println("I'm here");
-		setBackground(new Color(204, 255, 255));
+		setBackground(new Color(153, 50, 204));
 		this.container = container;
 		this.dayCare=dayCare;
 		this.teacher=employee.getEmployee();
@@ -58,7 +59,7 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 				backJButtonActionPerformed(e);
 			}
 		});
-		backButton.setBounds(58, 98, 117, 29);
+		backButton.setBounds(58, 98, 117, 41);
 		add(backButton);
 		
 		JLabel lblEnroll = null;
@@ -128,12 +129,18 @@ public class EnrollTeacherJPanelDisplay extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGoToDashboard.setBounds(58, 257, 117, 29);
+		btnGoToDashboard.setBounds(58, 257, 117, 38);
 		add(btnGoToDashboard);
 		
 		JButton btnReview = new JButton("Review");
-		btnReview.setBounds(305, 405, 117, 29);
+		btnReview.setBounds(305, 405, 117, 41);
 		add(btnReview);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(444, 39, 75, 64);
+		add(lblNewLabel);
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/img10.png"));
+		lblNewLabel.setIcon(img);
 
 		
 		
