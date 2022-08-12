@@ -21,6 +21,7 @@ import neu.edu.csye6200.models.PersonDirectory;
 import neu.edu.csye6200.models.Review;
 import neu.edu.csye6200.models.Student;
 import neu.edu.csye6200.models.StudentDetails;
+import neu.edu.csye6200.models.StudentDirectory;
 import neu.edu.csye6200.models.StudentFactory;
 import neu.edu.csye6200.models.Teacher;
 import neu.edu.csye6200.models.TeacherFactory;
@@ -50,6 +51,10 @@ public class DayCare {
 		
 		initializeAllReviews(personDir.getEmpDir());
 		
+	}
+	
+	public void initAgain() {
+		this.personDir.setStuDir(new StudentDirectory());
 	}
 	
 	public int initializeStudents() {
@@ -285,7 +290,6 @@ public class DayCare {
 
 		GroupRule gr=null;
 		Student st = (Student) sd.getStudent();
-		System.out.println("ID "+ st.getFirstName() + ", Age: "+st.getAge());
 		for(GroupRule g:groupRuleList) {
 
 			if(Integer.parseInt(st.getAge()) >=g.getAgeLower() && Integer.parseInt(st.getAge()) <=g.getAgeHigher()) {
@@ -297,7 +301,6 @@ public class DayCare {
 		}
 		boolean classfound = false;
 
-		System.out.println(classroomDir.getClassRoomDir().size());
 
 		for(Classroom cr:classroomDir.getClassRoomDir()) {
 			if(cr.getGrouprule().equals(gr) && cr.isFull() == false) {

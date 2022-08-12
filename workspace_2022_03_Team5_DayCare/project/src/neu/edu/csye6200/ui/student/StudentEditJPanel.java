@@ -29,7 +29,9 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -164,8 +166,8 @@ public class StudentEditJPanel extends JPanel {
 		textField_5.setBounds(490, 440, 130, 26);
 		add(textField_5);
 
-		JButton enrollBtn = new JButton("Enroll");
-		enrollBtn.addActionListener(new ActionListener() {
+		JButton modifyBtn = new JButton("Modify");
+		modifyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 
@@ -193,50 +195,93 @@ public class StudentEditJPanel extends JPanel {
 					e1.printStackTrace();
 					hasError=1;
 				}//textField_5.getText();
-				StringBuilder st = new StringBuilder("");
+				StringBuilder sb = new StringBuilder("");
 
 				age=textField_5.getText();		
 
 
 				if(hasError==0) {
-					int min = 100000000;
-					int max = 999999999;			      
-					Integer random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-					st.append(random_int.toString());
-					st.append(",");
-					st.append(fName);
-					st.append(",");
-					st.append(lName);
-					st.append(",");
-					st.append(dob);
-					st.append(",");
-					st.append(parentName);
-					st.append(",");
-					st.append(address);
-					st.append(",");
-					st.append(parentPhNo);
-					st.append(",");
-					st.append(email);
-
-
-					Person pObj = sFactory.createObject(st.toString());
-					StudentDetails s = new StudentDetails(pObj);
-					daycare.getPersonDir().addStudentDet(s);
-					FileUtil.writeItems(st.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
-					System.out.println(st);
-					readStudent(s, e);
+					
+					sb.append(st.getId());
+					sb.append(",");
+					sb.append(fName);
+					sb.append(",");
+					sb.append(lName);
+					sb.append(",");
+					sb.append(dob);
+					sb.append(",");
+					sb.append(parentName);
+					sb.append(",");
+					sb.append(address);
+					sb.append(",");
+					sb.append(parentPhNo);
+					sb.append(",");
+					sb.append(email);
+					
+					String line;
+					String errorCheck="";
+					int i=0,j=0,k=0;
+					List<String> enrollmentContent = new ArrayList<String>();
+					List<String> enrollmentDel = new ArrayList<>();
+					try {
+						enrollmentContent= FileUtil.readItems("src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+						for(String content:enrollmentContent) {
+							String[] params = content.split(",");
+							System.out.println("Params "+params[0]);
+							System.out.println("Val "+st.getId());
+							if(!params[0].equals(String.valueOf(st.getId()))) {
+								enrollmentDel.add(content);
+							}
+						}
+						FileUtil.deleteFileItems("src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+						
+						for(String content:enrollmentDel) {
+							FileUtil.writeItems(content, "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+						}
+					}
+					catch(Exception ex) {
+						errorCheck = ex.toString()+" "+"unable to find contents";
+					}
+					
+					boolean initAgain= false;
+					try {
+						if(st.getAge() != age) {
+							initAgain=true;
+						}
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
+					Person pObj = sFactory.createObject(sb.toString());
+					sd.setStudent(pObj);
+					
+					
+					
+					
+					FileUtil.writeItems(sb.toString(), "src/neu/edu/csye6200/csv/EnrollmentRoster.txt");
+					System.out.println(sb);
+					if(initAgain == true) {
+						daycare.initAgain();
+						daycare.initializeStudents();
+					}
+					readStudent(sd, e);
+					
+					
 					//					CardLayout layout=(CardLayout)container.getLayout();
 					//					StudentJPanel studentJPanel = new StudentJPanel(container, daycare);
 					//					container.add("StudentJPanel", studentJPanel);
 					//					layout.next(container);
+					
 				}
 
 
 			}
 		});
-		enrollBtn.setBackground(new Color(102, 0, 51));
-		enrollBtn.setBounds(453, 636, 117, 29);
-		add(enrollBtn);
+		modifyBtn.setBackground(new Color(102, 0, 51));
+		modifyBtn.setBounds(453, 636, 117, 29);
+		add(modifyBtn);
 
 		JLabel lblParentPhoneNo = new JLabel("Parent Phone No");
 		lblParentPhoneNo.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -244,6 +289,7 @@ public class StudentEditJPanel extends JPanel {
 		add(lblParentPhoneNo);
 
 		textField_6 = new JTextField();
+		textField_6.setText(st.getPhoneNumberParent());
 		textField_6.setColumns(10);
 		textField_6.setBounds(490, 503, 130, 26);
 		add(textField_6);
@@ -254,6 +300,7 @@ public class StudentEditJPanel extends JPanel {
 		add(lblEmailAddress);
 		
 		textField_8 = new JTextField();
+		textField_8.setText(st.getEmailAddress());
 		textField_8.setColumns(10);
 		textField_8.setBounds(490, 556, 130, 26);
 		add(textField_8);

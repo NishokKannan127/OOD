@@ -153,6 +153,13 @@ public class EnrollStudentJPanelDisplay extends JPanel {
 		JButton btnGoToDashboard = new JButton("Go to Dashboard");
 		btnGoToDashboard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Component[] componentArray = container.getComponents();
+			    Component component = componentArray[componentArray.length - 1];
+			      //DashBoardJPanel dashBoardJPanel = (DashBoardJPanel) component;
+
+			    CardLayout layout = (CardLayout) container.getLayout();
+			    layout.previous(container);
+			    layout.previous(container);
 			}
 		});
 		btnGoToDashboard.setBounds(58, 257, 117, 29);
